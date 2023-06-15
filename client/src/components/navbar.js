@@ -1,17 +1,28 @@
 import React, { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu, AiOutlineShoppingCart } from 'react-icons/ai';
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../context/auth";
+import { toast, Toaster } from "react-hot-toast";
 const Navbar = () => {
 
+    const [auth, setAuth] = useAuth()
     const [toggle, setToggle] = useState(false);
-
+    const handleLogout = () => {
+        setAuth({
+            ...auth, user: null, token: ''
+        })
+        localStorage.removeItem('auth')
+        toast.success("Logout Successful")
+    }
     const handleNav = () => {
         setToggle(!toggle);
     };
 
     return (
 
+
         <nav className="h-[10vh] flex sm:items-center justify-center bg-gray-800 " style={{ fontFamily: 'Poppins' }}>
+            <Toaster />
             <div className="w-full">
                 <div className=" mt-3 sm:mt-0 max-w-screen-lg flex flex-wrap align-self-center items-center justify-between mx-auto">
                     <div className="flex items-center m-2">
@@ -29,19 +40,31 @@ const Navbar = () => {
                         <li className="hover:text-teal-400 text-white">
                             <NavLink to="/products">Products</NavLink>
                         </li>
-                        <li className="hover:text-teal-400 text-white">
-                            <NavLink to="/register">Register</NavLink>
-                        </li>
-                        <li className="hover:text-teal-400 text-white">
-                            <NavLink to="/login">Login</NavLink>
-                        </li>
+                        {
+                            !auth.user ? (
+                                <>
+                                    <li className="hover:text-teal-400 text-white">
+                                        <NavLink to="/register">Register</NavLink>
+                                    </li>
+                                    <li className="hover:text-teal-400 text-white">
+                                        <NavLink to="/login">Login</NavLink>
+                                    </li>
+                                </>
+                            ) : (
+                                <>
+                                    <li className="hover:text-teal-400 text-white">
+                                        <NavLink onClick={handleLogout} to="/login">Logout</NavLink>
+                                    </li>
+                                </>
+                            )
+                        }
                         <li className="hover:text-teal-400 flex items-center text-white">
                             <NavLink to="/cart">
                                 <AiOutlineShoppingCart className="text-white hover:text-teal-400" size={20} />
                             </NavLink>
                         </li>
                     </ul>
-
+                    <Toaster />
                     <div onClick={handleNav} className={toggle ? 'hidden' : ' hover:bg-white hover:text-black sm:hidden border border-white m-2 p-2 rounded-md'}>
                         <AiOutlineMenu className='text-white' size={20} />
                     </div>
@@ -80,6 +103,8 @@ const Navbar = () => {
                 </div>
             </div>
         </nav>
+
+
 
     )
 }

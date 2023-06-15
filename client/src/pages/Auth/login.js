@@ -1,14 +1,16 @@
 import { React, useState } from 'react'
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { toast, Toaster } from 'react-hot-toast';
+import { useAuth } from '../../context/auth';
 const Login = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const [auth, setAuth] = useAuth()
     const [answer, setAnswer] = useState("");
     const navigate = useNavigate();
+    const location = useLocation()
 
     // form function
     const handleSubmit = async (e) => {
@@ -20,7 +22,13 @@ const Login = () => {
             });
             if (res && res.data.success) {
                 toast.success(res.data && res.data.message);
-                navigate("/");
+                setAuth({
+                    ...auth,
+                    user: res.data.user,
+                    token: res.data.token
+                })
+                localStorage.setItem("auth", JSON.stringify(res.data));
+                navigate(location.state || "/");
             } else {
                 toast.error(res.data.message);
             }
