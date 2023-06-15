@@ -1,57 +1,59 @@
-import res from "express/lib/response"
+import { comparePassword, hashPassword } from "./../helpers/authHelper.js";
 import userModel from "../models/userModel.js"
 import JWT from "jsonwebtoken"
 
-export const registerController = async (req, res) => { }
-try {
-    const { name, email, password, phone, address } = req.body
+export const registerController = async (req, res) => {
+    try {
+        const { name, email, password, phone, address } = req.body;
 
-    //validation
+        //validation
 
-    if (!name) {
-        return res.send({ message: "Name is Required" })
-    }
-    if (!email) {
-        return res.send({ message: "Email is Required" })
-    }
-    if (!password) {
-        return res.send({ message: "Password is Required" })
-    }
-    if (!phone) {
-        return res.send({ message: "Phone is Required" })
-    }
-    if (!address) {
-        return res.send({ message: "Address is Required" })
-    }
+        if (!name) {
+            return res.send({ message: "Name is Required" });
+        }
+        if (!email) {
+            return res.send({ message: "Email is Required" });
+        }
+        if (!password) {
+            return res.send({ message: "Password is Required" });
+        }
+        if (!phone) {
+            return res.send({ message: "Phone is Required" });
+        }
+        if (!address) {
+            return res.send({ message: "Address is Required" });
+        }
 
-    //check user
-    const existingUser = await userModel.findOne({ email })
+        //check user
+        const existingUser = await userModel.findOne({ email })
 
-    //check existing user
-    if (existingUser) {
-        return res.status(200).send({
+        //check existing user
+        if (existingUser) {
+            return res.status(200).send({
+                success: false,
+                message: "Already registered. Please Login",
+            })
+        }
+
+        //register user
+        const hashedPassword = await hashPassword(password);
+        //save
+        const user = await new userModel({ name, email, password: hashedPassword, phone, address }).save()
+
+        res.status(201).send({
+            success: true,
+            message: 'User Registered Successfully',
+            user
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
             success: false,
-            message: "Already registered. Please Login"
+            message: "Error in Registration",
+            error
         })
     }
-
-    //register user
-    const user = await new userModel({ name, email, password, phone, address }).save()
-
-    res.status(201).send({
-        success: true,
-        message: 'User Registered Successfully',
-        user
-    })
-} catch (error) {
-    console.log(error)
-    res.status(500).send({
-        success: false,
-        message: "Error in Registration",
-        error
-    })
 }
-
 //POST LOGIN
 export const loginController = async (req, res) => {
     try {

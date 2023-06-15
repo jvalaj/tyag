@@ -32,6 +32,9 @@ const Navbar = () => {
                         <li className="hover:text-teal-400 text-white">
                             <NavLink to="/register">Register</NavLink>
                         </li>
+                        <li className="hover:text-teal-400 text-white">
+                            <NavLink to="/login">Login</NavLink>
+                        </li>
                         <li className="hover:text-teal-400 flex items-center text-white">
                             <NavLink to="/cart">
                                 <AiOutlineShoppingCart className="text-white hover:text-teal-400" size={20} />
@@ -61,11 +64,11 @@ const Navbar = () => {
                                 <NavLink to="/register" onClick={handleNav}>Register</NavLink>
                             </li>
                             <li className="hover:text-teal-400 text-white">
+                                <NavLink to="/login" onClick={handleNav}>Login</NavLink>
+                            </li>
+                            <li className="hover:text-teal-400 text-white">
                                 <NavLink to="/cart" onClick={handleNav}>Cart</NavLink>
                             </li>
-
-
-
 
                         </ul>
                     </div>
