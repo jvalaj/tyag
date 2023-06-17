@@ -11,6 +11,7 @@ import Register from './pages/Auth/register'
 import Login from './pages/Auth/login';
 import Dashboard from './pages/user/dashboard';
 import PrivateRoute from './components/routes/private';
+import ForgotPassword from './pages/Auth/forgotPassword';
 function App() {
   return (
     <Router>
@@ -24,6 +25,8 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+
         <Route path="*" element={<Error />} />
 
       </Routes>

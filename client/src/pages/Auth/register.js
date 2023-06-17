@@ -20,7 +20,8 @@ const Register = () => {
                 email,
                 password,
                 phone,
-                address
+                address,
+                answer
             });
             if (res && res.data.success) {
                 toast.success(res.data && res.data.message);
@@ -37,7 +38,7 @@ const Register = () => {
         <div>
             <Toaster />
 
-            <section className="bg-gray-50 dark:bg-gray-900">
+            <section className=" bg-gray-900">
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto ">
 
                     <div className="w-full rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 bg-gray-800 border-gray-700">
@@ -91,7 +92,18 @@ const Register = () => {
                                         required />
                                 </div>
                                 <div>
-                                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-white">What is your favourite sport?</label>
+                                    <input value={answer}
+                                        onChange={(e) => setAnswer(e.target.value)}
+                                        type=""
+                                        name=""
+                                        id=""
+                                        className=" sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border border-gray-600 placeholder-gray-400 text-white "
+                                        placeholder="Football etc."
+                                        required />
+                                </div>
+                                <div>
+                                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-white">Password</label>
                                     <input value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         type=""
@@ -107,7 +119,7 @@ const Register = () => {
                                 <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 border border-gray-600">Register</button>
                                 <div className=" block text-center text-sm font-light text-gray-500 dark:text-gray-400">
 
-                                    Already have an account? <Link to='/login' className="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</Link>
+                                    Already have an account? <Link to='/login' className="font-medium hover:underline text-primary-500">Login here</Link>
 
 
                                 </div>

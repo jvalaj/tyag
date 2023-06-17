@@ -49,12 +49,23 @@ const Navbar = () => {
                                     <li className="hover:text-teal-400 text-white">
                                         <NavLink to="/login">Login</NavLink>
                                     </li>
+
                                 </>
                             ) : (
                                 <>
-                                    <li className="hover:text-teal-400 text-white">
-                                        <NavLink onClick={handleLogout} to="/login">Logout</NavLink>
+                                    <li>
+                                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" className="flex items-center justify-between  text-white hover:text-teal-400">{auth?.user.name} <svg className="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" /></svg></button>
+                                        <div id="dropdownNavbar" className="overflow-hidden z-10 hidden font-normal rounded-lg shadow w-44 bg-gray-700 divide-gray-600">
+
+                                            <div className="">
+                                                <NavLink href="#" to="/dashboard" className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-teal-400 text-white">Dashboard</NavLink>
+                                            </div>
+                                            <div className="">
+                                                <NavLink href="#" onClick={handleLogout} to="/login" className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-teal-400 text-white">Sign out</NavLink>
+                                            </div>
+                                        </div>
                                     </li>
+
                                 </>
                             )
                         }
@@ -83,12 +94,35 @@ const Navbar = () => {
                             <li className="hover:text-teal-400 text-white">
                                 <NavLink to="/products" onClick={handleNav}>Products</NavLink>
                             </li>
-                            <li className="hover:text-teal-400 text-white">
-                                <NavLink to="/register" onClick={handleNav}>Register</NavLink>
-                            </li>
-                            <li className="hover:text-teal-400 text-white">
-                                <NavLink to="/login" onClick={handleNav}>Login</NavLink>
-                            </li>
+                            {
+                                !auth.user ? (
+                                    <>
+                                        <li className="hover:text-teal-400 text-white">
+                                            <NavLink to="/register">Register</NavLink>
+                                        </li>
+                                        <li className="hover:text-teal-400 text-white">
+                                            <NavLink to="/login">Login</NavLink>
+                                        </li>
+
+                                    </>
+                                ) : (
+                                    <>
+                                        <li>
+                                            <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" className="flex items-center justify-between  text-white hover:text-teal-400">{auth?.user.name} <svg className="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" /></svg></button>
+                                            <div id="dropdownNavbar" className="overflow-hidden z-20 hidden font-normal rounded-lg shadow w-44 bg-gray-700 divide-gray-600">
+
+                                                <div className="">
+                                                    <NavLink href="#" to="/dashboard" className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-teal-400 text-white">Dashboard</NavLink>
+                                                </div>
+                                                <div className="">
+                                                    <NavLink href="#" onClick={handleLogout} to="/login" className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-teal-400 text-white">Sign out</NavLink>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </>
+                                )
+                            }
                             <li className="hover:text-teal-400 text-white">
                                 <NavLink to="/cart" onClick={handleNav}>Cart</NavLink>
                             </li>
