@@ -10,16 +10,23 @@ import Error from './pages/error';
 import Register from './pages/Auth/register'
 import Login from './pages/Auth/login';
 import Dashboard from './pages/user/dashboard';
+import AdminRoute from './components/routes/AdminRoute';
 import PrivateRoute from './components/routes/private';
 import ForgotPassword from './pages/Auth/forgotPassword';
+import AdminDashboard from './pages/Admin/AdminDashboard';
 function App() {
   return (
     <Router>
       <Navbar />
       <Routes>
         <Route path="/dashboard" element={<PrivateRoute />}>
-          <Route path="" element={<Dashboard />} />
+          <Route path="user" element={<Dashboard />} />
         </Route>
+
+        <Route path="/dashboard" element={<AdminRoute />}>
+          <Route path="admin" element={<AdminDashboard />} />
+        </Route>
+
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/products" element={<Products />} />

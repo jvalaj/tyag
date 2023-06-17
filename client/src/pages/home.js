@@ -6,9 +6,9 @@ const Home = () => {
     return (
         <div className="h-[80vh] text-center">
             Home
-            <p className="text-wrap">
-                <pre>{JSON.stringify(auth, null, 4)}</pre>
-            </p>
+
+            <pre>{JSON.stringify(auth, null, 4)}</pre>
+
 
         </div>
     )

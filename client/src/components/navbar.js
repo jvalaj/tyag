@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineClose, AiOutlineMenu, AiOutlineShoppingCart } from 'react-icons/ai';
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../context/auth";
 import { toast, Toaster } from "react-hot-toast";
-const Navbar = () => {
 
+const Navbar = () => {
+    const [drop, setDrop] = useState(false)
+    const init = true
     const [auth, setAuth] = useAuth()
     const [toggle, setToggle] = useState(false);
     const handleLogout = () => {
@@ -21,7 +23,7 @@ const Navbar = () => {
     return (
 
 
-        <nav className="h-[10vh] flex sm:items-center justify-center bg-gray-800 " style={{ fontFamily: 'Poppins' }}>
+        <nav className="h-[10vh] shadow flex sm:items-center justify-center bg-gray-800 " style={{ fontFamily: 'Poppins' }}>
             <Toaster />
             <div className="w-full">
                 <div className=" mt-3 sm:mt-0 max-w-screen-lg flex flex-wrap align-self-center items-center justify-between mx-auto">
@@ -55,17 +57,16 @@ const Navbar = () => {
                                 <>
                                     <li>
                                         <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" className="flex items-center justify-between  text-white hover:text-teal-400">{auth?.user.name} <svg className="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" /></svg></button>
-                                        <div id="dropdownNavbar" className="overflow-hidden z-10 hidden font-normal rounded-lg shadow w-44 bg-gray-700 divide-gray-600">
+                                        <div id="dropdownNavbar" className="overflow-hidden z-20 hidden font-normal rounded-lg shadow w-44 bg-gray-700 divide-gray-600">
 
                                             <div className="">
-                                                <NavLink href="#" to="/dashboard" className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-teal-400 text-white">Dashboard</NavLink>
+                                                <NavLink href="#" to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`} className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-teal-400 text-white">Dashboard</NavLink>
                                             </div>
                                             <div className="">
                                                 <NavLink href="#" onClick={handleLogout} to="/login" className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-teal-400 text-white">Sign out</NavLink>
                                             </div>
                                         </div>
                                     </li>
-
                                 </>
                             )
                         }
@@ -112,7 +113,7 @@ const Navbar = () => {
                                             <div id="dropdownNavbar" className="overflow-hidden z-20 hidden font-normal rounded-lg shadow w-44 bg-gray-700 divide-gray-600">
 
                                                 <div className="">
-                                                    <NavLink href="#" to="/dashboard" className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-teal-400 text-white">Dashboard</NavLink>
+                                                    <NavLink href="#" to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`} className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-teal-400 text-white">Dashboard</NavLink>
                                                 </div>
                                                 <div className="">
                                                     <NavLink href="#" onClick={handleLogout} to="/login" className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-teal-400 text-white">Sign out</NavLink>
@@ -136,7 +137,7 @@ const Navbar = () => {
 
                 </div>
             </div>
-        </nav>
+        </nav >
 
 
 
