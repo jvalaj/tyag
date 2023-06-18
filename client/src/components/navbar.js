@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineClose, AiOutlineMenu, AiOutlineShoppingCart } from 'react-icons/ai';
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../context/auth";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
@@ -16,7 +16,9 @@ const Navbar = () => {
             ...auth, user: null, token: ''
         })
         localStorage.removeItem('auth')
-        toast.success("Logout Successful")
+        toast.success("Logout Successful", {
+            toastId: 'success1',
+        })
     }
     const handleNav = () => {
         setToggle(!toggle);
@@ -26,7 +28,7 @@ const Navbar = () => {
 
 
         <nav className="h-[10vh] shadow flex sm:items-center justify-center bg-gray-800 " style={{ fontFamily: 'Poppins' }}>
-            <Toaster />
+
             <div className="w-full">
                 <div className=" mt-3 sm:mt-0 max-w-screen-lg flex flex-wrap align-self-center items-center justify-between mx-auto">
                     <div className="flex items-center m-2">
@@ -99,7 +101,7 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                     </ul>
-                    <Toaster />
+
                     <div onClick={handleNav} className={toggle ? 'hidden' : ' hover:bg-white hover:text-black sm:hidden border border-white m-2 p-2 rounded-md'}>
                         <AiOutlineMenu className='text-white' size={20} />
                     </div>

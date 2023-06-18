@@ -1,7 +1,7 @@
 import { React, useState } from 'react'
 import axios from "axios";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { toast, Toaster } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 import { useAuth } from '../../context/auth';
 const Login = () => {
 
@@ -21,7 +21,9 @@ const Login = () => {
                 password
             });
             if (res && res.data.success) {
-                toast.success(res.data && res.data.message);
+                toast.success(res.data && res.data.message, {
+                    toastId: 'success4',
+                });
                 setAuth({
                     ...auth,
                     user: res.data.user,
@@ -30,16 +32,20 @@ const Login = () => {
                 localStorage.setItem("auth", JSON.stringify(res.data));
                 navigate(location.state || "/");
             } else {
-                toast.error(res.data.message);
+                toast.error(res.data.message, {
+                    toastId: 'error3',
+                });
             }
         } catch (error) {
             console.log(error);
-            toast.error("Something went wrong");
+            toast.error("Something went wrong", {
+                toastId: 'error4',
+            });
         }
     };
     return (
         <div>
-            <Toaster />
+
 
             <section className="min-h-[80vh] bg-gray-900">
                 <div className="flex flex-col my-auto items-center justify-center px-6 py-8 mx-auto ">

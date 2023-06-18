@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState("");
@@ -33,7 +33,7 @@ const ForgotPassword = () => {
     };
     return (
         <div>
-            <Toaster />
+
 
             <section className="min-h-[80vh] bg-gray-900">
                 <div className="flex flex-col my-auto items-center justify-center px-6 py-8 mx-auto ">

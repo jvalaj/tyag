@@ -1,7 +1,7 @@
 import { React, useState } from 'react'
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { toast, Toaster } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 const Register = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -24,19 +24,27 @@ const Register = () => {
                 answer
             });
             if (res && res.data.success) {
-                toast.success(res.data && res.data.message);
+                toast.success(res.data && res.data.message, {
+                    toastId: 'success2',
+                });
                 navigate("/login");
             } else {
-                toast.error(res.data.message);
+                toast.error(res.data.message, {
+                    toastId: 'error1',
+                });
             }
         } catch (error) {
             console.log(error);
-            toast.error("Something went wrong");
+            toast.error("Something went wrong", {
+                toastId: 'error2',
+            });
         }
     };
     return (
         <div>
-            <Toaster />
+
+
+
 
             <section className=" bg-gray-900">
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto ">

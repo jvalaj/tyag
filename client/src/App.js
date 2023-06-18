@@ -14,10 +14,12 @@ import AdminRoute from './components/routes/AdminRoute';
 import PrivateRoute from './components/routes/private';
 import ForgotPassword from './pages/Auth/forgotPassword';
 import AdminDashboard from './pages/Admin/AdminDashboard';
+import { Toaster } from 'react-hot-toast';
 function App() {
   return (
     <Router>
       <Navbar />
+      <Toaster />
       <Routes>
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="user" element={<Dashboard />} />
