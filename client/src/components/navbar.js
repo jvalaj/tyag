@@ -33,10 +33,10 @@ const Navbar = () => {
                 <div className=" mt-3 sm:mt-0 max-w-screen-lg flex flex-wrap align-self-center items-center justify-between mx-auto">
                     <div className="flex items-center m-2">
                         <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="Flowbite Logo" />
-                        <span className=" text-3xl font-semibold text-white">Chem Shop</span>
+                        <span className="text-xl md:text-3xl font-semibold text-white">Chem Shop</span>
                     </div>
 
-                    <ul className='hidden m-2 sm:flex sm:gap-8 sm:text-white'>
+                    <ul className='hidden text-sm md:text-lg m-2 sm:flex sm:gap-8 sm:text-white'>
                         <li className="hover:text-teal-400 text-white">
                             <NavLink to="/">Home</NavLink>
                         </li>
@@ -124,10 +124,10 @@ const Navbar = () => {
                                 !auth.user ? (
                                     <>
                                         <li className="hover:text-teal-400 text-white">
-                                            <NavLink to="/register">Register</NavLink>
+                                            <NavLink onClick={handleNav} to="/register">Register</NavLink>
                                         </li>
                                         <li className="hover:text-teal-400 text-white">
-                                            <NavLink to="/login">Login </NavLink>
+                                            <NavLink onClick={handleNav} to="/login">Login </NavLink>
                                         </li>
 
                                     </>
@@ -155,7 +155,7 @@ const Navbar = () => {
                                                     <Menu.Items className="absolute overflow-hidden right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-gray-700 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                         <div className=" ">
                                                             <Menu.Item>
-                                                                <NavLink href="#" to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}
+                                                                <NavLink href="#" onClick={handleNav} to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}
                                                                     className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-teal-400 text-white">Dashboard</NavLink>
                                                             </Menu.Item>
                                                             <Menu.Item>

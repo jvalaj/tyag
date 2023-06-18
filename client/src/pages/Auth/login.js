@@ -45,15 +45,15 @@ const Login = () => {
     };
     return (
         <div>
-            <section className="min-h-[80vh] bg-gray-900">
-                <div className="flex flex-col my-auto items-center justify-center px-6 py-8 mx-auto ">
+            <section className="min-h-[80vh] bg-gray-900 flex items-center justify-center">
+                <div className="w-full md:w-[60%] flex flex-col my-auto items-center justify-center px-6 py-8 mx-auto ">
 
                     <div className="w-full rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 bg-gray-800 border-gray-700">
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                             <h1 className="text-xl block text-center font-bold leading-tight tracking-tight md:text-2xl text-white">
                                 Login to your Account
                             </h1>
-                            <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit} >
+                            <form className="space-y-4 md:space-y-5" onSubmit={handleSubmit} >
 
                                 <div>
                                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-white">Your email</label>
@@ -78,21 +78,17 @@ const Login = () => {
                                         placeholder="••••••••"
                                         className=" border  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white "
                                         required />
+                                    <p className="text-sm block text-right m-1 font-light text-gray-400">
+                                        <button onClick={() => { navigate('/forgot-password') }} className="hover:underline text-primary-500">
+                                            Forgot Password ?
+                                        </button>
+                                    </p>
                                 </div>
 
 
 
                                 <button type="submit" className="w-full text-white bg-primary-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:bg-primary-700 border border-gray-600">Login</button>
-                                <button type="button"
-                                    className="w-full text-white 
-                                bg-primary-600 
-                                hover:bg-primary-700 focus:ring-4 
-                                focus:outline-none focus:ring-primary-300
-                                 font-medium rounded-lg text-sm px-5 py-2.5
-                                  text-center dark:bg-primary-600 dark:hover:bg-primary-700 
-                                  dark:focus:ring-primary-800 border border-gray-600"
-                                    onClick={() => { navigate('/forgot-password') }}
-                                >Forgot Password</button>
+
 
                                 <p className="text-sm block text-center font-light text-gray-400">
                                     Don't have an account? <Link to="/register" className="font-medium hover:underline text-primary-500">Register here</Link>

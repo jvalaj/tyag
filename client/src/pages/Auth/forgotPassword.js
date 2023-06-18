@@ -43,48 +43,48 @@ const ForgotPassword = () => {
                             <h1 className="text-xl block text-center font-bold leading-tight tracking-tight md:text-2xl text-white">
                                 Reset Password
                             </h1>
-                            <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit} >
+                            <form className="space-y-8" onSubmit={handleSubmit} >
+                                <div className="space-y-4 md:space-y-6">
+                                    <div>
+                                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-white">Enter Your Email</label>
+                                        <input value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            type=""
+                                            name=""
+                                            id=""
+                                            className=" sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border border-gray-600 placeholder-gray-400 text-white "
+                                            placeholder="name@company.com"
+                                            required />
+                                    </div>
 
-                                <div>
-                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-white">Enter Yoru Email</label>
-                                    <input value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        type=""
-                                        name=""
-                                        id=""
-                                        className=" sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border border-gray-600 placeholder-gray-400 text-white "
-                                        placeholder="name@company.com"
-                                        required />
+
+                                    <div>
+                                        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What is your favourite Sport?</label>
+                                        <input value={answer}
+                                            onChange={(e) => setAnswer(e.target.value)}
+                                            type=""
+                                            name=""
+                                            id=""
+                                            placeholder="Football, Basketball etc."
+                                            className=" border  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white "
+                                            required />
+                                    </div>
+
+                                    <div >
+                                        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter New Password</label>
+                                        <input value={newPassword}
+                                            onChange={(e) => setNewPassword(e.target.value)}
+                                            type=""
+                                            name=""
+                                            id=""
+                                            placeholder=".............."
+                                            className=" border  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white "
+                                            required />
+                                    </div>
                                 </div>
-
-
-                                <div>
-                                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What is your favourite Sport?</label>
-                                    <input value={answer}
-                                        onChange={(e) => setAnswer(e.target.value)}
-                                        type=""
-                                        name=""
-                                        id=""
-                                        placeholder="Football, Basketball etc."
-                                        className=" border  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white "
-                                        required />
-                                </div>
-
-                                <div>
-                                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter New Password</label>
-                                    <input value={newPassword}
-                                        onChange={(e) => setNewPassword(e.target.value)}
-                                        type=""
-                                        name=""
-                                        id=""
-                                        placeholder=".............."
-                                        className=" border  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white "
-                                        required />
-                                </div>
-
                                 <button type="submit"
 
-                                    className="w-full text-white
+                                    className=" w-full text-white
                        font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-primary-600 hover:bg-primary-700 border border-gray-600">Reset Password</button>
 
                             </form>
