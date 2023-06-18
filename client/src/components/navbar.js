@@ -80,11 +80,11 @@ const Navbar = () => {
                                                 <Menu.Items className="absolute overflow-hidden right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-gray-700 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                     <div className=" ">
                                                         <Menu.Item>
-                                                            <NavLink href="#" to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}
+                                                            <NavLink to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}
                                                                 className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-teal-400 text-white">Dashboard</NavLink>
                                                         </Menu.Item>
                                                         <Menu.Item>
-                                                            <NavLink href="#" onClick={handleLogout} to="/login"
+                                                            <NavLink onClick={handleLogout} to="/login"
                                                                 className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-teal-400 text-white">Sign out</NavLink>
                                                         </Menu.Item>
                                                     </div>

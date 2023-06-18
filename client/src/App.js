@@ -14,7 +14,11 @@ import AdminRoute from './components/routes/AdminRoute';
 import PrivateRoute from './components/routes/private';
 import ForgotPassword from './pages/Auth/forgotPassword';
 import AdminDashboard from './pages/Admin/AdminDashboard';
+import CreateCategory from './pages/Admin/CreateCategory';
 import { Toaster } from 'react-hot-toast';
+import CreateProduct from './pages/Admin/CreateProduct';
+import Orders from './pages/user/orders';
+import Profile from './pages/user/Profile';
 function App() {
   return (
     <Router>
@@ -23,10 +27,14 @@ function App() {
       <Routes>
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="user" element={<Dashboard />} />
+          <Route path="user/orders" element={<Orders />} />
+          <Route path="user/profile" element={<Profile />} />
         </Route>
 
         <Route path="/dashboard" element={<AdminRoute />}>
           <Route path="admin" element={<AdminDashboard />} />
+          <Route path="admin/create-category" element={<CreateCategory />} />
+          <Route path="admin/create-product" element={<CreateProduct />} />
         </Route>
 
         <Route path="/" element={<Home />} />

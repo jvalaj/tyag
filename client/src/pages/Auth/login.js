@@ -45,8 +45,6 @@ const Login = () => {
     };
     return (
         <div>
-
-
             <section className="min-h-[80vh] bg-gray-900">
                 <div className="flex flex-col my-auto items-center justify-center px-6 py-8 mx-auto ">
 
