@@ -2,7 +2,7 @@ import React from 'react'
 
 const Products = () => {
     return (
-        <div className="h-[80vh]">
+        <div className="min-h-[80vh]">
             Products
         </div>
     )

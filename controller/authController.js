@@ -80,7 +80,7 @@ export const loginController = async (req, res) => {
         if (!user) {
             return res.status(404).send({
                 success: false,
-                message: "Email is not registerd",
+                message: "Email is not registered",
             });
         }
         const match = await comparePassword(password, user.password);
@@ -96,7 +96,7 @@ export const loginController = async (req, res) => {
         });
         res.status(200).send({
             success: true,
-            message: "Login successful",
+            message: "Login Successful",
             user: {
                 _id: user._id,
                 name: user.name,
@@ -153,7 +153,7 @@ export const forgotPasswordController = async (req, res) => {
         console.log(error)
         res.status(500).send({
             success: false,
-            message: "Something Went wrong",
+            message: "Something went wrong",
             error
         })
     }

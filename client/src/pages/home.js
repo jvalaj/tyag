@@ -4,7 +4,7 @@ const Home = () => {
     const [auth, setAuth] = useAuth()
 
     return (
-        <div className="h-[80vh]">
+        <div className="min-h-[80vh]">
             Home
 
             <pre>{JSON.stringify(auth, null, 4)}</pre>
