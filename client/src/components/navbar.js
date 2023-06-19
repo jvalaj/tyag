@@ -27,7 +27,7 @@ const Navbar = () => {
     return (
 
 
-        <nav className="h-[10vh] shadow flex sm:items-center justify-center bg-gray-800 ">
+        <nav className="h-[10vh] sticky top-0 z-50 shadow-xl flex sm:items-center justify-center bg-gray-800 ">
 
             <div className="w-full">
                 <div className=" mt-3 sm:mt-0 max-w-screen-lg flex flex-wrap align-self-center items-center justify-between mx-auto">
