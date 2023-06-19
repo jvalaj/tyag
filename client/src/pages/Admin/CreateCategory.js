@@ -32,8 +32,8 @@ const CreateCategory = () => {
     const getAllCategory = async () => {
         try {
             const { data } = await axios.get('/api/v1/category/get-category')
-            if (data.success) {
-                setCategories(data.category)
+            if (data?.success) {
+                setCategories(data?.category)
             }
         } catch (error) {
             console.log(error)
@@ -74,7 +74,7 @@ const CreateCategory = () => {
             const { data } = await axios.delete(
                 `/api/v1/category/delete-category/${pId}`
             );
-            if (data.success) {
+            if (data?.success) {
                 toast.success(`${name} Category has been deleted`);
 
                 getAllCategory();
@@ -86,11 +86,11 @@ const CreateCategory = () => {
         }
     };
     return (
-        <div style={{ fontFamily: 'Poppins' }} className='mx-auto max-w-screen-lg h-[80vh] p-3 bg-gray-200 rounded-lg'>
+        <div style={{ fontFamily: 'Poppins' }} className='mx-auto max-w-screen-lg min-h-[80vh] p-3 bg-gray-200 rounded-lg'>
             <p className='block font-bold text-center text-2xl m-2 bg-gray-300 rounded-lg p-2'> Admin Dashboard</p>
             <div className="sm:grid sm:grid-cols-[30%_70%] p-2">
                 <AdminMenu />
-                <div className="bg-gray-300 h-[50vh] rounded-lg mt-3 sm:mt-0 sm:ml-4 p-2">
+                <div className="bg-gray-300 min-h-[60vh] rounded-lg mt-3 sm:mt-0 sm:ml-4 p-2">
                     <p className='pt-1 block text-center'>Manage Categories</p>
                     <div>
                         <CategoryForm handleSubmit={handleSubmit} value={name} setValue={setName} />
