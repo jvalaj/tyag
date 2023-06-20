@@ -39,7 +39,7 @@ const Products = () => {
                                     <div className="w-full sm:w-[14rem] overflow-hidden grid grid-rows-2 h-[22rem] border rounded-lg shadow bg-gray-800 border-gray-700">
 
                                         <div className='row-span-1  bg-white  rounded-t-lg overflow-hidden pb-2'>
-                                            <img className=" object-contain h-[11rem] w-full rounded-t-lg" src={`/api/v1/product/product-photo/${p._id}`} alt />
+                                            <img className=" object-contain h-[11rem] w-full rounded-t-lg" src={`/api/v1/product/product-photo/${p._id}`} alt="photo" />
 
                                         </div>
 
