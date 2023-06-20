@@ -45,9 +45,7 @@ const Navbar = () => {
                         <li className="hover:text-sky-500 transition text-white">
                             <NavLink to="/contact">Contact</NavLink>
                         </li>
-                        <li className="hover:text-sky-500 transition text-white">
-                            <NavLink to="/products">Products</NavLink>
-                        </li>
+
                         {
                             !auth.user ? (
                                 <>
@@ -119,9 +117,7 @@ const Navbar = () => {
                             <li className="hover:text-sky-500 transition text-white">
                                 <NavLink to="/contact" onClick={handleNav}>Contact</NavLink>
                             </li>
-                            <li className="hover:text-sky-500 transition text-white">
-                                <NavLink to="/products" onClick={handleNav}>Products</NavLink>
-                            </li>
+
                             {
                                 !auth.user ? (
                                     <>
