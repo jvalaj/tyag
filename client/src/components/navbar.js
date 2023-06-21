@@ -102,9 +102,18 @@ const Navbar = () => {
                         </li>
                     </ul>
 
-                    <div onClick={handleNav} className={toggle ? 'hidden' : 'transition cursor-pointer bg-slate-600 hover:bg-gray-400 hover:text-gray-800 rounded-full  sm:hidden m-2 p-2 '}>
-                        <AiOutlineMenu className='text-gray-200' size={20} />
+                    <div className="sm:hidden flex items-center flex-row gap-4">
+                        <li className={toggle ? 'hidden' : " hover:text-sky-500 transition flex items-center text-white"}>
+                            <NavLink to="/cart">
+                                <AiOutlineShoppingCart className="text-white hover:text-sky-500 transition" size={20} />
+                            </NavLink>
+
+                        </li>
+                        <div onClick={handleNav} className={toggle ? 'hidden' : 'transition cursor-pointer bg-slate-600 hover:bg-gray-400 hover:text-gray-800 rounded-full   m-2 p-2 '}>
+                            <AiOutlineMenu className='text-gray-200' size={20} />
+                        </div>
                     </div>
+
                     <div className={toggle ? ' z-10 mt-2 p-2 flex flex-col w-screen h-[90vh] bg-gray-800 ease-in-out delay-150 duration-300  ' : 'hidden'} >
                         <div onClick={handleNav} className='transition cursor-pointer rounded-full fixed top-[1rem] border border-red-500 right-[0.5rem] hover:bg-gray-700 hover:text-black sm:hidden p-2 '>
                             <AiOutlineClose className=" text-red-700" size={20} />
@@ -169,9 +178,7 @@ const Navbar = () => {
                                     </>
                                 )
                             }
-                            <li className="hover:text-sky-500 transition text-white">
-                                <NavLink to="/cart" onClick={handleNav}>Cart</NavLink>
-                            </li>
+
 
                         </ul>
                     </div>
