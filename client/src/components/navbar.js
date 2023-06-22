@@ -30,7 +30,7 @@ const Navbar = () => {
         <nav className="h-[10vh] sticky top-0 z-50 shadow-xl flex sm:items-center justify-center bg-gray-800 ">
 
             <div className="w-full">
-                <div className=" mt-3 sm:mt-0 max-w-screen-lg flex flex-wrap align-self-center items-center justify-between mx-auto">
+                <div className=" mt-3 sm:mt-0 max-w-screen-xl flex flex-wrap align-self-center items-center justify-between mx-auto">
                     <div className="flex items-center m-2 cursor-pointer" >
                         <Link className="flex items-center" to="/">
                             <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="Flowbite Logo" />
@@ -43,7 +43,7 @@ const Navbar = () => {
                             <NavLink to="/">Home</NavLink>
                         </li>
                         <li className="hover:text-sky-500 transition text-white">
-                            <NavLink to="/contact">Contact</NavLink>
+                            <NavLink to="/allproducts">Products</NavLink>
                         </li>
 
                         {
