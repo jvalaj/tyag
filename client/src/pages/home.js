@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { IoCaretDown } from 'react-icons/io5'
 import { BiSearch } from 'react-icons/bi';
+import useCategory from "../hooks/useCategory";
+import { Link } from "react-router-dom";
 const Home = () => {
-
+    const categories = useCategory()
     return (
         <div>
             <div className=' w-full bg-gray-200 rounded-lg'>
@@ -43,13 +45,19 @@ const Home = () => {
                 </section>
                 <section className="flex justify-center items-center min-h-[90vh] w-full bg-gray-400">
                     <div >
-                        <div className="">
-                            <p className=" mb-6 block text-center text-[2.5rem] font-semibold" >
+                        <div className="flex flex-wrap gap-2 ">
+                            {categories?.map((c) => (
 
-                                Coming Soon.
+                                <Link to={`/category/${c.slug}`}>
+                                    <button className="p-6 border border-gray-800">
+                                        {c.name}
+                                    </button>
+                                </Link>
 
 
-                            </p>
+                            ))}
+
+
 
                         </div>
 
@@ -57,8 +65,8 @@ const Home = () => {
 
 
                 </section>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 
