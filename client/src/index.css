@@ -18,30 +18,15 @@ code {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
-  
+  width: 0px;
+  display: none;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #111827;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #2563eb;
-  border-radius: 9999px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #1e40af;
-}
 
 #section1{
   background-image: url(https://img.freepik.com/free-photo/shopping-cart-with-pill-foils-copy-space_23-2148533453.jpg?w=1800&t=st=1687511632~exp=1687512232~hmac=5c28e5717de633c5af13a53e3609e26be156d6cef93e468118ff6e5fefc7219c);
-  background-size: 70%;
-  background-position: right 5px top 10px;
+  background-size: 50%;
+  background-position: right 5px top 20px;
   background-repeat: no-repeat;
   background-color: #9acaf1;
 }
