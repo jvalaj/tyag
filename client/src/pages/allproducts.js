@@ -3,6 +3,7 @@ import { AiOutlineReload } from "react-icons/ai";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { BiSearch } from 'react-icons/bi';
+import SearchInput from "../components/Form/searchInput";
 const AllProducts = () => {
     const [products, setProducts] = useState([]);
     const [total, setTotal] = useState(0);
@@ -59,20 +60,7 @@ const AllProducts = () => {
         <div>
             <div className='mx-auto max-w-screen-lg min-h-[80vh] p-3 rounded-lg'>
 
-                <form>
-                    <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                    <div className="relative">
-                        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <BiSearch className="text-white" size={20} />
-                        </div>
-                        <input type="search" id="default-search" className="block 
-                        w-full py-3 p-2 pl-10 text-sm border
-                          rounded-full 
-                         bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Search Mockups, Logos..." required />
-                        <button type="submit" className="text-white
-                         absolute py-3 right-[0px]  bottom-[0.8px] rounded-full text-sm px-4 bg-blue-600 hover:bg-blue-700">Search</button>
-                    </div>
-                </form>
+                <SearchInput />
 
 
                 <div className="min-h-[80vh] w-full sm:w-auto up-2 flex-col flex justify-center">
@@ -97,7 +85,7 @@ const AllProducts = () => {
 
                                                 </div>
                                                 <div className=' py-2'>
-                                                    <p className="my-auto text-sm leading-none text-gray-400"> {p.description.substring(1, 120)}...</p>
+                                                    <p className="my-auto text-sm leading-none text-gray-400"> {p.description.substring(0, 120)}...</p>
 
                                                 </div>
                                             </div>

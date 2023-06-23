@@ -9,26 +9,30 @@ const Home = () => {
     return (
         <div>
             <div className=' w-full bg-gray-200 rounded-lg'>
-                <section className="flex justify-center items-center min-h-[85vh] w-full rounded-b-[2rem] bg-white ">
-                    <div >
-                        <div className="">
-                            <p className=" mb-6 block text-center text-[2.5rem] font-semibold" >
+                <section className="flex  items-start sm:mt-0  min-h-[80vh] w-full rounded-b-[2rem]  " id="section1">
+                    <div className="lg:ml-24  lg:mt-[11rem] mt-28">
+                        <div className="p-2  max-w-screen-md">
+                            <p className=" mb-6 text-center md:text-left text-4xl sm:text-[2.5rem] font-semibold" >
 
-                                All your <span className="text-blue-600">pharmacy</span> needs, fulfilled at your doorstep<span className="text-blue-600">.</span>
+                                All your <span className=" text-blue-600">pharmacy</span> needs, fulfilled at your doorstep<span className="text-blue-600">.</span>
 
 
                             </p>
 
                         </div>
-                        <div className="p-2 block">
-                            <SearchInput />
+                        <div className="p-2  block">
+                            <div className="rounded-full shadow-blue-500/50 shadow-lg">
+                                <SearchInput />
+
+                            </div>
                         </div>
                     </div>
 
 
                 </section>
                 <section className="flex bg-gray-200 justify-center items-center min-h-[5vh]">
-                    <IoCaretDown className="text-blue-600" size={20} />
+                    <IoCaretDown className="animate-bounce text-blue-600" size={20} />
+
                 </section>
                 <section className="flex justify-center items-center min-h-[90vh] w-full bg-gray-400">
                     <div >

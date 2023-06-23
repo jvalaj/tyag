@@ -15,6 +15,7 @@ const SearchInput = () => {
             );
             setValues({ ...values, results: data });
             navigate("/search");
+
         } catch (error) {
             console.log(error);
         }
@@ -25,7 +26,7 @@ const SearchInput = () => {
                 <label className="  mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                 <div className="relative ">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 cursor-pointer">
-                        <BiSearch className="text-white" size={20} />
+                        <BiSearch className=" text-white" size={20} />
                     </div>
                     <input
                         value={values.keyword}
