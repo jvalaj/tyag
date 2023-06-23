@@ -35,14 +35,14 @@ const Home = () => {
                     <IoCaretDown className="animate-bounce mt-3 text-blue-600" size={20} />
 
                 </section>
-                <section className="flex justify-center pb-4 flex-col items-center pt-4 min-h-[30vh] w-full ">
-                    <div className="w-full sm:w-3/4">
+                <section className="flex justify-center flex-col items-center pt-4 min-h-[30vh] w-full ">
+                    <div className="w-full mt-6 sm:w-3/4 mb-5">
 
                         <p className="block text-3xl font-semibold text-left">
                             Shop by <span className="text-blue-600">Category</span>
                         </p>
                     </div>
-                    <div className="mb-6">
+                    <div className="">
 
                         <div className="w-full sm:w-1/2 flex sm:flex-row flex-col gap-8 ">
                             {categories?.map((c) => (
@@ -64,6 +64,13 @@ const Home = () => {
 
                     </div>
 
+
+                </section>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#93c5fd" fill-opacity="1" d="M0,96L40,128C80,160,160,224,240,240C320,256,400,224,480,197.3C560,171,640,149,720,165.3C800,181,880,235,960,218.7C1040,203,1120,117,1200,101.3C1280,85,1360,139,1400,165.3L1440,192L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>
+                <section className="bg-blue-300 flex items-center justify-center min-h-[40vh]">
+                    <p className="block text-center ">
+                        Coming Soon...
+                    </p>
 
                 </section>
                 <section className="w-full pt-4 bg-white flex  justify-center">

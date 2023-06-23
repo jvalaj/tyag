@@ -42,7 +42,7 @@ const Register = () => {
     };
     return (
         <div>
-            <section className="bg-gray-900">
+            <section className="bg-blue-300">
                 <div className=" flex flex-col items-center justify-center px-6 py-8 mx-auto ">
 
                     <div className="w-full rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 bg-gray-800 border-gray-700">

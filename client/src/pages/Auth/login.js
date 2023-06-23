@@ -45,7 +45,7 @@ const Login = () => {
     };
     return (
         <div>
-            <section className="min-h-[80vh] bg-gray-900 flex items-center justify-center">
+            <section className="min-h-[80vh] bg-blue-300 flex items-center justify-center">
                 <div className="w-full md:w-[60%] flex flex-col my-auto items-center justify-center px-6 py-8 mx-auto ">
 
                     <div className="w-full rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 bg-gray-800 border-gray-700">
