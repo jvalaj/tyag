@@ -38,7 +38,7 @@ const Home = () => {
                 <section className="flex justify-center flex-col items-center pt-4 min-h-[30vh] w-full ">
                     <div className="w-full mt-6 sm:w-3/4 mb-5">
 
-                        <p className="block text-3xl font-semibold text-left">
+                        <p className="block text-3xl font-semibold text-center sm:text-left">
                             Shop by <span className="text-blue-600">Category</span>
                         </p>
                     </div>
@@ -76,7 +76,7 @@ const Home = () => {
                 <section className="w-full pt-4 bg-white flex  justify-center">
 
                     <div className=" w-full mt-6 sm:w-3/4">
-                        <p className="block text-3xl font-semibold text-left">
+                        <p className="block text-3xl font-semibold text-center sm:text-left">
                             <span className="text-blue-600">F</span>requently <span className="text-blue-600">A</span>sked <span className="text-blue-600">Q</span>uestions
                         </p>
                         <Accordian />

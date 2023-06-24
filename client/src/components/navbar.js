@@ -114,12 +114,12 @@ const Navbar = () => {
                         </div>
                     </div>
 
-                    <div className={toggle ? ' z-10 mt-2 p-2 flex flex-col w-screen h-[90vh] bg-gray-800 ease-in-out delay-150 duration-300  ' : 'hidden'} >
-                        <div onClick={handleNav} className='transition cursor-pointer rounded-full fixed top-[1rem] border border-red-500 right-[0.5rem] hover:bg-gray-700 hover:text-black sm:hidden p-2 '>
+                    <div className={toggle ? ' z-10 mt-2 p-2 flex flex-col w-screen h-[95vh] bg-gray-800 ease-in-out delay-150 duration-300  ' : 'hidden'} >
+                        <div onClick={handleNav} className='transition cursor-pointer rounded-full fixed top-[1rem] right-[0.5rem] hover:bg-gray-300 hover:text-black sm:hidden p-2 '>
                             <AiOutlineClose className=" text-red-700" size={20} />
                         </div>
 
-                        <ul className="gap-y-14 items-center my-auto bg-gray-800 flex-col text-xl flex">
+                        <ul className="gap-y-14 items-center my-auto bg-gray-800 text-white flex-col text-xl flex">
                             <li className="hover:text-blue-600 transition ">
                                 <NavLink to="/" onClick={handleNav}>Home</NavLink>
                             </li>
