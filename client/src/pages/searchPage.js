@@ -1,15 +1,18 @@
 import React from "react";
+import { toast } from "react-hot-toast";
+import { useCart } from "../context/cart.js"
 import { useSearch } from "../context/search";
 import SearchInput from "../components/Form/searchInput.js";
 import { useNavigate } from "react-router-dom";
 const Search = () => {
     const [values, setValues] = useSearch();
     const navigate = useNavigate()
+    const [cart, setCart] = useCart()
     return (
 
 
         <div>
-            <div className='mx-auto max-w-screen-lg min-h-[80vh] p-3 rounded-lg'>
+            <div className='mx-auto max-w-screen-xl min-h-[80vh] p-3 rounded-lg'>
 
                 <SearchInput />
                 <div className="min-h-[80vh] w-full sm:w-auto flex-col flex justify-center">
@@ -29,7 +32,7 @@ const Search = () => {
 
                                     <div key={p._id} className="mb-3 flex flex-row sm:grid sm:grid-cols-[30%_70%] justify-between h-[13rem] sm:h-[10rem]  border rounded-lg shadow bg-gray-800 border-gray-700">
 
-                                        <div className='w-full flex justify-center bg-white rounded-lg overflow-hidden pb-2'>
+                                        <div onClick={() => navigate(`/product/${p.slug}`)} className='cursor-pointer hover:opacity-60 w-full flex justify-center bg-white rounded-lg overflow-hidden pb-2'>
                                             <img className=" object-contain  h-auto w-full " src={`/api/v1/product/product-photo/${p._id}`} alt="photo" />
 
                                         </div>
@@ -51,8 +54,13 @@ const Search = () => {
 
                                                 </div>
                                                 <div className="w-full text-xs text-right">
-                                                    <button className=" tracking-tighter  bg-blue-600 text-xs p-2 rounded-full text-white" onClick={() => navigate(`/product/${p.slug}`)}>More Details</button>
-                                                    <button className=" tracking-tighter  bg-blue-600 text-xs p-2 rounded-full text-white">Add to Cart</button>
+                                                    <button
+                                                        onClick={() => {
+                                                            setCart([...cart, p])
+                                                            localStorage.setItem('cart', JSON.stringify([...cart, p]))
+                                                            toast.success("Item Added to Cart")
+                                                        }}
+                                                        className=" tracking-tighter hover:opacity-60 bg-blue-600 text-xs p-2 rounded-full text-white">Add to Cart</button>
 
                                                 </div>
 
