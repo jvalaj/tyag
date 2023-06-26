@@ -11,7 +11,6 @@ import toast from "react-hot-toast";
 const CartPage = () => {
   const [auth, setAuth] = useAuth();
   const [cart, setCart] = useCart();
-  const [clientToken, setClientToken] = useState("");
   const [instance, setInstance] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -38,6 +37,7 @@ const CartPage = () => {
       let index = myCart.findIndex((item) => item._id === pid);
       myCart.splice(index, 1);
       setCart(myCart);
+      toast.success("Item Removed Successfully")
       localStorage.setItem("cart", JSON.stringify(myCart));
     } catch (error) {
       console.log(error);
@@ -47,55 +47,65 @@ const CartPage = () => {
 
   return (
     <div>
-      <div className=" cart-page">
-        <div className="row">
-          <div className="col-md-12">
-            <h1 className="text-center bg-light p-2 mb-1">
-              {!auth?.user
-                ? "Hello Guest"
-                : `Hello  ${auth?.token && auth?.user?.name}`}
-              <p className="text-center">
-                {cart?.length
-                  ? `You Have ${cart.length} items in your cart ${auth?.token ? "" : "please login to checkout !"
-                  }`
-                  : " Your Cart Is Empty"}
-              </p>
-            </h1>
-          </div>
-        </div>
-        <div className="container ">
-          <div className="row ">
-            <div className="col-md-7  p-0 m-0">
+      <div className="mx-auto max-w-screen-xl min-h-[80vh]  p-3 rounded-lg">
+
+        <div className="  w-full">
+          <div className="md:grid md:grid-cols-[60%_40%]  p-2">
+
+            <div className="">
+              <div className="  text-left">
+                <div className="col-md-12">
+                  <h1 className="text-xl text-left bg-light p-2 mb-1">
+                    {!auth?.user
+                      ? "Hello Guest"
+                      : `Hello  ${auth?.token && auth?.user?.name}`}
+                    <p className="text-center">
+                      {cart?.length
+                        ? `You Have ${cart.length} items in your cart ${auth?.token ? "" : "please login to checkout !"
+                        }`
+                        : " Your Cart Is Empty"}
+                    </p>
+                  </h1>
+                </div>
+              </div>
               {cart?.map((p) => (
-                <div className="row card flex-row" key={p._id}>
-                  <div className="col-md-4">
-                    <img
-                      src={`/api/v1/product/product-photo/${p._id}`}
-                      className="card-img-top"
-                      alt={p.name}
-                      width="100%"
-                      height={"130px"}
-                    />
+                <div key={p._id} className="mb-3 flex flex-row sm:grid sm:grid-cols-[30%_70%] justify-between h-[13rem] sm:h-[10rem]  border rounded-lg shadow bg-gray-800 border-gray-700">
+                  <div className='w-full flex justify-center bg-white rounded-lg overflow-hidden pb-2'>
+                    <img className=" object-contain  h-auto w-full " src={`/api/v1/product/product-photo/${p._id}`} alt="photo" />
                   </div>
-                  <div className="col-md-4">
-                    <p>{p.name}</p>
-                    <p>{p.description.substring(0, 30)}</p>
-                    <p>Price : {p.price}</p>
-                  </div>
-                  <div className="col-md-4 cart-remove-btn">
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => removeCartItem(p._id)}
-                    >
-                      Remove
-                    </button>
+                  <div className="w-full  flex flex-col justify-between p-2 gap-1 ">
+                    <div className="flex flex-col gap-1">
+                      <div className='py-2'>
+                        <h5 className="my-auto text-md font-bold tracking-tight text-white">{p.name}</h5>
+                      </div>
+                      <div className=' py-2'>
+                        <p className="my-auto text-sm leading-none text-gray-400"> {p.description.substring(0, 120)}...</p>
+                      </div>
+                    </div>
+                    <div className=' text-right flex flex-row leading-none tracking-tighter'>
+                      <div className="w-full text-lg  flex">
+                        <p className="my-auto text-left font-bold text-green-500">Rs. {p.price}</p>
+                      </div>
+                      <div className="w-full text-xs text-right">
+                        <button className=" tracking-tighter hover:opacity-60 bg-red-600 text-xs p-2 rounded-full text-white"
+                          onClick={() => {
+                            removeCartItem(p._id)
+                          }}
+                        >Remove</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
+
               ))}
             </div>
-            <div className="col-md-5 cart-summary ">
+            <div className="w-full min-v-[40vh] p-2 text-center ">
               <h2>Cart Summary</h2>
               <p>Total | Checkout | Payment</p>
+              <br />
+              <div className="min-h-[50vh] bg-gray-300 rounded-lg p-2 text-center flex justify-center items-center">
+                Payment Box
+              </div>
               <hr />
               <h4>Total : {totalPrice()} </h4>
               {auth?.user?.address ? (
@@ -104,7 +114,7 @@ const CartPage = () => {
                     <h4>Current Address</h4>
                     <h5>{auth?.user?.address}</h5>
                     <button
-                      className="btn btn-outline-warning"
+                      className="border text-blue-600 hover:bg-blue-600 hover:text-white transition border-blue-600 p-3 rounded-lg "
                       onClick={() => navigate("/dashboard/user/profile")}
                     >
                       Update Address
@@ -134,31 +144,7 @@ const CartPage = () => {
                   )}
                 </div>
               )}
-              <div className="mt-2">
-                {!clientToken || !auth?.token || !cart?.length ? (
-                  ""
-                ) : (
-                  <>
-                    <DropIn
-                      options={{
-                        authorization: clientToken,
-                        paypal: {
-                          flow: "vault",
-                        },
-                      }}
-                      onInstance={(instance) => setInstance(instance)}
-                    />
 
-                    <button
-                      className="btn btn-primary"
-                      onClick={handlePayment}
-                      disabled={loading || !instance || !auth?.user?.address}
-                    >
-                      {loading ? "Processing ...." : "Make Payment"}
-                    </button>
-                  </>
-                )}
-              </div>
             </div>
           </div>
         </div>
