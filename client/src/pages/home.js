@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { IoCaretDown } from 'react-icons/io5'
 import { BiSearch } from 'react-icons/bi';
+import { BsWhatsapp } from 'react-icons/bs'
 import useCategory from "../hooks/useCategory";
 import { Link } from "react-router-dom";
 import SearchInput from "../components/Form/searchInput.js";
@@ -9,6 +10,18 @@ const Home = () => {
     const categories = useCategory()
     return (
         <div>
+            <div className="cursor-pointer z-50 fixed transition   shadow-green-500 shadow-sm hover:scale-110 hover:animate-none hover:bg-gray-300 border-2 rounded-lg border-green-500 bg-white p-3 right-6 bottom-6">
+                <a href="https://wa.me/919999513839" target="_blank">
+                    <BsWhatsapp size={20} className="text-green-500" />
+                </a>
+
+            </div>
+            <div className="cursor-pointer z-40 fixed animate-ping transition   shadow-green-500 shadow-sm hover:scale-110 hover:animate-none hover:bg-gray-300 border-2 rounded-lg border-green-500 bg-white p-3 right-6 bottom-6">
+                <a href="https://wa.me/919999513839" target="_blank">
+                    <BsWhatsapp size={20} className="text-green-500" />
+                </a>
+
+            </div>
             <div className=' w-full bg-gray-200 rounded-lg'>
                 <section className="flex z-30 items-start sm:mt-0  min-h-[60vh] w-full rounded-b-[2rem]  " id="section1">
                     <div className="lg:ml-24  lg:mt-[9rem] md:mt-28 mt-14">

@@ -1,8 +1,10 @@
 import React from "react";
 import { useSearch } from "../context/search";
 import SearchInput from "../components/Form/searchInput.js";
+import { useNavigate } from "react-router-dom";
 const Search = () => {
     const [values, setValues] = useSearch();
+    const navigate = useNavigate()
     return (
 
 
@@ -49,6 +51,7 @@ const Search = () => {
 
                                                 </div>
                                                 <div className="w-full text-xs text-right">
+                                                    <button className=" tracking-tighter  bg-blue-600 text-xs p-2 rounded-full text-white" onClick={() => navigate(`/product/${p.slug}`)}>More Details</button>
                                                     <button className=" tracking-tighter  bg-blue-600 text-xs p-2 rounded-full text-white">Add to Cart</button>
 
                                                 </div>

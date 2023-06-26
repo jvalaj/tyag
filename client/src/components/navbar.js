@@ -6,9 +6,9 @@ import { toast } from "react-hot-toast";
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-
+import { useCart } from "../context/cart";
 const Navbar = () => {
-
+    const [cart] = useCart()
     const [auth, setAuth] = useAuth()
     const [toggle, setToggle] = useState(false);
     const handleLogout = () => {
@@ -39,27 +39,27 @@ const Navbar = () => {
                     </div>
 
                     <ul className='hidden text-sm md:text-md m-2 sm:flex sm:gap-8 '>
-                        <li className="hover:text-blue-600 transition ">
+                        <li className="hover:text-blue-600 flex items-center transition ">
                             <NavLink to="/">Home</NavLink>
                         </li>
-                        <li className="hover:text-blue-600 transition ">
+                        <li className="hover:text-blue-600 flex items-center transition ">
                             <NavLink to="/allproducts">Products</NavLink>
                         </li>
 
                         {
                             !auth.user ? (
                                 <>
-                                    <li className="hover:text-blue-600 transition ">
+                                    <li className="hover:text-blue-600 flex items-center transition ">
                                         <NavLink to="/register">Register</NavLink>
                                     </li>
-                                    <li className="hover:text-blue-600 transition ">
+                                    <li className="hover:text-blue-600 flex items-center transition ">
                                         <NavLink to="/login">Login</NavLink>
                                     </li>
 
                                 </>
                             ) : (
                                 <>
-                                    <li>
+                                    <li className="flex items-center">
                                         <Menu as="div" className="relative inline-block text-left">
                                             <div>
                                                 <Menu.Button className="inline-flex w-full items-center justify-center rounded-md  hover:text-blue-600 transition">
@@ -95,9 +95,16 @@ const Navbar = () => {
                                 </>
                             )
                         }
-                        <li className="hover:text-blue-600 transition flex items-center ">
-                            <NavLink to="/cart">
-                                <AiOutlineShoppingCart className=" hover:text-blue-600 transition" size={20} />
+                        <li className="hover:text-blue-600 mr-3 transition flex items-center ">
+                            <NavLink to="/cart" className="flex items-center">
+                                <div className="flex h-4 items-center p-0 ">
+                                    <div className="relative top-[-10px]">
+
+                                        <div className="bg-blue-500" id="cart-count">{cart?.length}</div>
+                                        <AiOutlineShoppingCart className=" hover:text-blue-600 transition" size={20} />
+
+                                    </div>
+                                </div>
                             </NavLink>
                         </li>
                     </ul>

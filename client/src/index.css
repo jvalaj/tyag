@@ -43,3 +43,16 @@ code {
     background-size: 100%;
   }
 }
+
+#cart-count{
+  content:attr(value);
+        font-size:10px;
+        color: #fff;
+     
+        border-radius:50%;
+        padding: 0 7px;
+        position:relative;
+        left:9px;
+        top:5px;
+        opacity:0.9;
+}

@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineReload } from "react-icons/ai";
 import axios from "axios";
-import toast from "react-hot-toast";
+
+import { useCart } from "../context/cart.js"
+import { toast } from "react-hot-toast";
 import { BiSearch } from 'react-icons/bi';
 import SearchInput from "../components/Form/searchInput";
+import { useNavigate, Link } from "react-router-dom";
 const AllProducts = () => {
     const [products, setProducts] = useState([]);
+    const [cart, setCart] = useCart()
     const [total, setTotal] = useState(0);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
-
+    const navigate = useNavigate()
     useEffect(() => {
 
         getTotal();
@@ -58,7 +62,7 @@ const AllProducts = () => {
     }, []);
     return (
         <div>
-            <div className='mx-auto max-w-screen-lg min-h-[80vh] p-3 rounded-lg'>
+            <div className='mx-auto max-w-screen-xl min-h-[80vh] p-3 rounded-lg'>
 
                 <SearchInput />
 
@@ -73,8 +77,12 @@ const AllProducts = () => {
 
                                     <div key={p._id} className="mb-3 flex flex-row sm:grid sm:grid-cols-[30%_70%] justify-between h-[13rem] sm:h-[10rem]  border rounded-lg shadow bg-gray-800 border-gray-700">
 
-                                        <div className='w-full flex justify-center bg-white rounded-lg overflow-hidden pb-2'>
+                                        <div onClick={() => navigate(`/product/${p.slug}`)}
+                                            target="_blank" className='w-full cursor-pointer hover:opacity-40 flex justify-center bg-white rounded-lg overflow-hidden pb-2'>
+
+
                                             <img className=" object-contain  h-auto w-full " src={`/api/v1/product/product-photo/${p._id}`} alt="photo" />
+
 
                                         </div>
 
@@ -98,7 +106,13 @@ const AllProducts = () => {
 
                                                 </div>
                                                 <div className="w-full text-xs text-right">
-                                                    <button className=" tracking-tighter  bg-blue-600 text-xs p-2 rounded-full text-white">Add to Cart</button>
+
+                                                    <button className=" tracking-tighter hover:opacity-60 bg-blue-600 text-xs p-2 rounded-full text-white"
+                                                        onClick={() => {
+                                                            setCart([...cart, p])
+                                                            toast.success("Item Added to Cart")
+                                                        }}
+                                                    >Add to Cart</button>
 
                                                 </div>
 
@@ -106,6 +120,8 @@ const AllProducts = () => {
 
                                         </div>
                                     </div>
+
+
 
                                 ))}
 
