@@ -16,7 +16,7 @@ const Home = () => {
                 </a>
 
             </div>
-            <div className="cursor-pointer z-40 fixed animate-ping transition   shadow-green-500 shadow-sm hover:scale-110 hover:animate-none hover:bg-gray-300 border-2 rounded-lg border-green-500 bg-white p-3 right-6 bottom-6">
+            <div className="cursor-pointer z-40 fixed animate-ping transition   shadow-green-500 shadow-sm  hover:bg-gray-300 border-2 rounded-lg border-green-500 bg-white p-3 right-6 bottom-6">
                 <a href="https://wa.me/919999513839" target="_blank">
                     <BsWhatsapp size={20} className="text-green-500" />
                 </a>

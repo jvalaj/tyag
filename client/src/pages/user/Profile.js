@@ -67,7 +67,7 @@ const Profile = () => {
                                 </h1>
                                 <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit} >
                                     <div>
-                                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-white">Name</label>
+                                        <label htmlFor="name" className="block mb-2 text-sm font-medium text-white">Name</label>
                                         <input value={name}
                                             onChange={(e) => setName(e.target.value)}
                                             type=""
@@ -89,7 +89,7 @@ const Profile = () => {
                                             disabled />
                                     </div>
                                     <div>
-                                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-white">Phone Number</label>
+                                        <label htmlFor="phone" className="block mb-2 text-sm font-medium text-white">Phone Number</label>
                                         <input value={phone}
                                             onChange={(e) => setPhone(e.target.value)}
                                             type=""
@@ -100,7 +100,7 @@ const Profile = () => {
                                         />
                                     </div>
                                     <div>
-                                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-white">Address</label>
+                                        <label htmlFor="address" className="block mb-2 text-sm font-medium text-white">Address</label>
                                         <input value={address}
                                             onChange={(e) => setAddress(e.target.value)}
                                             type=""

@@ -84,7 +84,7 @@ const Navbar = () => {
                                                                 className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-blue-600 transition text-white">Dashboard</NavLink>
                                                         </Menu.Item>
                                                         <Menu.Item>
-                                                            <NavLink onClick={handleLogout} to="/login"
+                                                            <NavLink onClick={handleLogout} to="/"
                                                                 className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-blue-600 transition text-white">Sign out</NavLink>
                                                         </Menu.Item>
                                                     </div>
@@ -173,7 +173,7 @@ const Navbar = () => {
                                                                     className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-blue-600 transition text-white">Dashboard</NavLink>
                                                             </Menu.Item>
                                                             <Menu.Item>
-                                                                <NavLink href="#" onClick={handleLogout} to="/login"
+                                                                <NavLink href="#" onClick={handleLogout} to="/"
                                                                     className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-blue-600 transition text-white">Sign out</NavLink>
                                                             </Menu.Item>
                                                         </div>
