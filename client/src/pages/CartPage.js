@@ -40,7 +40,17 @@ const CartPage = () => {
       console.log(error);
     }
   };
+  //clear cart
+  const clearCart = () => {
+    try {
 
+      setCart([]);
+      toast.success("Cart Cleared Successfully")
+      localStorage.setItem("cart", JSON.stringify([]));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -62,6 +72,10 @@ const CartPage = () => {
                         }`
                         : " Your Cart Is Empty"}
                     </p>
+                    <button className="bg-red-500 p-3 " onClick={clearCart}>
+
+                      Clear Cart
+                    </button>
                   </h1>
                 </div>
               </div>
