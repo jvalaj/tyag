@@ -3,13 +3,6 @@ import fs from 'fs';
 import slugify from 'slugify';
 import categoryModel from "../models/categoryModel.js";
 
-//payment gateway
-var instance = new Razorpay({
-    key_id: process.env.RAZORPAY_ID_KEY,
-    key_secret: process.env.RAZORPAY_SECRET_KEY,
-});
-
-
 
 export const createProductController = async (req, res) => {
 
@@ -268,17 +261,3 @@ export const productCategoryController = async (req, res) => {
     }
 }
 
-//payment gateway api
-export const razorpayTokenController = async (req, res) => {
-    try {
-        instance.orders.create(options, function (err, order) {
-            console.log(order);
-        });
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-export const razorpayPaymentController = async (req, res) => {
-
-}

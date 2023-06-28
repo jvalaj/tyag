@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
 import { useNavigate } from "react-router-dom";
-import { AiFillWarning } from "react-icons/ai";
+
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -11,8 +11,6 @@ import toast from "react-hot-toast";
 const CartPage = () => {
   const [auth, setAuth] = useAuth();
   const [cart, setCart] = useCart();
-  const [instance, setInstance] = useState("");
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   //total price
@@ -51,7 +49,34 @@ const CartPage = () => {
       console.log(error);
     }
   };
+  const checkoutHandler = async () => {
 
+    const { data: { order } } = await axios.post("/api/v1/payment/razorpay/order", { amount })
+
+    const options = {
+      key: "rzp_test_BhG2kqVg6SNSl4",
+      amount: 5000 * 100,
+      currency: "INR",
+      name: "name",
+      description: "desc",
+      image: "",
+      order_id: "",
+      callback_url: "/api/v1/razorpay/verify",
+      prefill: {
+        name: "Gaurav Kumar",
+        email: "gaurav.kumar@example.com",
+        contact: "9999999999"
+      },
+      notes: {
+        "address": "Razorpay Corporate Office"
+      },
+      theme: {
+        "color": "#121212"
+      }
+    };
+    const razor = new window.Razorpay(options);
+    razor.open();
+  }
   return (
     <div>
       <div className="mx-auto max-w-screen-xl min-h-[80vh]  p-3 rounded-lg">
@@ -115,7 +140,7 @@ const CartPage = () => {
               <p>Total | Checkout | Payment</p>
               <br />
               <div className="min-h-[50vh] bg-gray-300 rounded-lg p-2 text-center flex justify-center items-center">
-                Payment Box
+                <button className="bg-green-500 p-2 rounded-lg" onClick={() => checkoutHandler()}>Pay with Razorpay</button>
               </div>
               <hr />
               <h4>Total : Rs.{totalPrice()} </h4>

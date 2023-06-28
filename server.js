@@ -7,7 +7,7 @@ import authRoutes from './routes/authRoute.js'
 import categoryRoutes from "./routes/categoryRoutes.js"
 import cors from 'cors';
 import productRoutes from "./routes/productRoutes.js"
-
+import paymentRoutes from "./routes/paymentRoutes.js"
 //configure env
 dotenv.config();
 
@@ -26,13 +26,16 @@ app.use(cors())
 app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/category', categoryRoutes)
 app.use('/api/v1/product', productRoutes)
+app.use('/api/v1/payment', paymentRoutes)
 //rest api
 app.get("/", (req, res) => {
     res.send({
         message: "Welcome to app"
     })
 })
-
+app.get("/api/v1/getkey", (req, res) =>
+    res.status(200).json({ key: process.env.RAZORPAY_API_KEY })
+);
 //PORT
 const PORT = process.env.PORT || 8080;
 

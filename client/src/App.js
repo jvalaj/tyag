@@ -24,6 +24,7 @@ import CategoryProduct from './pages/CategoryProduct';
 import Search from './pages/searchPage';
 import ProductDetails from './pages/ProductDetails';
 import CartPage from './pages/CartPage';
+import PaymentSuccess from './pages/PaymentSuccess';
 function App() {
   return (
     <Router>
@@ -51,7 +52,7 @@ function App() {
         <Route path="/allproducts" element={<AllProducts />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/category/:slug" element={<CategoryProduct />} />
-
+        <Route path="/paymentsuccess" element={<PaymentSuccess />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
