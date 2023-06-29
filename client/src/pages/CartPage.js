@@ -51,17 +51,17 @@ const CartPage = () => {
   };
   const checkoutHandler = async () => {
 
-    const { data: { order } } = await axios.post("/api/v1/payment/razorpay/order", { amount })
+    const { data } = await axios.post("/api/v1/payment/razorpay/order", cart)
 
     const options = {
       key: "rzp_test_BhG2kqVg6SNSl4",
-      amount: 5000 * 100,
+      amount: data.amount * 100,
       currency: "INR",
-      name: "name",
-      description: "desc",
+      name: "Medecine Purchase",
+      description: `Paying ${data.amount} to chemshop.`,
       image: "",
-      order_id: "",
-      callback_url: "/api/v1/razorpay/verify",
+      order_id: data.id,
+      callback_url: "/api/v1/payment/razorpay/verify",
       prefill: {
         name: "Gaurav Kumar",
         email: "gaurav.kumar@example.com",

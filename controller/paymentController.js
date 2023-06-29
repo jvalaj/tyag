@@ -1,4 +1,4 @@
-import orderModel from ".././models/orderModel.js"
+import Order from ".././models/orderModel.js"
 import Razorpay from "razorpay";
 import dotenv from "dotenv"
 dotenv.config()
@@ -14,14 +14,23 @@ var instance = new Razorpay({
 //create order
 export const razorpayOrderController = async (req, res) => {
 
-    // const { cart } = req.body
-    // let total = 0
-    // cart.map((i) => {
-    //     total += i.price
-    //   })
+    //total price
+    const totalPrice = () => {
+        try {
+            const cart = req.body
+            let total = 0;
+            cart.map((item) => {
+                total = total + item.price;
+            });
+            return total
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
 
     var options = {
-        amount: 500 * 100,  // amount in the smallest currency unit
+        amount: totalPrice() * 100,  // amount in the smallest currency unit
         currency: "INR",
     };
 
@@ -42,30 +51,26 @@ export const razorpayOrderController = async (req, res) => {
 export const razorpayPaymentVerificationController = async (req, res) => {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
         req.body;
-
     try {
-        const order = new orderModel({
-            products: cart,
-            payment: {
-                razorpay_order_id,
-                razorpay_payment_id,
-                razorpay_signature,
-            },
-            buyer: req.user._id,
-        }).save();
-        res.json({ ok: true });
 
-        res.redirect(
-            `/paymentsuccess?reference=${razorpay_order_id}`
-        );
-    } catch (error) {
-        console.log(error)
-        res.status(500).send({
-            success: false,
-            message: "Error in payment success",
-            error
+        res.status(200).send({
+            success: true,
+            message: "Transaction Verified",
+            razorpay_order_id, razorpay_payment_id, razorpay_signature
         })
+
+
+    } catch (error) {
+        {
+            console.log(error)
+            res.status(500).send({
+                success: false,
+                message: "Error in payment success",
+                error
+            })
+        }
     }
+
 
 
 
