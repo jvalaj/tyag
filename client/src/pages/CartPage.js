@@ -44,11 +44,33 @@ const CartPage = () => {
 
       setCart([]);
       toast.success("Cart Cleared Successfully")
-      localStorage.setItem("cart", JSON.stringify([]));
+      localStorage.removeItem("cart");
     } catch (error) {
       console.log(error);
     }
   };
+  //order creater in database
+  const orderCreate = async (rpid, uid) => {
+    try {
+      console.log(cart)
+      console.log(rpid)
+      console.log(uid)
+      const { data } = await axios.post("/api/v1/payment/razorpay/verify", { cart, rpid, uid })
+      if
+
+        (data?.success) {
+        toast.success(`Order Successful in frontend`)
+      } else {
+        toast.error(data.message)
+        toast.error("error in creating order in frontend")
+      }
+    }
+    catch (error) {
+      console.log(error)
+
+    }
+  };
+
   const checkoutHandler = async () => {
 
     const { data } = await axios.post("/api/v1/payment/razorpay/order", cart)
@@ -61,7 +83,16 @@ const CartPage = () => {
       description: `Paying ${data.amount} to chemshop.`,
       image: "",
       order_id: data.id,
-      callback_url: "/api/v1/payment/razorpay/verify",
+
+      handler: function (response) {
+
+        const rpid = response.razorpay_payment_id
+        const uid = auth?.user._id
+        orderCreate(rpid, uid)
+        navigate("/dashboard/user/orders")
+
+
+      },
       prefill: {
         name: "Gaurav Kumar",
         email: "gaurav.kumar@example.com",

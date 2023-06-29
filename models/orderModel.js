@@ -1,20 +1,19 @@
 import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
+  products: [
+    {
+      type: mongoose.ObjectId,
+      ref: "Products",
+    },
+  ],
+  buyer: {
+    type: mongoose.ObjectId,
+    ref: "users",
+  },
+  paymentId: {}
+  ,
 
-
-  razorpay_order_id: {
-    type: String,
-    required: true,
-  },
-  razorpay_payment_id: {
-    type: String,
-    required: true,
-  },
-  razorpay_signature: {
-    type: String,
-    required: true,
-  },
   status: {
     type: String,
     default: "Not Processed",
