@@ -60,6 +60,8 @@ const CartPage = () => {
 
         (data?.success) {
         toast.success(`Order Successful in frontend`)
+        localStorage.removeItem("cart");
+        setCart([]);
       } else {
         toast.error(data.message)
         toast.error("error in creating order in frontend")

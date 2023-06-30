@@ -20,25 +20,24 @@ const Orders = () => {
     }, [auth?.token]);
     return (
         <div>
-            <div style={{ fontFamily: 'Poppins' }} className='mx-auto max-w-screen-lg h-[80vh] p-3 bg-gray-200 rounded-lg'>
+            <div style={{ fontFamily: 'Poppins' }} className='mx-auto max-w-screen-lg min-h-[80vh] p-3 bg-gray-200 rounded-lg'>
                 <p className='block font-bold text-center text-2xl m-2 bg-gray-300 rounded-lg p-2'> User Dashboard</p>
                 <div className="sm:grid sm:grid-cols-[30%_70%] p-2">
                     <UserMenu />
-                    <div className="bg-gray-300 h-[50vh] rounded-lg mt-3 sm:mt-0 sm:ml-4 p-2">
+                    <div className="bg-gray-300 min-h-[50vh] rounded-lg mt-3 sm:mt-0 sm:ml-4 p-2">
                         Orders
-                        <div>
+                        <div className='w-full p-2 '>
                             {orders?.map((o, i) => {
                                 return (
-                                    <div className="border shadow">
-                                        <table className="table">
+                                    <div className="border p-2 rounded-lg mb-2 w-full shadow">
+                                        <table className="table w-full">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">#</th>
                                                     <th scope="col">Status</th>
                                                     <th scope="col">Buyer</th>
-                                                    <th scope="col"> date</th>
                                                     <th scope="col">Payment</th>
-                                                    <th scope="col">Quantity</th>
+
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -46,15 +45,14 @@ const Orders = () => {
                                                     <td>{i + 1}</td>
                                                     <td>{o?.status}</td>
                                                     <td>{o?.buyer?.name}</td>
+                                                    <td>{o?.paymentId}</td>
 
-                                                    <td>{o?.payment.success ? "Success" : "Failed"}</td>
-                                                    <td>{o?.products?.length}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <div className="container">
+                                        <div className="w-full">
                                             {o?.products?.map((p, i) => (
-                                                <div className="row mb-2 p-3 card flex-row" key={p._id}>
+                                                <div className="flex mb-2 p-3 flex-row" key={p._id}>
                                                     <div className="col-md-4">
                                                         <img
                                                             src={`/api/v1/product/product-photo/${p._id}`}
