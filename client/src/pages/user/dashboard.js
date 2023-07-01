@@ -10,7 +10,7 @@ const Dashboard = () => {
                 <div className="sm:grid sm:grid-cols-[30%_70%] p-2">
                     <UserMenu />
                     <div className="bg-gray-300 h-[50vh] rounded-lg mt-3 sm:mt-0 sm:ml-4 p-2">
-                        Hi {auth?.user._id}
+                        Hi {auth?.user.name}
                     </div>
                 </div>
 

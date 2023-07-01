@@ -130,10 +130,11 @@ const CartPage = () => {
                         }`
                         : " Your Cart Is Empty"}
                     </p>
-                    <button className="bg-red-500 p-3 " onClick={clearCart}>
+                    {cart?.length ?
 
-                      Clear Cart
-                    </button>
+                      <button className="bg-red-500 p-3 " onClick={clearCart}>
+                        Clear Cart
+                      </button> : ""}
                   </h1>
                 </div>
               </div>
@@ -173,7 +174,12 @@ const CartPage = () => {
               <p>Total | Checkout | Payment</p>
               <br />
               <div className="min-h-[50vh] bg-gray-300 rounded-lg p-2 text-center flex justify-center items-center">
-                <button className="bg-green-500 p-2 rounded-lg" onClick={() => checkoutHandler()}>Pay with Razorpay</button>
+                {auth?.token ? (<>
+                  {cart?.length ?
+                    <button className="bg-green-500 p-2 rounded-lg" onClick={() => checkoutHandler()}>Pay with Razorpay</button>
+                    : "cart is empty "}</>)
+                  : (<p>Please login</p>)
+                }
               </div>
               <hr />
               <h4>Total : Rs.{totalPrice()} </h4>

@@ -15,9 +15,10 @@ const AdminMenu = () => {
                 <NavLink to="/dashboard/admin/products" className="block w-full px-4 py-2 text-white border   bg-gray-700 hover:bg-gray-600 border-gray-600">
                     Manage Products
                 </NavLink>
-                <NavLink to="/dashboard/admin/users" className="block w-full px-4 py-2 text-white border rounded-b-lg  bg-gray-700 hover:bg-gray-600 border-gray-600">
-                    Users
+                <NavLink to="/dashboard/admin/orders" className="block w-full px-4 py-2 text-white border rounded-b-lg  bg-gray-700 hover:bg-gray-600 border-gray-600">
+                    Orders
                 </NavLink>
+
 
             </div>
 
