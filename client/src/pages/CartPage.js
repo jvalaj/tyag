@@ -255,18 +255,18 @@ const CartPage = () => {
                       : (<p>Please login</p>)
                     }
                   </div>
-                  <hr />
-                  <h4>Total : Rs.{totalPrice()} </h4>
+
+
                   {auth?.user?.address ? (
                     <>
-                      <div className="mb-3">
-                        <h4>Current Address</h4>
-                        <h5>{auth?.user?.address}</h5>
+                      <div className="mb-3 bg-gray-200 shadow mt-2 rounded-lg p-2">
+                        <h4 className="text-gray-500 text-left">Delivering to: </h4>
+                        <h5 className="text-lg text-center mb-0">{auth?.user?.address}</h5>
                         <button
-                          className="border text-blue-600 hover:bg-blue-600 hover:text-white transition border-blue-600 p-3 rounded-lg "
+                          className="mx-auto mt-0 text-sm  cursor-pointer hover:text-blue-600 hover:underline"
                           onClick={() => navigate("/dashboard/user/profile")}
                         >
-                          Update Address
+                          Update Address ?
                         </button>
                       </div>
                     </>
