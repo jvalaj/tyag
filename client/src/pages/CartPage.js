@@ -209,7 +209,7 @@ const CartPage = () => {
 
                   ))}
                 </div>
-                <div className="w-full min-v-[40vh] bg-red-500 p-2 text-center ">
+                <div className="w-full min-v-[40vh] p-2 text-center ">
 
                   <div className="min-h-[50vh] bg-gray-300 rounded-lg pt-0 pb-2 text-center ">
                     <div className="bg-gray-800 rounded-lg p-2 ">
@@ -219,7 +219,38 @@ const CartPage = () => {
                     </div>
                     {auth?.token ? (<>
                       {cart?.length ?
-                        <button className="bg-green-500 p-2 rounded-lg" onClick={() => checkoutHandler()}>Pay with Razorpay</button>
+                        <div className="grid p-2 justify-center grid-flow-row ">
+                          {cart?.map((p) => (
+                            <div key={p._id} className="mt-2 p-2 max-w-[35rem] flex flex-row overflow-hidden justify-between h-[4rem]  border rounded-lg bg-gray-200 shadow">
+
+                              <div className="w-[45rem] flex gap-1">
+                                <h5 className="my-auto text-lg font-bold ">{p.name}</h5>
+                              </div>
+
+
+                              <div className="w-full  justify-center  text-lg flex">
+                                <p className="my-auto text-gray-500">x {p.quantity}</p>
+                              </div>
+                              <div className="w-full justify-end  text-lg flex">
+                                <p className="my-auto text-right font-bold text-green-500">= Rs. {p.quantity * p.price}</p>
+                              </div>
+
+
+
+                            </div>
+
+                          ))}
+                          <div className="p-2 mt-2 flex flex-row border border-black border-t-0 border-b-0 border-x-0">
+                            <div className="font-bold text-left my-auto text-xl w-full">
+                              Total
+                            </div>
+                            <div className="font-bold text-xl my-auto text-right w-full">
+                              Rs. {totalPrice()}
+                            </div>
+                          </div>
+                          <button className="bg-green-500 mt-2 p-2 rounded-lg" onClick={() => checkoutHandler()}>Pay with Razorpay</button>
+                        </div>
+
                         : "cart is empty "}</>)
                       : (<p>Please login</p>)
                     }

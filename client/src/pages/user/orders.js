@@ -53,7 +53,7 @@ const Orders = () => {
                                             </tbody>
                                         </table>
                                         <div className="w-full">
-                                            {o?.products?.map((p, i) => (
+                                            {o?.products?.map((p) => (
                                                 <div className="flex mb-2 p-3 flex-row" key={p._id}>
                                                     <div className="col-md-4">
                                                         <img
