@@ -13,12 +13,46 @@ const CartPage = () => {
   const [cart, setCart] = useCart();
   const navigate = useNavigate();
 
+  const handleAdd = (pid) => {
+    try {
+      let myCart = [...cart];
+      let index = myCart.findIndex((item) => item._id === pid);
+      myCart[index].quantity += 1
+      const updatedCart = [...myCart]
+      console.log(updatedCart)
+      toast.success("Quantity Increased")
+      setCart(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleSubtract = (pid) => {
+    try {
+      let myCart = [...cart];
+      let index = myCart.findIndex((item) => item._id === pid);
+      if (myCart[index].quantity === 1) {
+        removeCartItem(pid)
+      } else {
+        myCart[index].quantity -= 1
+        const updatedCart = [...myCart]
+        console.log(updatedCart)
+        toast.success("Quantity Decreased")
+        setCart(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
   //total price
   const totalPrice = () => {
     try {
       let total = 0;
       cart?.map((item) => {
-        total = total + item.price;
+        total = total + (item.price * item.quantity);
       });
       return total
     } catch (error) {
@@ -50,21 +84,18 @@ const CartPage = () => {
     }
   };
   //order creater in database
-  const orderCreate = async (rpid, uid) => {
+  const orderCreate = async (rpid, uid, amount) => {
     try {
-      console.log(cart)
-      console.log(rpid)
-      console.log(uid)
-      const { data } = await axios.post("/api/v1/payment/razorpay/verify", { cart, rpid, uid })
+      const { data } = await axios.post("/api/v1/payment/razorpay/verify", { cart, rpid, uid, amount })
       if
 
         (data?.success) {
-        toast.success(`Order Successful in frontend`)
+        toast.success(`Order Successful`)
         localStorage.removeItem("cart");
         setCart([]);
       } else {
         toast.error(data.message)
-        toast.error("error in creating order in frontend")
+        toast.error("Error in creating order")
       }
     }
     catch (error) {
@@ -90,7 +121,8 @@ const CartPage = () => {
 
         const rpid = response.razorpay_payment_id
         const uid = auth?.user._id
-        orderCreate(rpid, uid)
+        const amount = totalPrice()
+        orderCreate(rpid, uid, amount)
         navigate("/dashboard/user/orders")
 
 
@@ -115,116 +147,136 @@ const CartPage = () => {
       <div className="mx-auto max-w-screen-xl min-h-[80vh]  p-3 rounded-lg">
 
         <div className="  w-full">
-          <div className="md:grid md:grid-cols-[60%_40%]  p-2">
+          {cart?.length ?
+            <>
+              <div className="md:grid md:grid-cols-[60%_40%]  p-2">
 
-            <div className="">
-              <div className="  text-left">
-                <div className="col-md-12">
-                  <h1 className="text-xl text-left bg-light p-2 mb-1">
-                    {!auth?.user
-                      ? "Hello Guest"
-                      : `Hello  ${auth?.token && auth?.user?.name}`}
-                    <p className="text-center">
-                      {cart?.length
-                        ? `You Have ${cart.length} items in your cart ${auth?.token ? "" : "please login to checkout !"
-                        }`
-                        : " Your Cart Is Empty"}
-                    </p>
-                    {cart?.length ?
+                <div className="">
+                  <div className="  text-left">
+                    <div className="col-md-12">
+                      <h1 className="text-xl text-left bg-light p-2 mb-1">
+                        {!auth?.user
+                          ? "Hello Guest"
+                          : `Hello  ${auth?.token && auth?.user?.name}`}
+                        <p className="text-center">
+                          {cart?.length
+                            ? `You Have ${cart.length} items in your cart ${auth?.token ? "" : "please login to checkout !"
+                            }`
+                            : " Your Cart Is Empty"}
+                        </p>
+                        {cart?.length ?
 
-                      <button className="bg-red-500 p-3 " onClick={clearCart}>
-                        Clear Cart
-                      </button> : ""}
-                  </h1>
-                </div>
-              </div>
-              {cart?.map((p) => (
-                <div key={p._id} className="mb-3 flex flex-row sm:grid sm:grid-cols-[30%_70%] justify-between h-[13rem] sm:h-[10rem]  border rounded-lg shadow bg-gray-800 border-gray-700">
-                  <div className='w-full flex justify-center bg-white rounded-lg overflow-hidden pb-2'>
-                    <img className=" object-contain  h-auto w-full " src={`/api/v1/product/product-photo/${p._id}`} alt="photo" />
-                  </div>
-                  <div className="w-full  flex flex-col justify-between p-2 gap-1 ">
-                    <div className="flex flex-col gap-1">
-                      <div className='py-2'>
-                        <h5 className="my-auto text-md font-bold tracking-tight text-white">{p.name}</h5>
-                      </div>
-                      <div className=' py-2'>
-                        <p className="my-auto text-sm leading-none text-gray-400"> {p.description.substring(0, 120)}...</p>
-                      </div>
-                    </div>
-                    <div className=' text-right flex flex-row leading-none tracking-tighter'>
-                      <div className="w-full text-lg  flex">
-                        <p className="my-auto text-left font-bold text-green-500">Rs. {p.price}</p>
-                      </div>
-                      <div className="w-full text-xs text-right">
-                        <button className=" tracking-tighter hover:opacity-60 bg-red-600 text-xs p-2 rounded-full text-white"
-                          onClick={() => {
-                            removeCartItem(p._id)
-                          }}
-                        >Remove</button>
-                      </div>
+                          <button className="bg-red-500 p-3 " onClick={clearCart}>
+                            Clear Cart
+                          </button> : ""}
+                      </h1>
                     </div>
                   </div>
-                </div>
+                  {cart?.map((p) => (
+                    <div key={p._id} className="mb-3  max-w-[35rem] grid grid-cols-[30%_70%] overflow-hidden justify-between h-[7rem]  border rounded-lg bg-gray-200 shadow">
+                      <div className='w-full flex justify-center bg-white rounded-lg overflow-hidden pb-2'>
+                        <img className=" object-contain  h-auto w-full " src={`/api/v1/product/product-photo/${p._id}`} alt="photo" />
+                      </div>
+                      <div className="w-full  flex flex-col p-2 gap-1 ">
+                        <div className="h-full flex  flex-col gap-1">
+                          <h5 className="my-auto text-lg font-bold ">{p.name}</h5>
+                        </div>
+                        <div className="h-full flex text-sm flex-col gap-1">
+                          <div className="flex felx-row">
+                            <button className="bg-gray-400 px-1"
+                              onClick={() => handleSubtract(p._id)}
+                            >-</button>
+                            <p className="border border-black rounded-lg my-auto px-1"> {p.quantity}</p>
+                            <button className="bg-gray-400 px-1"
+                              onClick={() => handleAdd(p._id)}
+                            >+</button>
+                          </div>
+                        </div>
+                        <div className='h-full  text-right flex  flex-row leading-none tracking-tighter'>
+                          <div className="w-full text-lg flex">
+                            <p className="my-auto text-left font-bold text-green-500">Rs. {p.price}</p>
+                          </div>
+                          <div className="w-full text-xs  flex items-center justify-end ">
+                            <button className=" tracking-tighter hover:opacity-60 text-white bg-red-600 text-xs p-2 rounded-full "
+                              onClick={() => {
+                                removeCartItem(p._id)
+                              }}
+                            >Remove</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
-              ))}
-            </div>
-            <div className="w-full min-v-[40vh] p-2 text-center ">
-              <h2>Cart Summary</h2>
-              <p>Total | Checkout | Payment</p>
-              <br />
-              <div className="min-h-[50vh] bg-gray-300 rounded-lg p-2 text-center flex justify-center items-center">
-                {auth?.token ? (<>
-                  {cart?.length ?
-                    <button className="bg-green-500 p-2 rounded-lg" onClick={() => checkoutHandler()}>Pay with Razorpay</button>
-                    : "cart is empty "}</>)
-                  : (<p>Please login</p>)
-                }
-              </div>
-              <hr />
-              <h4>Total : Rs.{totalPrice()} </h4>
-              {auth?.user?.address ? (
-                <>
-                  <div className="mb-3">
-                    <h4>Current Address</h4>
-                    <h5>{auth?.user?.address}</h5>
-                    <button
-                      className="border text-blue-600 hover:bg-blue-600 hover:text-white transition border-blue-600 p-3 rounded-lg "
-                      onClick={() => navigate("/dashboard/user/profile")}
-                    >
-                      Update Address
-                    </button>
+                  ))}
+                </div>
+                <div className="w-full min-v-[40vh] bg-red-500 p-2 text-center ">
+
+                  <div className="min-h-[50vh] bg-gray-300 rounded-lg pt-0 pb-2 text-center ">
+                    <div className="bg-gray-800 rounded-lg p-2 ">
+                      <h2 className="text-xl text-white">Cart Summary</h2>
+                      <p className="text-gray-300">Total | Checkout | Payment</p>
+
+                    </div>
+                    {auth?.token ? (<>
+                      {cart?.length ?
+                        <button className="bg-green-500 p-2 rounded-lg" onClick={() => checkoutHandler()}>Pay with Razorpay</button>
+                        : "cart is empty "}</>)
+                      : (<p>Please login</p>)
+                    }
                   </div>
-                </>
-              ) : (
-                <div className="mb-3">
-                  {auth?.token ? (
-                    <button
-                      className="border text-blue-600 hover:bg-blue-600 hover:text-white transition border-blue-600 p-3 rounded-lg "
-                      onClick={() => navigate("/dashboard/user/profile")}
-                    >
-                      Update Address
-                    </button>
+                  <hr />
+                  <h4>Total : Rs.{totalPrice()} </h4>
+                  {auth?.user?.address ? (
+                    <>
+                      <div className="mb-3">
+                        <h4>Current Address</h4>
+                        <h5>{auth?.user?.address}</h5>
+                        <button
+                          className="border text-blue-600 hover:bg-blue-600 hover:text-white transition border-blue-600 p-3 rounded-lg "
+                          onClick={() => navigate("/dashboard/user/profile")}
+                        >
+                          Update Address
+                        </button>
+                      </div>
+                    </>
                   ) : (
-                    <button
-                      className="border text-blue-600 hover:bg-blue-600 hover:text-white transition border-blue-600 p-3 rounded-lg "
-                      onClick={() =>
-                        navigate("/login", {
-                          state: "/cart",
-                        })
-                      }
-                    >
-                      Please Login to checkout
-                    </button>
+                    <div className="mb-3">
+                      {auth?.token ? (
+                        <button
+                          className="border text-blue-600 hover:bg-blue-600 hover:text-white transition border-blue-600 p-3 rounded-lg "
+                          onClick={() => navigate("/dashboard/user/profile")}
+                        >
+                          Update Address
+                        </button>
+                      ) : (
+                        <button
+                          className="border text-blue-600 hover:bg-blue-600 hover:text-white transition border-blue-600 p-3 rounded-lg "
+                          onClick={() =>
+                            navigate("/login", {
+                              state: "/cart",
+                            })
+                          }
+                        >
+                          Please Login to checkout
+                        </button>
+                      )}
+                    </div>
                   )}
-                </div>
-              )}
 
-            </div>
-          </div>
+                </div>
+              </div>
+            </>
+            :
+            <>
+              <div className="h-screen flex items-center justify-center">
+                Your Cart is Empty!
+              </div>
+            </>
+          }
+
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 

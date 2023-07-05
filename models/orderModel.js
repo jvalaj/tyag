@@ -13,6 +13,9 @@ const orderSchema = new mongoose.Schema({
   },
   paymentId: {}
   ,
+  amount: {
+    type: Number,
+  },
 
   status: {
     type: String,

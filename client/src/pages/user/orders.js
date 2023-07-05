@@ -36,7 +36,8 @@ const Orders = () => {
                                                     <th scope="col">#</th>
                                                     <th scope="col">Status</th>
                                                     <th scope="col">Buyer</th>
-                                                    <th scope="col">Payment</th>
+                                                    <th scope="col">Payment ID</th>
+                                                    <th scope="col">Amount</th>
 
                                                 </tr>
                                             </thead>
@@ -46,6 +47,7 @@ const Orders = () => {
                                                     <td>{o?.status}</td>
                                                     <td>{o?.buyer?.name}</td>
                                                     <td>{o?.paymentId}</td>
+                                                    <td>{o?.amount}</td>
 
                                                 </tr>
                                             </tbody>
@@ -65,6 +67,7 @@ const Orders = () => {
                                                     <div className="col-md-8">
                                                         <p>{p.name}</p>
                                                         <p>{p.description.substring(0, 30)}</p>
+                                                        <p>Quantity: {p.quantity}</p>
                                                         <p>Price : {p.price}</p>
                                                     </div>
                                                 </div>

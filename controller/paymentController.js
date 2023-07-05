@@ -21,7 +21,7 @@ export const razorpayOrderController = async (req, res) => {
             const cart = req.body
             let total = 0;
             cart.map((item) => {
-                total = total + item.price;
+                total = total + (item.price * item.quantity);
             });
             return total
         } catch (error) {
@@ -69,10 +69,12 @@ export const razorpayPaymentVerificationController = async (req, res) => {
         const { cart } = req.body
         const { rpid } = req.body
         const { uid } = req.body
+        const { amount } = req.body
         const order = new orderModel({
             products: cart,
             paymentId: rpid,
             buyer: uid,
+            amount: amount
         })
         console.log(order)
         order.save()

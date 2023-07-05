@@ -57,6 +57,7 @@ const AllProducts = () => {
             setLoading(false);
         }
     };
+
     useEffect(() => {
         getAllProducts();
     }, []);
@@ -109,9 +110,27 @@ const AllProducts = () => {
 
                                                     <button className=" tracking-tighter hover:opacity-60 bg-blue-600 text-xs p-2 rounded-full text-white"
                                                         onClick={() => {
-                                                            setCart([...cart, p])
-                                                            localStorage.setItem('cart', JSON.stringify([...cart, p]))
-                                                            toast.success("Item Added to Cart")
+                                                            let myCart = [...cart]
+                                                            const index = myCart.findIndex(item => item._id === p._id);
+
+                                                            if (index === -1) {
+                                                                myCart.push({
+                                                                    ...p,
+                                                                    quantity: 1
+                                                                });
+                                                                const updatedCart = [...myCart];
+                                                                console.log(updatedCart);
+                                                                setCart(updatedCart)
+                                                                localStorage.setItem('cart', JSON.stringify(updatedCart))
+                                                                toast.success("Item Added to Cart")
+                                                            } else {
+                                                                myCart[index].quantity += 1;
+                                                                const updatedCart = [...myCart];
+                                                                setCart(updatedCart);
+                                                                localStorage.setItem("cart", JSON.stringify(updatedCart))
+                                                                console.log(updatedCart);
+                                                                toast.success("Item Added to Cart")
+                                                            }
                                                         }}
                                                     >Add to Cart</button>
 
