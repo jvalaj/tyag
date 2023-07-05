@@ -299,7 +299,7 @@ const CartPage = () => {
             </>
             :
             <>
-              <div className="h-screen flex items-center justify-center">
+              <div className="min-h-[80vh] flex items-center justify-center">
                 Your Cart is Empty!
               </div>
             </>

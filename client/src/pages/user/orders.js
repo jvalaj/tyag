@@ -30,12 +30,12 @@ const Orders = () => {
                             {orders?.map((o, i) => {
                                 return (
                                     <div className="border p-2 rounded-lg mb-2 w-full shadow">
-                                        <table className="table w-full">
+                                        <table className="table text-right w-full">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">#</th>
                                                     <th scope="col">Status</th>
-                                                    <th scope="col">Buyer</th>
+
                                                     <th scope="col">Payment ID</th>
                                                     <th scope="col">Amount</th>
 
@@ -45,16 +45,16 @@ const Orders = () => {
                                                 <tr>
                                                     <td>{i + 1}</td>
                                                     <td>{o?.status}</td>
-                                                    <td>{o?.buyer?.name}</td>
+
                                                     <td>{o?.paymentId}</td>
                                                     <td>{o?.amount}</td>
 
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <div className="w-full">
+                                        <div className="w-full pb-2">
                                             {o?.products?.map((p) => (
-                                                <div className="flex mb-2 p-3 flex-row" key={p._id}>
+                                                <div className="flex mb-1 bg-gray-400 rounded-lg shadow p-3 flex-row" key={p._id}>
                                                     <div className="col-md-4">
                                                         <img
                                                             src={`/api/v1/product/product-photo/${p._id}`}
@@ -65,8 +65,7 @@ const Orders = () => {
                                                         />
                                                     </div>
                                                     <div className="col-md-8">
-                                                        <p>{p.name}</p>
-                                                        <p>{p.description.substring(0, 30)}</p>
+                                                        <p>Name: {p.name}</p>
                                                         <p>Quantity: {p.quantity}</p>
                                                         <p>Price : {p.price}</p>
                                                     </div>
