@@ -54,24 +54,17 @@ export const razorpayPaymentVerificationController = async (req, res) => {
 
     ;
 
-    //  const body = razorpay_order_id + "|" + razorpay_payment_id;
-
-    //  const expectedSignature = crypto
-    //      .createHmac("sha256", process.env.RAZORPAY_SECRET_KEY)
-    //      .update(body.toString())
-    //     .digest("hex");
-
-    //  const isAuthentic = expectedSignature === razorpay_signature;
-
-    //  if (isAuthentic) {
-    // Order in Database creation
     try {
         const { cart } = req.body
         const { rpid } = req.body
         const { uid } = req.body
         const { amount } = req.body
+
         const order = new orderModel({
-            products: cart,
+
+            products: cart.map((p) => (
+                { product: p._id, quantity: p.quantity }
+            )),
             paymentId: rpid,
             buyer: uid,
             amount: amount
@@ -80,7 +73,7 @@ export const razorpayPaymentVerificationController = async (req, res) => {
         order.save()
         res.status(200).send({
             success: true,
-            message: "Order created Succesfully in backend",
+            message: "Order created Succesfully",
 
         });
     } catch (error) {
@@ -88,7 +81,7 @@ export const razorpayPaymentVerificationController = async (req, res) => {
         console.log(error)
         res.status(400).send({
             success: false,
-            message: "Error in creating order in backend"
+            message: "Error in creating order"
         });
     }
     //  }

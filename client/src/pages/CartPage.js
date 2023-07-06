@@ -88,7 +88,6 @@ const CartPage = () => {
     try {
       const { data } = await axios.post("/api/v1/payment/razorpay/verify", { cart, rpid, uid, amount })
       if
-
         (data?.success) {
         toast.success(`Order Successful`)
         localStorage.removeItem("cart");

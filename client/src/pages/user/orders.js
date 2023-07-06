@@ -30,44 +30,40 @@ const Orders = () => {
                             {orders?.map((o, i) => {
                                 return (
                                     <div className="border p-2 rounded-lg mb-2 w-full shadow">
-                                        <table className="table text-right w-full">
-                                            <thead>
-                                                <tr>
+                                        <table className="table-auto text-left w-full">
+                                            <thead className='p-2'>
+                                                <tr className='p-2'>
                                                     <th scope="col">#</th>
                                                     <th scope="col">Status</th>
-
                                                     <th scope="col">Payment ID</th>
                                                     <th scope="col">Amount</th>
-
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td>{i + 1}</td>
                                                     <td>{o?.status}</td>
-
                                                     <td>{o?.paymentId}</td>
                                                     <td>{o?.amount}</td>
-
                                                 </tr>
                                             </tbody>
                                         </table>
                                         <div className="w-full pb-2">
                                             {o?.products?.map((p) => (
-                                                <div className="flex mb-1 bg-gray-400 rounded-lg shadow p-3 flex-row" key={p._id}>
+                                                <div className="flex mb-1 bg-gray-400 rounded-lg shadow p-3 flex-row" key={p.product?._id}>
                                                     <div className="col-md-4">
                                                         <img
-                                                            src={`/api/v1/product/product-photo/${p._id}`}
+                                                            src={`/api/v1/product/product-photo/${p.product?._id}`}
                                                             className="card-img-top"
-                                                            alt={p.name}
+                                                            alt={p.product?.name}
                                                             width="100px"
                                                             height={"100px"}
                                                         />
                                                     </div>
                                                     <div className="col-md-8">
-                                                        <p>Name: {p.name}</p>
+                                                        <p>Name: {p.product?.name}</p>
                                                         <p>Quantity: {p.quantity}</p>
-                                                        <p>Price : {p.price}</p>
+                                                        <p>Price : {p.product?.price}</p>
                                                     </div>
                                                 </div>
                                             ))}
