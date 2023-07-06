@@ -63,7 +63,7 @@ const AllProducts = () => {
     }, []);
     return (
         <div>
-            <div className='mx-auto max-w-screen-lg min-h-[80vh] p-3 rounded-lg'>
+            <div className='mx-auto max-w-screen-xl min-h-[80vh] p-3 rounded-lg'>
 
                 <SearchInput />
 
@@ -72,11 +72,11 @@ const AllProducts = () => {
 
                     <div className="w-full min-h-[70vh] bg-gray-300 rounded-lg mt-3  p-2">
                         <p className='pt-2 block text-center'>All Products</p>
-                        <div className="md:grid md:grid-cols-[70%_30%] p-2">
+                        <div className="md:grid md:grid-cols-[60%_40%] p-2">
                             <div className='flex flex-wrap gap-2 m-1'>
                                 {products.map((p) => (
 
-                                    <div key={p._id} className="mb-3 text-sm sm:text-md w-[6rem] sm:w-[10rem] lg:w-[13rem] h-[10rem] sm:h-[12rem] lg:h-[16rem] grid grid-rows-[40%_60%]   border rounded-lg shadow bg-gray-800 border-gray-700">
+                                    <div key={p._id} className="mb-3 w-[6rem] sm:w-[10rem] lg:w-[13rem] h-[10rem] sm:h-[12rem] lg:h-[16rem] grid grid-rows-[40%_60%]   border rounded-lg shadow bg-gray-800 border-gray-700">
 
                                         <div onClick={() => navigate(`/product/${p.slug}`)}
                                             target="_blank" className='w-full cursor-pointer hover:opacity-40 px-auto flex justify-center bg-white rounded-lg overflow-hidden pb-2'>
@@ -87,13 +87,12 @@ const AllProducts = () => {
 
                                         </div>
 
-                                        <div className="w-full  flex flex-col justify-between p-2 gap-1 ">
+                                        <div className="w-full  flex flex-col px-2 ">
                                             <div className="flex flex-col gap-1">
-                                                <div className='py-2'>
-                                                    <h5 className="my-auto text-md font-bold tracking-tight text-white">{p.name}</h5>
-
+                                                <div className='pt-2'>
+                                                    <h5 className="my-auto text-md sm:text-lg font-bold tracking-tight text-white">{p.name}</h5>
                                                 </div>
-                                                <div className='hidden lg:inline py-2'>
+                                                <div className='hidden lg:inline m-0'>
                                                     <p className="my-auto text-sm leading-none text-gray-400"> {p.description.substring(0, 50)}...</p>
 
                                                 </div>
@@ -101,14 +100,14 @@ const AllProducts = () => {
 
 
 
-                                            <div className=' text-right flex flex-col lg:flex-row leading-none tracking-tighter'>
-                                                <div className="w-full text-lg  flex">
-                                                    <p className="my-auto text-left font-bold text-green-500">Rs. {p.price}</p>
+                                            <div className='flex flex-col lg:flex-row'>
+                                                <div className="w-full text-sm sm:text-lg">
+                                                    <p className="my-auto text-white">Rs. {p.price}</p>
 
                                                 </div>
-                                                <div className="w-full text-xs text-right">
+                                                <div className="w-full m-0 text-xs">
 
-                                                    <button className=" tracking-tighter hover:opacity-60 bg-blue-600 text-xs p-2 rounded-full text-white"
+                                                    <button className=" hover:opacity-60 bg-blue-600 text-xs p-2 m-0 rounded-full text-white"
                                                         onClick={() => {
                                                             let myCart = [...cart]
                                                             const index = myCart.findIndex(item => item._id === p._id);
@@ -132,7 +131,13 @@ const AllProducts = () => {
                                                                 toast.success("Item Added to Cart")
                                                             }
                                                         }}
-                                                    >Add to Cart</button>
+                                                    >
+                                                        <p className="hidden sm:inline">Add to Cart</p>
+                                                        <p className="sm:hidden m-0 p-0 ">+</p>
+
+
+
+                                                    </button>
 
                                                 </div>
 

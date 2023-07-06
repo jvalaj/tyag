@@ -111,8 +111,15 @@ const Navbar = () => {
 
                     <div className="sm:hidden flex items-center flex-row gap-4">
                         <li className={toggle ? 'hidden' : " hover:text-blue-600 transition flex items-center "}>
-                            <NavLink to="/cart">
-                                <AiOutlineShoppingCart className=" hover:text-blue-600 transition" size={20} />
+                            <NavLink to="/cart" className="flex items-center">
+                                <div className="flex h-4 items-center p-0 ">
+                                    <div className="relative top-[-5px]">
+
+                                        <div className="bg-blue-500" id="cart-count-phone">{cart?.length}</div>
+                                        <AiOutlineShoppingCart className=" hover:text-blue-600 transition" size={20} />
+
+                                    </div>
+                                </div>
                             </NavLink>
 
                         </li>
