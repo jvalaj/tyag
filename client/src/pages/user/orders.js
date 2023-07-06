@@ -29,26 +29,27 @@ const Orders = () => {
                         <div className='w-full p-2 '>
                             {orders?.map((o, i) => {
                                 return (
-                                    <div className="border p-2 rounded-lg mb-2 w-full shadow">
+                                    <div className="p-2 rounded-lg mb-2 w-full shadow">
                                         <table className="table-auto text-left w-full">
                                             <thead className='p-2'>
-                                                <tr className='p-2'>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Payment ID</th>
-                                                    <th scope="col">Amount</th>
+                                                <tr className='bg-gray-700 text-white'>
+                                                    <th scope="col" className="px-6 py-3">#</th>
+                                                    <th scope="col" className="px-6 py-3">Status</th>
+                                                    <th scope="col" className="px-6 py-3">Payment ID</th>
+                                                    <th scope="col" className="px-6 py-3">Amount</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>{i + 1}</td>
-                                                    <td>{o?.status}</td>
-                                                    <td>{o?.paymentId}</td>
-                                                    <td>{o?.amount}</td>
+                                                <tr className='bg-white'>
+                                                    <td className="px-6 py-3">{i + 1}</td>
+                                                    <td className="px-6 py-3 font-bold">{o?.status}</td>
+                                                    <td className="px-6 py-3">{o?.paymentId}</td>
+                                                    <td className="px-6 py-3">Rs.{o?.amount}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                         <div className="w-full pb-2">
+                                            <p className='my-2 text-xl py-auto'>Items: </p>
                                             {o?.products?.map((p) => (
                                                 <div className="flex mb-1 bg-gray-400 rounded-lg shadow p-3 flex-row" key={p.product?._id}>
                                                     <div className="col-md-4">

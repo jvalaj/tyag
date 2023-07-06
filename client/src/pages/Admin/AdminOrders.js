@@ -48,19 +48,19 @@ const AdminOrders = () => {
                                 <div className="border shadow">
                                     <table className="table-auto text-left w-full">
                                         <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Buyer</th>
-                                                <th scope="col">Date</th>
-                                                <th scope="col">Payment Id</th>
+                                            <tr className='bg-gray-700 text-white'>
+                                                <th scope="col" className="px-4 py-3">#</th>
+                                                <th scope="col" className="px-4 py-3">Status</th>
+                                                <th scope="col" className="px-4 py-3">Buyer</th>
+                                                <th scope="col" className="px-4 py-3">Date</th>
+                                                <th scope="col" className="px-4 py-3">Payment Id</th>
 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>{i + 1}</td>
-                                                <td>
+                                            <tr className='bg-white'>
+                                                <td className="px-4 py-3">{i + 1}</td>
+                                                <td className="px-4 py-3">
                                                     <Select
                                                         bordered={false}
                                                         onChange={(value) => handleChange(o._id, value)}
@@ -73,17 +73,17 @@ const AdminOrders = () => {
                                                         ))}
                                                     </Select>
                                                 </td>
-                                                <td>{o?.buyer?.name}</td>
-                                                <td>{o?.createdAt}</td>
-                                                <td>{o?.paymentId}</td>
+                                                <td className="px-4 py-3">{o?.buyer?.name}</td>
+                                                <td className="px-4 py-3">{o?.createdAt}</td>
+                                                <td className="px-4 py-3">{o?.paymentId}</td>
 
                                             </tr>
                                         </tbody>
                                     </table>
                                     <div className="container">
                                         {o?.products?.map((p, i) => (
-                                            <div className="row mb-2 p-3 card flex-row" key={p.product?._id}>
-                                                <div className="col-md-4">
+                                            <div className="mb-2 border p-3 flex flex-row" key={p.product?._id}>
+                                                <div className="p-2 ">
                                                     <img
                                                         src={`/api/v1/product/product-photo/${p.product?._id}`}
                                                         className="card-img-top"
@@ -92,14 +92,14 @@ const AdminOrders = () => {
                                                         height={"100px"}
                                                     />
                                                 </div>
-                                                <div className="col-md-8">
+                                                <div className="p-2">
                                                     <p>{p.product?.name}</p>
                                                     <p>quantity: {p.quantity}</p>
                                                     <p>Price : {p.product?.price}</p>
                                                 </div>
                                             </div>
                                         ))}
-                                        <p>{o?.buyer?.name} Address: {o?.buyer?.address}</p>
+                                        <p className='py-auto p-2'><span className='font-bold'>{o?.buyer?.name} Address:</span> {o?.buyer?.address}</p>
                                     </div>
                                 </div>
                             );
