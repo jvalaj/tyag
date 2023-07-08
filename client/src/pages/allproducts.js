@@ -63,20 +63,20 @@ const AllProducts = () => {
     }, []);
     return (
         <div>
-            <div className='mx-auto max-w-screen-xl min-h-[80vh] p-3 rounded-lg'>
-
-                <SearchInput />
+            <div className='mx-auto max-w-screen-xl min-h-[80vh] sm:p-3 rounded-lg'>
+                <div className="mx-2 mt-2">  <SearchInput />
+                </div>
 
 
                 <div className="min-h-[80vh] w-full sm:w-auto up-2 flex-col flex justify-center">
 
-                    <div className="w-full min-h-[70vh] bg-gray-300 rounded-lg mt-3  p-2">
-                        <p className='pt-2 block text-center'>All Products</p>
+                    <div className="w-full min-h-[70vh]  rounded-lg mt-3  sm:p-2">
+
                         <div className="md:grid md:grid-cols-[60%_40%] p-2">
-                            <div className='flex flex-wrap gap-2 m-1'>
+                            <div className='flex flex-wrap items-center justify-center gap-2 m-1'>
                                 {products.map((p) => (
 
-                                    <div key={p._id} className="mb-3 w-[6rem] sm:w-[10rem] lg:w-[13rem] h-[10rem] sm:h-[12rem] lg:h-[16rem] grid grid-rows-[40%_60%]   border rounded-lg shadow bg-gray-800 border-gray-700">
+                                    <div key={p._id} className="mb-3 w-[9rem] sm:w-[10rem] lg:w-[13rem] h-[10rem] sm:h-[12rem] lg:h-[16rem] grid grid-rows-[40%_60%]   border rounded-lg shadow bg-gray-800 border-gray-700">
 
                                         <div onClick={() => navigate(`/product/${p.slug}`)}
                                             target="_blank" className='w-full cursor-pointer hover:opacity-40 px-auto flex justify-center bg-white rounded-lg overflow-hidden pb-2'>
@@ -88,9 +88,9 @@ const AllProducts = () => {
                                         </div>
 
                                         <div className="w-full  flex flex-col px-2 ">
-                                            <div className="flex flex-col gap-1">
+                                            <div className="flex justify-center flex-col gap-1">
                                                 <div className='pt-2'>
-                                                    <h5 className="my-auto text-md sm:text-lg font-bold tracking-tight text-white">{p.name}</h5>
+                                                    <h5 className="my-auto text-md sm:text-lg font-semibold tracking-tight text-white">{p.name}</h5>
                                                 </div>
                                                 <div className='hidden lg:inline m-0'>
                                                     <p className="my-auto text-sm leading-none text-gray-400"> {p.description.substring(0, 50)}...</p>
@@ -100,12 +100,12 @@ const AllProducts = () => {
 
 
 
-                                            <div className='flex flex-col lg:flex-row'>
-                                                <div className="w-full text-sm sm:text-lg">
+                                            <div className='flex flex-col mt-auto mb-3 lg:flex-row'>
+                                                <div className="w-full  text-sm sm:text-lg">
                                                     <p className="my-auto text-white">Rs. {p.price}</p>
 
                                                 </div>
-                                                <div className="w-full m-0 text-xs">
+                                                <div className="w-full text-right m-0 text-xs">
 
                                                     <button className=" hover:opacity-60 bg-blue-600 text-xs p-2 m-0 rounded-full text-white"
                                                         onClick={() => {
@@ -133,7 +133,7 @@ const AllProducts = () => {
                                                         }}
                                                     >
                                                         <p className="hidden sm:inline">Add to Cart</p>
-                                                        <p className="sm:hidden m-0 p-0 ">+</p>
+                                                        <p className="sm:hidden m-0 px-1 py-0">+</p>
 
 
 
@@ -175,7 +175,7 @@ const AllProducts = () => {
                                 ))}
                                 {cart?.length ? <>
                                     <div className="w-full justify-center mt-2 text-lg flex">
-                                        <button className="my-auto font-bold p-2 rounded-lg w-full bg-green-200" onClick={() => navigate("/cart")}>Checkout</button>
+                                        <button className="my-auto font-bold p-2 rounded-lg w-full border border-green-800" onClick={() => navigate("/cart")}>Checkout</button>
                                     </div></> : <><p>Your Cart Is Empty</p></>}
                             </div>
                         </div>

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-
+import { SiRazorpay } from 'react-icons/si'
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
 import { useNavigate } from "react-router-dom";
-
+import { AiOutlineDelete } from 'react-icons/ai'
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -151,62 +151,67 @@ const CartPage = () => {
               <div className="md:grid md:grid-cols-[60%_40%]  p-2">
 
                 <div className="">
-                  <div className="  text-left">
-                    <div className="col-md-12">
-                      <h1 className="text-xl text-left bg-light p-2 mb-1">
-                        {!auth?.user
-                          ? "Hello Guest"
-                          : `Hello  ${auth?.token && auth?.user?.name}`}
-                        <p className="text-center">
-                          {cart?.length
-                            ? `You Have ${cart.length} items in your cart ${auth?.token ? "" : "please login to checkout !"
-                            }`
-                            : " Your Cart Is Empty"}
-                        </p>
-                        {cart?.length ?
 
-                          <button className="bg-red-500 p-3 " onClick={clearCart}>
-                            Clear Cart
-                          </button> : ""}
-                      </h1>
-                    </div>
+                  <div className="col-md-12">
+                    <h1 className="text-xl text-center p-2 m-0">
+                      <p className="text-center">
+                        {cart?.length
+                          ? `You Have ${cart.length} items in your cart ${auth?.token ? "" : "please login to checkout !"
+                          }`
+                          : " Your Cart Is Empty"}
+                      </p>
+
+                    </h1>
                   </div>
-                  {cart?.map((p) => (
-                    <div key={p._id} className="mb-3  max-w-[35rem] grid grid-cols-[30%_70%] overflow-hidden justify-between h-[7rem]  border rounded-lg bg-gray-200 shadow">
-                      <div className='w-full flex justify-center bg-white rounded-lg overflow-hidden pb-2'>
-                        <img className=" object-contain  h-auto w-full " src={`/api/v1/product/product-photo/${p._id}`} alt="photo" />
-                      </div>
-                      <div className="w-full  flex flex-col p-2 gap-1 ">
-                        <div className="h-full flex  flex-col gap-1">
-                          <h5 className="my-auto text-lg font-bold ">{p.name}</h5>
-                        </div>
-                        <div className="h-full flex text-sm flex-col gap-1">
-                          <div className="flex felx-row">
-                            <button className="bg-gray-400 px-1"
-                              onClick={() => handleSubtract(p._id)}
-                            >-</button>
-                            <p className="border border-black rounded-lg my-auto px-1"> {p.quantity}</p>
-                            <button className="bg-gray-400 px-1"
-                              onClick={() => handleAdd(p._id)}
-                            >+</button>
-                          </div>
-                        </div>
-                        <div className='h-full  text-right flex  flex-row leading-none tracking-tighter'>
-                          <div className="w-full text-lg flex">
-                            <p className="my-auto text-left font-bold text-green-500">Rs. {p.price}</p>
-                          </div>
-                          <div className="w-full text-xs  flex items-center justify-end ">
-                            <button className=" tracking-tighter hover:opacity-60 text-white bg-red-600 text-xs p-2 rounded-full "
-                              onClick={() => {
-                                removeCartItem(p._id)
-                              }}
-                            >Remove</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
 
-                  ))}
+                  <div className="flex flex-col justify-center items-center">
+                    {cart?.map((p) => (
+                      <div key={p._id} className="mb-3 w-full md:w-[28rem] lg:w-[38rem] grid grid-cols-[30%_70%] overflow-hidden justify-between h-[7rem]  border rounded-lg bg-gray-200 shadow">
+                        <div className='w-full flex justify-center bg-white rounded-lg overflow-hidden pb-2'>
+                          <img className=" object-contain  h-auto w-full " src={`/api/v1/product/product-photo/${p._id}`} alt="photo" />
+                        </div>
+                        <div className="w-full  flex flex-col p-2 gap-1 ">
+                          <div className="h-full flex  flex-col gap-1">
+                            <h5 className="my-auto text-lg font-semibold ">{p.name}</h5>
+                          </div>
+                          <div className="h-full flex text-sm flex-col gap-1">
+                            <div className="flex felx-row">
+                              <button className="bg-gray-400 shadow-md text-white rounded-full px-1.5"
+                                onClick={() => handleSubtract(p._id)}
+                              >-</button>
+                              <p className="border border-black rounded-lg my-auto px-1.5"> {p.quantity}</p>
+                              <button className="bg-gray-400 shadow-md text-white rounded-full px-1.5"
+                                onClick={() => handleAdd(p._id)}
+                              >+</button>
+                            </div>
+                          </div>
+                          <div className='h-full  text-right flex  flex-row leading-none tracking-tighter'>
+                            <div className="w-full text-lg flex">
+                              <p className="my-auto text-left">Rs.{p.price}</p>
+                            </div>
+                            <div className="w-full text-xs  flex items-center justify-end ">
+                              <button className=" tracking-tighter hover:opacity-60 text-white bg-red-600 text-xs p-2 rounded-full "
+                                onClick={() => {
+                                  removeCartItem(p._id)
+                                }}
+                              >Remove</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    ))}
+
+
+                    {cart?.length ?
+                      <div className="w-full md:w-[28rem] lg:w-[35rem] text-right">
+                        <button className=" hover:bg-gray-200 transition p-2 rounded-full " onClick={clearCart}>
+                          <AiOutlineDelete className="text-red-500" size={20} />
+                        </button>
+                      </div>
+                      : ""}
+                  </div>
+
                 </div>
                 <div className="w-full min-v-[40vh] p-2 text-center ">
 
@@ -247,7 +252,7 @@ const CartPage = () => {
                               Rs. {totalPrice()}
                             </div>
                           </div>
-                          <button className="bg-green-500 mt-2 p-2 rounded-lg" onClick={() => checkoutHandler()}>Pay with Razorpay</button>
+                          <button className="bg-green-500 flex items-center justify-center mt-2 p-2 rounded-lg shadow-md" onClick={() => checkoutHandler()}> <span className="h-full text-lg">Pay with Razorpay </span> <SiRazorpay className=" ml-1" size={20} /></button>
                         </div>
 
                         : "cart is empty "}</>)
