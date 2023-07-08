@@ -204,8 +204,8 @@ const CartPage = () => {
 
 
                     {cart?.length ?
-                      <div className="w-full md:w-[28rem] lg:w-[35rem] text-right">
-                        <button className=" hover:bg-gray-200 transition p-2 rounded-full " onClick={clearCart}>
+                      <div className="w-full md:w-[28rem] lg:w-[38rem] text-right">
+                        <button className=" hover:bg-gray-300  bg-gray-200  transition p-2 rounded-full " onClick={clearCart}>
                           <AiOutlineDelete className="text-red-500" size={20} />
                         </button>
                       </div>
