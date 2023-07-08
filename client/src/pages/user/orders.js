@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import UserMenu from '../../components/userMenu'
 import axios from "axios";
+import { BiHelpCircle } from 'react-icons/bi'
 import { useAuth } from "../../context/auth";
 import { useNavigate } from 'react-router-dom';
 const Orders = () => {
@@ -81,6 +82,12 @@ const Orders = () => {
                                             </div>
 
                                         </div>
+                                        <div className='w-full flex justify-end'>
+                                            <a className="" href="https://wa.me/919999513839" target="_blank">
+                                                <BiHelpCircle size={20} />
+                                            </a>
+                                        </div>
+
                                     </div>
                                 );
                             })} </div> : <div className='h-[90%] w-full flex items-center justify-center'>
