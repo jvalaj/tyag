@@ -6,6 +6,7 @@ import useCategory from "../hooks/useCategory";
 import { Link } from "react-router-dom";
 import SearchInput from "../components/Form/searchInput.js";
 import Accordian from "../components/accordian";
+import ScrollAnimation from 'react-animate-on-scroll';
 const Home = () => {
     const categories = useCategory()
     return (
@@ -24,14 +25,16 @@ const Home = () => {
             </div>
             <div className=' w-full rounded-lg'>
                 <section className="flex z-30 justify-center bg-white sm:mt-0  min-h-[50vh] w-full rounded-b-[2rem]" id="section1">
-                    <div className="text-center  lg:mt-[9rem] md:mt-28 mt-14">
+                    <div className="text-center  lg:mt-[9rem] md:mt-28 mt-24">
                         <div className="p-2 ">
-                            <p className=" mb-6 text-center text-4xl text-white sm:text-[2.5rem] font-semibold" >
+                            <ScrollAnimation animateIn="fadeInDownBig">
+                                <p className=" mb-6 text-center text-4xl text-white sm:text-[2.5rem] font-semibold" >
 
-                                All your <span className="" id="">pharmacy</span> needs, fulfilled at your doorstep<span className="">.</span>
+                                    All your <span className="" id="">pharmacy</span> needs, fulfilled at your doorstep<span className="">.</span>
 
 
-                            </p>
+                                </p>
+                            </ScrollAnimation>
 
                         </div>
                         <div className="p-2 max-w-screen-sm  mx-auto">

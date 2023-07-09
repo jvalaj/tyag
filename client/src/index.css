@@ -37,14 +37,15 @@ code {
 
 @media screen and (min-width: 769px) and (max-width: 1250px) {
   #section1{
-    background-position: right 5px bottom 10px  !important;
-    background-size: 70%;
+    background-position: top 0px center !important;
+    background-size: 100%;
   }
 }
 @media screen and (min-width: 0px) and (max-width: 768px) {
   #section1{
-    background-position: right 80px bottom 10px !important;
-    background-size: 100%;
+    background-position: top 0px center !important;
+    background-size: cover;
+    
   }
 }
 
