@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AiOutlineReload } from "react-icons/ai";
+import { AiOutlineReload, AiOutlineDelete } from "react-icons/ai";
 import axios from "axios";
 
 import { useCart } from "../context/cart.js"
@@ -14,6 +14,20 @@ const AllProducts = () => {
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate()
+
+    const removeCartItem = (pid) => {
+        try {
+            let myCart = [...cart];
+            let index = myCart.findIndex((item) => item._id === pid);
+            myCart.splice(index, 1);
+            setCart(myCart);
+            toast.success("Item Removed Successfully")
+            localStorage.setItem("cart", JSON.stringify(myCart));
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     useEffect(() => {
 
         getTotal();
@@ -166,6 +180,14 @@ const AllProducts = () => {
                                         <div className="w-full justify-end  text-sm flex">
                                             <p className="my-auto text-right font-bold text-green-500">Rs.{p.quantity * p.price}</p>
                                         </div>
+                                        <div className="w-full justify-end text-sm flex">
+                                            <button className="my-auto  font-bold hover:bg-gray-300 transition p-2 rounded-full"
+                                                onClick={() => {
+                                                    removeCartItem(p._id)
+                                                }}>
+                                                <AiOutlineDelete className="text-red-500" size={20} />
+                                            </button>
+                                        </div>
 
 
 
@@ -176,7 +198,11 @@ const AllProducts = () => {
                                 {cart?.length ? <>
                                     <div className="w-full justify-center mt-2 text-lg flex">
                                         <button className="my-auto font-bold p-2 rounded-lg w-full border border-green-800" onClick={() => navigate("/cart")}>Checkout</button>
-                                    </div></> : <><p>Your Cart Is Empty</p></>}
+                                    </div></> : <>
+                                    <div className="p-2 min-h-[20vh] flex justify-center items-center bg-gray-200 rounded-lg">
+                                        <p className="block text-center">Your Cart Is Empty</p>
+                                    </div>
+                                </>}
                             </div>
                         </div>
                     </div>

@@ -39,9 +39,7 @@ const Navbar = () => {
                     </div>
 
                     <ul className='hidden text-sm md:text-md m-2 sm:flex sm:gap-8 '>
-                        <li className="hover:text-blue-600 flex items-center transition ">
-                            <NavLink to="/">Home</NavLink>
-                        </li>
+
                         <li className="hover:text-blue-600 flex items-center transition ">
                             <NavLink to="/allproducts">Products</NavLink>
                         </li>
@@ -134,12 +132,7 @@ const Navbar = () => {
                         </div>
 
                         <ul className="gap-y-14 items-center my-auto bg-gray-800 text-white flex-col text-xl flex">
-                            <li className="hover:text-blue-600 transition ">
-                                <NavLink to="/" onClick={handleNav}>Home</NavLink>
-                            </li>
-                            <li className="hover:text-blue-600 transition ">
-                                <NavLink to="/contact" onClick={handleNav}>Contact</NavLink>
-                            </li>
+
 
                             {
                                 !auth.user ? (
