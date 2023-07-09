@@ -22,32 +22,29 @@ const Home = () => {
                 </a>
 
             </div>
-            <div className=' w-full bg-gray-200 rounded-lg'>
-                <section className="flex z-30 items-start sm:mt-0  min-h-[60vh] w-full rounded-b-[2rem]  " id="section1">
-                    <div className="lg:ml-24  lg:mt-[9rem] md:mt-28 mt-14">
-                        <div className="p-2  max-w-screen-md">
-                            <p className=" mb-6 text-center md:text-left text-4xl sm:text-[2.5rem] font-semibold" >
+            <div className=' w-full rounded-lg'>
+                <section className="flex z-30 justify-center bg-white sm:mt-0  min-h-[50vh] w-full rounded-b-[2rem]" id="section1">
+                    <div className="text-center  lg:mt-[9rem] md:mt-28 mt-14">
+                        <div className="p-2 ">
+                            <p className=" mb-6 text-center text-4xl text-white sm:text-[2.5rem] font-semibold" >
 
-                                All your <span className=" text-blue-600">pharmacy</span> needs, fulfilled at your doorstep<span className="text-blue-600">.</span>
+                                All your <span className="" id="">pharmacy</span> needs, fulfilled at your doorstep<span className="">.</span>
 
 
                             </p>
 
                         </div>
-                        <div className="p-2  block">
-                            <div className="rounded-full shadow-blue-500/50 shadow-lg">
-                                <SearchInput />
-
+                        <div className="p-2 max-w-screen-sm  mx-auto">
+                            <div className=" rounded-full">             <SearchInput />
                             </div>
+
+
                         </div>
                     </div>
 
 
                 </section>
-                <section className="flex z-20 bg-gray-200 justify-center items-center min-h-[3vh]">
-                    <IoCaretDown className="animate-bounce mt-3 text-blue-600" size={20} />
 
-                </section>
                 <section className="flex justify-center flex-col items-center pt-4 min-h-[30vh] w-full ">
                     <div className="w-full mt-6 sm:w-3/4 mb-5">
 
