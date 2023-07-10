@@ -25,20 +25,24 @@ const Home = () => {
             </div>
             <div className=' w-full rounded-lg'>
                 <section className="flex z-30 justify-center bg-white sm:mt-0  min-h-[50vh] w-full rounded-b-[2rem]" id="section1">
-                    <div className="text-center  lg:mt-[9rem] md:mt-28 mt-24">
-                        <div className="p-2 ">
-                            <ScrollAnimation animateIn="fadeInDownBig">
-                                <p className=" mb-6 text-center text-4xl text-white sm:text-[2.5rem] font-semibold" >
+                    <div className="text-center  my-auto">
+                        <div className="px-2 ">
+                            <ScrollAnimation animateIn="fadeInDown">
+                                <p className=" mb-4 text-center text-3xl text-white sm:text-[2.5rem] font-semibold" >
 
                                     All your <span className="" id="">pharmacy</span> needs, fulfilled at your doorstep<span className="">.</span>
 
 
                                 </p>
-                            </ScrollAnimation>
 
+                            </ScrollAnimation>
+                            <p className="text-lg text-gray-300">
+                                This is a subtitle line as an example. It can be anything.
+                            </p>
                         </div>
                         <div className="p-2 max-w-screen-sm  mx-auto">
-                            <div className=" rounded-full">             <SearchInput />
+                            <div className=" shadow-lg shadow-gray-700 rounded-full">
+                                <SearchInput />
                             </div>
 
 
@@ -57,11 +61,11 @@ const Home = () => {
                     </div>
                     <div className="">
 
-                        <div className="w-full sm:w-1/2 flex sm:flex-row flex-col gap-8 ">
+                        <div className=" bg-gray-200 rounded-lg w-screen md:max-w-screen-md flex gap-4 overflow-x-auto overflow-hidden p-2 px-4">
                             {categories?.map((c) => (
 
                                 <Link to={`/category/${c.slug}`}>
-                                    <div className="p-6 sm:m-2 shadow-lg bg-blue-300 hover:bg-blue-400 transition hover:scale-110 h-[10rem] w-full sm:w-[12rem] rounded-lg">
+                                    <div className="p-6 sm:m-2 shadow-lg bg-blue-300 hover:bg-blue-400 transition hover:scale-105 h-[10rem] w-[11rem] rounded-lg">
                                         <span className="font-semibold">
                                             {c.name}
                                         </span>
@@ -81,9 +85,8 @@ const Home = () => {
                 </section>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#93c5fd" fill-opacity="1" d="M0,96L40,128C80,160,160,224,240,240C320,256,400,224,480,197.3C560,171,640,149,720,165.3C800,181,880,235,960,218.7C1040,203,1120,117,1200,101.3C1280,85,1360,139,1400,165.3L1440,192L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>
                 <section className="bg-blue-300 flex items-center justify-center min-h-[40vh]">
-                    <p className="block text-center ">
-                        Coming Soon...
-                    </p>
+
+
 
                 </section>
                 <section className="w-full pt-4 bg-white flex  justify-center">

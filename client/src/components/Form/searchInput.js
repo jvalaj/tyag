@@ -37,13 +37,13 @@ const SearchInput = () => {
                                 rounded-full 
                                  bg-gray-200 border-gray-600
                                   placeholder-gray-400
-                                   text-white 
+                                   text-gray-400 
                                    focus:ring-blue-500
                                     focus:border-blue-500" placeholder="Search Now" required />
                     <button type="submit" className="text-white
                                 absolute transition
                                  py-3 right-[0px]
-                                bottom-[0.8px] 
+                                bottom-[1px] 
                                 rounded-full
                                 text-sm px-4
                                 bg-blue-600 hover:bg-blue-700">

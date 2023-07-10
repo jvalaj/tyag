@@ -7,13 +7,13 @@ const Accordian = () => {
 
 
         <div className="mx-auto w-3/4 my-6 p-2 ">
-            <div className="mx-auto w-full rounded-lg bg-blue-100 p-2">
+            <div className="mx-auto w-full rounded-lg bg-blue-100 p-12">
                 {
                     data.map((item) => (
                         <Disclosure as="div" className="pb-2">
                             {({ open }) => (
                                 <>
-                                    <Disclosure.Button className="flex w-full transition justify-between rounded-lg bg-blue-300 px-4 py-2 text-left font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                                    <Disclosure.Button className="flex w-full transition justify-between rounded-lg bg-blue-200 px-4 py-2 text-left font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                                         <span>{item.question}</span>
                                         <ChevronDownIcon
                                             className={`${open ? 'rotate-180 transform' : ''

@@ -17,15 +17,7 @@ code {
 }
 
 /* width */
-::-webkit-scrollbar {
-  width: 0px;
-  display: none;
-}
 
-#pharmacy{
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1px;
-}
 #section1{
   background-image: url(https://i.ibb.co/frhZ9PQ/a-picture-taken-in-between-two-lanes-with-racks-full-of-medecines-on-each-side-both-left-and-right-i.png);
   background-size: cover;
