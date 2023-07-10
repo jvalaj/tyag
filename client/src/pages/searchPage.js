@@ -4,6 +4,7 @@ import SearchInput from "../components/Form/searchInput.js";
 import React, { useState, useEffect } from "react";
 import { AiOutlineReload, AiOutlineDelete } from "react-icons/ai";
 import axios from "axios";
+import { BsWhatsapp } from "react-icons/bs"
 import { useCart } from "../context/cart.js"
 import { toast } from "react-hot-toast";
 import { BiSearch } from 'react-icons/bi';
@@ -86,17 +87,16 @@ const Search = () => {
                 <SearchInput />
                 <div className="min-h-[80vh] w-full sm:w-auto flex-col flex justify-center">
 
-                    <div className="w-full min-h-[70vh] bg-gray-300 rounded-lg mt-3  p-2">
-                        <p className='pt-2 block text-center'>
-                            <h1>Search Resuts</h1>
+                    <div className="w-full min-h-[70vh] rounded-lg mt-3  p-2">
+                        <p className='block text-center'>
                             <h6>
                                 {values?.results.length < 1
-                                    ? "No Products Found"
-                                    : `Found ${values?.results.length}`}
+                                    ? "No Products Found!"
+                                    : `Showing ${values?.results.length} Results`}
                             </h6>
                         </p>
                         <div className="md:grid md:grid-cols-[60%_40%] p-2">
-                            <div className='flex flex-wrap items-center justify-center gap-2 m-1'>
+                            <div className='flex flex-wrap justify-center items-center gap-2 m-1'>
                                 {values?.results.map((p) => (
 
                                     <div key={p._id} className="mb-3 w-[9rem] sm:w-[10rem] lg:w-[13rem] h-[10rem] sm:h-[12rem] lg:h-[16rem] grid grid-rows-[40%_60%]   border rounded-lg shadow bg-gray-800 border-gray-700">
@@ -170,7 +170,20 @@ const Search = () => {
                                     </div>
 
                                 ))}
+                                {values?.results.length < 1
+                                    ? <div className="flex flex-col justify-center items-center">
+                                        <div className="bg-red-100 rounded-lg p-2">
+                                            <p className="text-xl">We are determined to fulfill your product needs. Give us a call today!</p>
+                                            <a href="https://wa.me/919999513839" target="_blank">
+                                                <button className="border hover:bg-gray-300 transition mx-auto text-green-500 flex border-green-500 p-2 rounded-lg text-lg">
+                                                    <BsWhatsapp size={20} className="mr-2 my-auto text-green-500" /> Whatsapp
+                                                </button>
 
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    : ``}
                             </div>
                             <div className="hidden w-full min-v-[40vh] text-center md:block">
                                 {cart?.map((p) => (
