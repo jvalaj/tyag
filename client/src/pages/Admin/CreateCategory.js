@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import AdminMenu from '../../components/adminMenu'
 import toast from 'react-hot-toast'
 import axios from 'axios'
-import CategoryForm from '../../components/Form/CategoryForm'
+import { useNavigate } from "react-router-dom";
 import { Modal } from 'antd'
 import { set } from 'mongoose'
 const CreateCategory = () => {
@@ -11,15 +11,24 @@ const CreateCategory = () => {
     const [visible, setVisible] = useState(false)
     const [selected, setSelected] = useState(null)
     const [updatedName, setUpdatedName] = useState("")
+    const [photo, setPhoto] = useState("");
+    const [id, setId] = useState("");
+    const navigate = useNavigate();
     //handle form
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const { data } = await axios.post('/api/v1/category/create-category', { name })
+            const categoryData = new FormData();
+            categoryData.append("name", name)
+            categoryData.append("photo", photo)
+            const { data } = await
+                axios.post('/api/v1/category/create-category',
+                    categoryData)
             if (data?.success) {
                 toast.success(`${name} category has been created`)
                 setName('')
                 getAllCategory()
+                setPhoto("")
             } else {
                 toast.error(data.message)
             }
@@ -34,6 +43,7 @@ const CreateCategory = () => {
             const { data } = await axios.get('/api/v1/category/get-category')
             if (data?.success) {
                 setCategories(data?.category)
+
             }
         } catch (error) {
             console.log(error)
@@ -51,9 +61,12 @@ const CreateCategory = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
+            const categoryData = new FormData();
+            categoryData.append("name", updatedName)
+            photo && categoryData.append("photo", photo)
             const { data } = await axios.put(
-                `/api/v1/category/update-category/${selected._id}`,
-                { name: updatedName }
+                `/api/v1/category/update-category/${id}`,
+                categoryData
             );
             if (data?.success) {
                 toast.success(`${updatedName} has been updated`);
@@ -61,10 +74,13 @@ const CreateCategory = () => {
                 setUpdatedName("");
                 setVisible(false);
                 getAllCategory();
+                setId("")
+                setPhoto("")
             } else {
                 toast.error(data.message);
             }
         } catch (error) {
+            console.log("error in front end create catwgory")
             console.log(error);
         }
     };
@@ -76,7 +92,7 @@ const CreateCategory = () => {
             );
             if (data?.success) {
                 toast.success(`${name} Category has been deleted`);
-
+                navigate("/dashboard/admin/create-category")
                 getAllCategory();
             } else {
                 toast.error(data.message);
@@ -93,7 +109,53 @@ const CreateCategory = () => {
                 <div className="bg-gray-300 min-h-[60vh] rounded-lg mt-3 sm:mt-0 sm:ml-4 p-2">
                     <p className='pt-1 block text-center'>Manage Categories</p>
                     <div>
-                        <CategoryForm handleSubmit={handleSubmit} value={name} setValue={setName} />
+                        <form onSubmit={handleSubmit}>
+                            <div className=' flex gap-2'><input
+                                type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                name=""
+                                id=""
+                                className=" sm:text-sm rounded-lg block w-full p-2.5 border border-gray-600 placeholder-gray-900 text-black "
+                                placeholder="Enter a new Category"
+                                required />
+                                <button type="submit"
+                                    className="
+                     
+                     bg-gray-700
+                      font-medium 
+                      rounded-lg
+                       text-sm
+                        px-5 
+                        py-2.5 
+                        text-center
+
+                         hover:bg-gray-600 border
+                          border-gray-600
+                          text-white">Add</button>
+
+
+                            </div>
+
+                            <div className='my-3 w-full'>
+                                <label className='border w-full border-black text-black rounded-lg p-2 hover:bg-gray-700 hover:text-white'>
+                                    {photo ? photo.name : "Upload Photo"}
+                                    <input type="file"
+                                        className='w-full'
+                                        name="photo"
+                                        accept="image/*"
+                                        onChange={(e) => setPhoto(e.target.files[0])} hidden />
+                                </label>
+
+                            </div>
+                            <div className='mb-3 flex w-[16rem] justify-centermax-h-[14rem]'>
+                                {photo && (
+                                    <div className='my-3 flex w-auto border justify-center p-2 rounded-lg  border-black'>
+                                        <img src={URL.createObjectURL(photo)} alt="product-photo" className='' />
+                                    </div>
+                                )}
+                            </div>
+                        </form>
                     </div>
                     <div>
 
@@ -117,7 +179,9 @@ const CreateCategory = () => {
                                             <td className='px-6 py-4'>
                                                 <button onClick={() => {
                                                     setVisible(true);
-                                                    setUpdatedName(c.name); setSelected(c)
+                                                    setUpdatedName(c.name);
+                                                    setSelected(c);
+                                                    setId(c._id);
                                                 }} className='border -border-black text-white bg-gray-700 px-2 py-1 rounded-lg'>Edit</button>
                                                 <button onClick={() => {
                                                     handleDelete(c._id);
@@ -135,11 +199,58 @@ const CreateCategory = () => {
                         <Modal onCancel={() => setVisible(false)}
                             visible={visible}
                             footer={null}>
+                            <form onSubmit={handleUpdate}>                      <div className=' flex gap-2'>
+                                <input
+                                    type="text"
+                                    value={updatedName}
+                                    onChange={(e) => setUpdatedName(e.target.value)}
+                                    name=""
+                                    id=""
+                                    className=" sm:text-sm rounded-lg block w-full p-2.5 border border-gray-600 placeholder-gray-900 text-black "
+                                    placeholder="Enter a new Category"
+                                    required />
+                                <button type="submit"
+                                    className="
+                     
+                                         bg-gray-700
+                                         font-medium 
+                                             rounded-lg
+                                      text-sm
+                                  px-5 
+                                  py-2.5 
+                                  text-center
 
-                            <CategoryForm
-                                value={updatedName}
-                                setValue={setUpdatedName}
-                                handleSubmit={handleUpdate} />
+                                   hover:bg-gray-600 border
+                                    border-gray-600
+                                    text-white">Update</button>
+
+
+                            </div>
+
+                                <div className='my-3 w-full'>
+                                    <label className='border w-full border-black text-black rounded-lg p-2 hover:bg-gray-700 hover:text-white'>
+                                        {photo ? photo.name : "Upload Photo"}
+                                        <input type="file"
+                                            className='w-full'
+                                            name="photo"
+                                            accept="image/*"
+                                            onChange={(e) => setPhoto(e.target.files[0])} hidden />
+                                    </label>
+
+                                </div>
+                                <div className='mb-3 flex w-[16rem] justify-centermax-h-[14rem]'>
+                                    {photo ? (
+                                        <div className='my-3 flex w-auto border justify-center p-2 rounded-lg  border-black'>
+                                            <img src={URL.createObjectURL(photo)} alt="category-photo" className='' />
+                                        </div>
+                                    ) : (
+                                        <div className='my-3 flex w-auto border justify-center p-2 rounded-lg  border-black'>
+                                            <img src={`/api/v1/category/category-photo/${id}`} alt="category-photo" className='' />
+                                        </div>
+                                    )}
+                                </div>
+                            </form>
+
                         </Modal>
 
                     </div>

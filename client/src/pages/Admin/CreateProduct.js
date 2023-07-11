@@ -150,7 +150,9 @@ const CreateProduct = () => {
 
                         </div>
                         <div className='w-full flex justify-end'>
-                            <button onClick={handleCreate} className='p-2 rounded-lg bg-gray-700 hover:bg-gray-600 text-white'> Create Product</button>
+                            <button onClick={handleCreate} className='p-2 rounded-lg bg-gray-700 hover:bg-gray-600 text-white'>
+
+                                Create Product</button>
                         </div>
 
 
