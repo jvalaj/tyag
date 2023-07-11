@@ -68,24 +68,45 @@ const Home = () => {
 
                         <div className=" bg-gray-100 rounded-lg w-screen md:max-w-screen-lg p-2 flex">
                             <Swiper spaceBetween={30}
-                                slidesPerView={3}
+
+                                breakpoints={{
+                                    // when window width is >= 640px
+                                    360: {
+                                        slidesPerView: 1.5,
+                                    },
+                                    440: {
+                                        slidesPerView: 2.5,
+                                    },
+                                    660: {
+                                        slidesPerView: 3.5,
+                                    },
+
+                                    // when window width is >= 768px
+                                    768: {
+
+                                        slidesPerView: 4.5,
+                                    },
+                                }}
                                 id="swiperCategory"
                                 className="h-[14rem] transition py-2">
-                                {categories?.map((c) => (
+                                <div>
+                                    {categories?.map((c) => (
 
 
-                                    <SwiperSlide className="shadow-lg shadow-gray-300 p-1 transition rounded-lg bg-white hover:bg-blue-400" style={{ backgroundImage: `${c.photo}` }}>
-                                        <Link to={`/category/${c.slug}`}>
-                                            <img className="p-2 mx-auto h-[9rem]" src={`/api/v1/category/category-photo/${c._id}`} />
-                                            <p className="text-center text-lg py-auto my-auto block font-semibold">
-                                                {c.name}
-                                            </p>
-                                        </Link>
-                                    </SwiperSlide>
+                                        <SwiperSlide className="shadow-lg shadow-gray-300 p-1 transition rounded-lg bg-white hover:bg-blue-400" style={{ backgroundImage: `${c.photo}` }}>
+                                            <Link to={`/category/${c.slug}`}>
+                                                <img className="p-2 mx-auto h-[9rem]" src={`/api/v1/category/category-photo/${c._id}`} />
+                                                <p className="text-center text-lg py-auto my-auto block font-semibold">
+                                                    {c.name}
+                                                </p>
+                                            </Link>
+                                        </SwiperSlide>
 
 
 
-                                ))}
+                                    ))}
+                                </div>
+
 
                             </Swiper>
 

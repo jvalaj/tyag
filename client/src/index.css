@@ -68,6 +68,14 @@ code {
 }
 
 #swiperCategory{
-  padding:10px 0px 20px 0px!important;
+  padding:10px 0px 20px 10px!important;
   box-shadow: none !important;
+}
+
+
+@media screen and (min-width:480px) {
+
+}
+@media screen and (min-width: 768px) {
+ 
 }
