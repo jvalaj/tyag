@@ -32,7 +32,7 @@ const Home = () => {
                 <section className="flex z-30 justify-center bg-white sm:mt-0  min-h-[50vh] w-full rounded-b-[2rem]" id="section1">
                     <div className="text-center  my-auto">
                         <div className="px-2 ">
-                            <ScrollAnimation animateIn="fadeInDown">
+                            <ScrollAnimation animateOnce={true} animateIn="fadeInDown">
                                 <p className=" mb-4 text-center text-3xl text-white sm:text-[2.5rem] font-semibold" >
 
                                     All your <span className="" id="">pharmacy</span> needs, fulfilled at your doorstep<span className="">.</span>
@@ -66,7 +66,7 @@ const Home = () => {
                     </div>
                     <div className="">
 
-                        <div className=" bg-gray-100 rounded-lg w-screen md:max-w-screen-lg p-2 flex">
+                        <div className=" bg-gray-200 rounded-lg w-screen md:max-w-screen-lg p-2 flex">
                             <Swiper spaceBetween={30}
 
                                 breakpoints={{
@@ -93,7 +93,7 @@ const Home = () => {
                                     {categories?.map((c) => (
 
 
-                                        <SwiperSlide className="shadow-lg shadow-gray-300 p-1 transition rounded-lg bg-white hover:bg-blue-400" style={{ backgroundImage: `${c.photo}` }}>
+                                        <SwiperSlide className="shadow-lg shadow-gray-300 p-1 transition rounded-lg bg-white" style={{ backgroundImage: `${c.photo}` }}>
                                             <Link to={`/category/${c.slug}`}>
                                                 <img className="p-2 mx-auto h-[9rem]" src={`/api/v1/category/category-photo/${c._id}`} />
                                                 <p className="text-center text-lg py-auto my-auto block font-semibold">
