@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { IoCaretDown } from 'react-icons/io5'
-import { BiSearch } from 'react-icons/bi';
 import { BsWhatsapp } from 'react-icons/bs'
 import useCategory from "../hooks/useCategory";
 import { Link } from "react-router-dom";

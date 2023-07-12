@@ -256,7 +256,19 @@ const CartPage = () => {
                         </div>
 
                         : "cart is empty "}</>)
-                      : (<p>Please login</p>)
+                      : (<div className=" min-h-[40vh] w-full justify-center flex items-center">
+                        <button
+                          className="border mx-auto my-auto text-blue-600 hover:bg-blue-600 hover:text-white transition border-blue-600 p-3 rounded-lg "
+                          onClick={() =>
+                            navigate("/login", {
+                              state: "/cart",
+                            })
+                          }
+                        >
+                          Please Login to checkout
+                        </button>
+
+                      </div>)
                     }
                   </div>
 
@@ -284,16 +296,9 @@ const CartPage = () => {
                           Update Address
                         </button>
                       ) : (
-                        <button
-                          className="border text-blue-600 hover:bg-blue-600 hover:text-white transition border-blue-600 p-3 rounded-lg "
-                          onClick={() =>
-                            navigate("/login", {
-                              state: "/cart",
-                            })
-                          }
-                        >
-                          Please Login to checkout
-                        </button>
+                        < >
+
+                        </>
                       )}
                     </div>
                   )}

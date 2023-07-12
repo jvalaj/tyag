@@ -96,7 +96,7 @@ const Search = () => {
                             </h6>
                         </p>
                         <div className="md:grid md:grid-cols-[60%_40%] p-2">
-                            <div className='flex flex-wrap justify-center items-center gap-2 m-1'>
+                            <div className='flex flex-wrap gap-2 m-1'>
                                 {values?.results.map((p) => (
 
                                     <div key={p._id} className="mb-3 w-[9rem] sm:w-[10rem] lg:w-[13rem] h-[10rem] sm:h-[12rem] lg:h-[16rem] grid grid-rows-[40%_60%]   border rounded-lg shadow bg-gray-800 border-gray-700">
