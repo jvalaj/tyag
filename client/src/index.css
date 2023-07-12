@@ -68,11 +68,18 @@ code {
 }
 
 #swiperCategory{
-  padding:10px 0px 20px 10px!important;
+  padding:10px 0px 35px 10px!important;
   box-shadow: none !important;
 }
 
 #bannerSwiper{
-  padding:10px 0px 20px 10px!important;
+  padding:45px 20px 50px 30px!important;
+  
+}
+
+#bannerSlide{
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+#catBox{
   
 }

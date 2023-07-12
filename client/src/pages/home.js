@@ -8,6 +8,11 @@ import SearchInput from "../components/Form/searchInput.js";
 import Accordian from "../components/accordian";
 import ScrollAnimation from 'react-animate-on-scroll';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+// import required modules
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+
 import data from './../localData/categoryImages.json'
 // Import Swiper styles
 import 'swiper/css';
@@ -66,8 +71,10 @@ const Home = () => {
                     </div>
                     <div className="">
 
-                        <div className=" bg-gray-200 rounded-lg w-screen md:max-w-screen-lg p-2 flex">
+                        <div className=" bg-gray-100 rounded-lg w-screen md:max-w-screen-lg pt-2 px-2 pb-0 flex" id="catBox">
                             <Swiper spaceBetween={30}
+                                pagination={true}
+                                modules={[Pagination]}
 
                                 breakpoints={{
                                     // when window width is >= 640px
@@ -88,7 +95,7 @@ const Home = () => {
                                     },
                                 }}
                                 id="swiperCategory"
-                                className="h-[14rem] transition py-2">
+                                className="h-[15rem] transition py-2">
                                 <div>
                                     {categories?.map((c) => (
 
@@ -117,29 +124,57 @@ const Home = () => {
 
                     </div>
                 </section>
-                <section className="mt-16 py-6 bg-blue-300 flex items-center justify-center min-h-[40vh]">
+                <section className="mt-16 py-3 bg-gradient-to-r from-blue-800 to-blue-500 flex items-center justify-center min-h-[40vh]">
 
-                    <div className="max-w-screen-xl bg-blue-300 p-2 rounded-lg">
+                    <div className="w-full
+                     bg-transparent rounded-lg">
                         <Swiper
                             spaceBetween={30}
                             slidesPerView={2}
-                            className="h-[20rem] py-4 bg-blue-300"
+                            modules={[Autoplay, Pagination, Navigation]}
+                            navigation={true}
+                            loop={true}
+                            autoplay={{
+                                delay: 2000,
+                                disableOnInteraction: false,
+                            }}
+                            className="h-[20rem] sm:h-[25rem] w-full bg-transparent"
                             id="bannerSwiper"
+                            breakpoints={{
+                                // when window width is >= 640px
+                                360: {
+                                    slidesPerView: 1,
+                                },
+                                440: {
+                                    slidesPerView: 1,
+                                },
+
+
+                                // when window width is >= 768px
+                                768: {
+
+                                    slidesPerView: 1.5,
+                                },
+                                1000: {
+
+                                    slidesPerView: 2,
+                                },
+                            }}
                         >
-                            <SwiperSlide className="shadow-lg shadow-gray-500 overflow-hidden h-[10rem] w-[11rem] rounded-lg ">
-                                <img src="https://assets.truemeds.in/Images/dwebbanner3.jpeg" className="h-full" />
+                            <SwiperSlide id="bannerSlide" className="overflow-hidden h-[10rem]  rounded-lg ">
+                                <img src="https://assets.truemeds.in/Images/dwebbanner3.jpeg" className="h-full w-full" />
                             </SwiperSlide>
-                            <SwiperSlide className=" p-2 h-[10rem] w-[11rem] rounded-lg ">
-                                <img src="https://cdn01.pharmeasy.in/dam/banner/banner/1dc1375328c-EASY22.jpg" className="h-full" />
+                            <SwiperSlide id="bannerSlide" className="overflow-hidden h-[10rem]  rounded-lg ">
+                                <img src="https://cdn01.pharmeasy.in/dam/banner/banner/1dc1375328c-EASY22.jpg" className="h-full w-full" />
                             </SwiperSlide>
-                            <SwiperSlide className=" p-2 h-[10rem] w-[11rem] rounded-lg ">
-                                <img src="https://assets.truemeds.in/Images/dwebbanner3.jpeg" className="h-full" />
+                            <SwiperSlide id="bannerSlide" className="overflow-hidden h-[10rem]  rounded-lg ">
+                                <img src="https://assets.truemeds.in/Images/dwebbanner3.jpeg" className="h-full w-full" />
                             </SwiperSlide>
-                            <SwiperSlide className=" p-2 h-[10rem] w-[11rem] rounded-lg ">
-                                <img src="https://assets.truemeds.in/Images/dwebbanner2.jpeg" className="h-full" />
+                            <SwiperSlide id="bannerSlide" className="overflow-hidden h-[10rem]  rounded-lg ">
+                                <img src="https://assets.truemeds.in/Images/dwebbanner2.jpeg" className="h-full w-full" />
                             </SwiperSlide>
-                            <SwiperSlide className=" p-2 h-[10rem] w-[11rem] rounded-lg ">
-                                <img src="https://assets.truemeds.in/Images/dwebbanner4.jpeg" className="h-full" />
+                            <SwiperSlide id="bannerSlide" className="overflow-hidden h-[10rem]  rounded-lg ">
+                                <img src="https://assets.truemeds.in/Images/dwebbanner4.jpeg" className="h-full w-full" />
                             </SwiperSlide>
 
                         </Swiper>
