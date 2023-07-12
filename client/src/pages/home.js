@@ -32,7 +32,7 @@ const Home = () => {
 
             </div>
             <div className=' w-full rounded-lg'>
-                <section className="flex z-30 justify-center bg-white sm:mt-0  min-h-[50vh] w-full rounded-b-[2rem] shadow-lg " id="section1">
+                <section className="flex z-30 justify-center bg-white sm:mt-0  min-h-[70vh] w-full  shadow-lg" id="section1">
                     <div className="text-center  my-auto">
                         <div className="px-2 ">
                             <ScrollAnimation animateOnce={true} animateIn="fadeInDown">
@@ -60,14 +60,16 @@ const Home = () => {
 
                 </section>
 
-                <section className="flex justify-center flex-col items-center pt-4 min-h-[30vh] w-full ">
-                    <div className="w-full mt-6 sm:w-3/4 sm:mb-3">
+                <section className="flex  py-16 bg-gradient-to-r from-blue-800 to-blue-500 justify-center flex-col items-center pt-4 min-h-[30vh] w-full ">
+                    <div className="w-full mt-6 sm:w-3/4 sm:pb-3">
+                        <ScrollAnimation animateOnce={true} animateIn="fadeInLeft">
+                            <p className="items-center sm:justify-normal justify-center text-3xl text-white flex font-semibold text-center sm:text-left">
+                                <hr className="w-[2rem] rounded-full bg-white h-1.5 my-auto border border-white mr-2" /> Shop by Category
 
-                        <p className="block text-3xl font-semibold text-center sm:text-left">
-                            Shop by <span className="text-blue-600">Category</span>
 
+                            </p>
+                        </ScrollAnimation>
 
-                        </p>
                     </div>
                     <div className="">
 
@@ -124,7 +126,7 @@ const Home = () => {
 
                     </div>
                 </section>
-                <section className="mt-16 py-3 shadow-lg bg-gradient-to-r from-blue-800 to-blue-500 flex items-center justify-center min-h-[40vh]">
+                <section className=" py-3 shadow-lg  flex items-center justify-center min-h-[40vh]">
 
                     <div className="w-full
                      bg-transparent rounded-lg">
