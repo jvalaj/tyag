@@ -102,7 +102,7 @@ const Home = () => {
                                     {categories?.map((c) => (
 
 
-                                        <SwiperSlide className="shadow-lg shadow-gray-300 p-1 transition rounded-lg bg-white" style={{ backgroundImage: `${c.photo}` }}>
+                                        <SwiperSlide className="shadow-lg border border-blue-500 shadow-gray-300 p-1 transition rounded-lg bg-white" style={{ backgroundImage: `${c.photo}` }}>
                                             <Link to={`/category/${c.slug}`}>
                                                 <img className="p-2 mx-auto h-[9rem]" src={`/api/v1/category/category-photo/${c._id}`} />
                                                 <p className="text-center text-lg py-auto my-auto block font-semibold">

@@ -18,6 +18,26 @@ code {
 
 /* width */
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #0033ff;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #0b48b0;
+}
+
 #section1{
   background-image: url(https://i.ibb.co/frhZ9PQ/a-picture-taken-in-between-two-lanes-with-racks-full-of-medecines-on-each-side-both-left-and-right-i.png);
   background-size: cover;
