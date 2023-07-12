@@ -26,9 +26,11 @@ import ProductDetails from './pages/ProductDetails';
 import CartPage from './pages/CartPage';
 import AdminOrders from './pages/Admin/AdminOrders';
 import Users from './pages/Admin/Users';
+import ScrollToTop from './components/scroll.js';
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Navbar />
       <Toaster />
       <Routes>
@@ -64,6 +66,8 @@ function App() {
 
       </Routes>
       <Footer />
+
+
     </Router>
   );
 }

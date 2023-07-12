@@ -67,11 +67,13 @@ const Home = () => {
 
                         <p className="block text-3xl font-semibold text-center sm:text-left">
                             Shop by <span className="text-blue-600">Category</span>
+
+
                         </p>
                     </div>
                     <div className="">
 
-                        <div className=" bg-gray-100 rounded-lg w-screen md:max-w-screen-lg pt-2 px-2 pb-0 flex" id="catBox">
+                        <div className=" bg-gray-200 rounded-lg w-screen md:max-w-screen-lg pt-2 px-2 pb-0 flex" id="catBox">
                             <Swiper spaceBetween={30}
                                 pagination={true}
                                 modules={[Pagination]}
