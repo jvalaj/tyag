@@ -60,11 +60,11 @@ const Home = () => {
 
                 </section>
 
-                <section className="flex  py-16 bg-gradient-to-r from-blue-800 to-blue-500 justify-center flex-col items-center pt-4 min-h-[30vh] w-full ">
+                <section className="flex border-t-2 border-white border-b-2 py-16 bg-gradient-to-r from-blue-800 to-blue-500 justify-center flex-col items-center pt-4 min-h-[30vh] w-full ">
                     <div className="w-full mt-6 sm:w-3/4 sm:pb-3">
                         <ScrollAnimation animateOnce={true} animateIn="fadeInLeft">
                             <p className="items-center sm:justify-normal justify-center text-3xl text-white flex font-semibold text-center sm:text-left">
-                                <hr className="w-[2rem] rounded-full bg-white h-1.5 my-auto border border-white mr-2" /> Shop by Category
+                                <hr className="w-[2rem] rounded-full bg-white h-1.5 my-auto border border-white mr-2" /> Shop by Categories
 
 
                             </p>
@@ -97,14 +97,14 @@ const Home = () => {
                                     },
                                 }}
                                 id="swiperCategory"
-                                className="h-[15rem] transition py-2">
+                                className="h-[13rem] transition py-2">
                                 <div>
                                     {categories?.map((c) => (
 
 
                                         <SwiperSlide className="shadow-lg border border-blue-500 shadow-gray-300 p-1 transition rounded-lg bg-white" style={{ backgroundImage: `${c.photo}` }}>
                                             <Link to={`/category/${c.slug}`}>
-                                                <img className="p-2 mx-auto h-[9rem]" src={`/api/v1/category/category-photo/${c._id}`} />
+                                                <img className="p-2 mx-auto h-[7rem]" src={`/api/v1/category/category-photo/${c._id}`} />
                                                 <p className="text-center text-lg py-auto my-auto block font-semibold">
                                                     {c.name}
                                                 </p>
