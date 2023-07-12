@@ -29,7 +29,7 @@ const Home = () => {
 
             </div>
             <div className=' w-full rounded-lg'>
-                <section className="flex z-30 justify-center bg-white sm:mt-0  min-h-[50vh] w-full rounded-b-[2rem]" id="section1">
+                <section className="flex z-30 justify-center bg-white sm:mt-0  min-h-[50vh] w-full rounded-b-[2rem] shadow-lg " id="section1">
                     <div className="text-center  my-auto">
                         <div className="px-2 ">
                             <ScrollAnimation animateOnce={true} animateIn="fadeInDown">
@@ -58,7 +58,7 @@ const Home = () => {
                 </section>
 
                 <section className="flex justify-center flex-col items-center pt-4 min-h-[30vh] w-full ">
-                    <div className="w-full mt-6 sm:w-3/4 mb-5">
+                    <div className="w-full mt-6 sm:w-3/4 sm:mb-3">
 
                         <p className="block text-3xl font-semibold text-center sm:text-left">
                             Shop by <span className="text-blue-600">Category</span>
@@ -116,25 +116,32 @@ const Home = () => {
                         </div>
 
                     </div>
-
-
                 </section>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#93c5fd" fill-opacity="1" d="M0,96L40,128C80,160,160,224,240,240C320,256,400,224,480,197.3C560,171,640,149,720,165.3C800,181,880,235,960,218.7C1040,203,1120,117,1200,101.3C1280,85,1360,139,1400,165.3L1440,192L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>
-                <section className="bg-blue-300 flex items-center justify-center min-h-[40vh]">
+                <section className="mt-16 py-6 bg-blue-300 flex items-center justify-center min-h-[40vh]">
 
-                    <div className="max-w-[75%] bg-gray-300 p-2 rounded-lg">
+                    <div className="max-w-screen-xl bg-blue-300 p-2 rounded-lg">
                         <Swiper
                             spaceBetween={30}
-                            slidesPerView={5}
-                            className="h-[20rem]"
+                            slidesPerView={2}
+                            className="h-[20rem] py-4 bg-blue-300"
+                            id="bannerSwiper"
                         >
-                            <SwiperSlide className="bg-red-500 p-2 h-[10rem] w-[11rem] rounded-lg ">Slide 1</SwiperSlide>
-                            <SwiperSlide className="bg-red-500 p-2 h-[10rem] w-[11rem] rounded-lg ">Slide 2</SwiperSlide>
-                            <SwiperSlide className="bg-red-500 p-2 h-[10rem] w-[11rem] rounded-lg ">Slide 3</SwiperSlide>
-                            <SwiperSlide className="bg-red-500 p-2 h-[10rem] w-[11rem] rounded-lg ">Slide 4</SwiperSlide>
-                            <SwiperSlide className="bg-red-500 p-2 h-[10rem] w-[11rem] rounded-lg ">Slide 4</SwiperSlide>
-                            <SwiperSlide className="bg-red-500 p-2 h-[10rem] w-[11rem] rounded-lg ">Slide 4</SwiperSlide>
-                            ...
+                            <SwiperSlide className="shadow-lg shadow-gray-500 overflow-hidden h-[10rem] w-[11rem] rounded-lg ">
+                                <img src="https://assets.truemeds.in/Images/dwebbanner3.jpeg" className="h-full" />
+                            </SwiperSlide>
+                            <SwiperSlide className=" p-2 h-[10rem] w-[11rem] rounded-lg ">
+                                <img src="https://cdn01.pharmeasy.in/dam/banner/banner/1dc1375328c-EASY22.jpg" className="h-full" />
+                            </SwiperSlide>
+                            <SwiperSlide className=" p-2 h-[10rem] w-[11rem] rounded-lg ">
+                                <img src="https://assets.truemeds.in/Images/dwebbanner3.jpeg" className="h-full" />
+                            </SwiperSlide>
+                            <SwiperSlide className=" p-2 h-[10rem] w-[11rem] rounded-lg ">
+                                <img src="https://assets.truemeds.in/Images/dwebbanner2.jpeg" className="h-full" />
+                            </SwiperSlide>
+                            <SwiperSlide className=" p-2 h-[10rem] w-[11rem] rounded-lg ">
+                                <img src="https://assets.truemeds.in/Images/dwebbanner4.jpeg" className="h-full" />
+                            </SwiperSlide>
+
                         </Swiper>
 
 

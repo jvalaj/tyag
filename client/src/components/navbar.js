@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineClose, AiOutlineMenu, AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiOutlineClose, AiOutlineMenu, AiOutlineShoppingCart, AiOutlineUser } from 'react-icons/ai';
 import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../context/auth";
 import { toast } from "react-hot-toast";
@@ -59,9 +59,11 @@ const Navbar = () => {
                                 <>
                                     <li className="flex items-center">
                                         <Menu as="div" className="relative inline-block text-left">
-                                            <div>
-                                                <Menu.Button className="inline-flex w-full items-center justify-center rounded-md  hover:text-blue-600 transition">
-                                                    {auth?.user.name}
+                                            <div className="flex items-center">
+                                                <Menu.Button className="inline-flex w-full my-auto items-center justify-center rounded-md  hover:text-blue-600 transition">
+                                                    <AiOutlineUser size={21} className="mr-1" />
+                                                    <span style={{ textTransform: 'capitalize' }}>{auth?.user.name}</span>
+
                                                     <ChevronDownIcon className="-mr-1 h-5 w-5  hover:text-blue-600" aria-hidden="true" />
                                                 </Menu.Button>
                                             </div>
@@ -96,12 +98,13 @@ const Navbar = () => {
                         <li className="hover:text-blue-600 mr-3 transition flex items-center ">
                             <NavLink to="/cart" className="flex items-center">
                                 <div className="flex h-4 items-center p-0 ">
-                                    <div className="relative top-[-10px]">
+                                    <div className="relative mr-2 top-[-10px]">
 
                                         <div className="bg-blue-500" id="cart-count">{cart?.length}</div>
                                         <AiOutlineShoppingCart className=" hover:text-blue-600 transition" size={20} />
 
                                     </div>
+                                    Cart
                                 </div>
                             </NavLink>
                         </li>
