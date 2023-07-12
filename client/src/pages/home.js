@@ -126,7 +126,7 @@ const Home = () => {
 
                     </div>
                 </section>
-                <section className="mt-16 py-3 bg-gradient-to-r from-blue-800 to-blue-500 flex items-center justify-center min-h-[40vh]">
+                <section className="mt-16 py-3 shadow-lg bg-gradient-to-r from-blue-800 to-blue-500 flex items-center justify-center min-h-[40vh]">
 
                     <div className="w-full
                      bg-transparent rounded-lg">
