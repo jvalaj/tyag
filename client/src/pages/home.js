@@ -188,41 +188,10 @@ const Home = () => {
                     </div>
 
                 </section>
-                <section className="min-h-[40vh] ">
-                    <div className="grid h-full p-2 bg-cyan-500 grid-cols-2">
-                        <div className="bg-red-500 ">
-                            <div className="">
-                                <Swiper
-                                    effect={"cards"}
-                                    grabCursor={true}
-                                    modules={[EffectCards]}
-                                    className="mySwiper w-full h-[25rem]"
-                                >
-                                    <SwiperSlide className="rounded-xl bg-red-200">
-                                        Slide 1
-
-                                    </SwiperSlide>
-                                    <SwiperSlide className="rounded-lg bg-yellow-200">
-                                        Slide 2
-                                    </SwiperSlide>
-                                    <SwiperSlide className="rounded-lg bg-orange-200">
-                                        Slide 3
-                                    </SwiperSlide>
+                <section className="min-h-[60vh] bg-yellow-100 ">
 
 
 
-                                </Swiper>
-
-                            </div>
-                        </div>
-
-
-                        <div className="bg-blue-500 h-full ">
-
-                        </div>
-
-
-                    </div>
 
 
                 </section>
