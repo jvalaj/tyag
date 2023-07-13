@@ -65,15 +65,15 @@ const Navbar = () => {
                                                 leaveFrom="transform opacity-100 scale-100"
                                                 leaveTo="transform opacity-0 scale-95 "
                                             >
-                                                <Menu.Items className="absolute overflow-hidden right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-gray-700 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                <Menu.Items className="absolute overflow-hidden right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-gray-100 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                     <div className=" ">
-                                                        <Menu.Item>
+                                                        <Menu.Item className="border-b border-gray-300">
                                                             <NavLink to="/login"
-                                                                className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-blue-200 transition text-white">Login</NavLink>
+                                                                className="block px-4 py-2 text-sm hover:bg-gray-300 transition text-blue-600">Login</NavLink>
                                                         </Menu.Item>
                                                         <Menu.Item>
                                                             <NavLink to="/register"
-                                                                className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-blue-200 transition text-white">Register</NavLink>
+                                                                className="block px-4 py-2 text-sm hover:bg-gray-300  transition text-blue-600">Register</NavLink>
                                                         </Menu.Item>
                                                     </div>
                                                 </Menu.Items>
@@ -104,15 +104,15 @@ const Navbar = () => {
                                                 leaveFrom="transform opacity-100 scale-100"
                                                 leaveTo="transform opacity-0 scale-95 "
                                             >
-                                                <Menu.Items className="absolute overflow-hidden right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-gray-700 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                <Menu.Items className="absolute overflow-hidden right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-gray-100 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                     <div className=" ">
-                                                        <Menu.Item>
+                                                        <Menu.Item className="border-b border-gray-300">
                                                             <NavLink to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}
-                                                                className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-blue-200 transition text-white">Dashboard</NavLink>
+                                                                className="block px-4 py-2 text-sm hover:bg-gray-300 transition text-blue-600">Dashboard</NavLink>
                                                         </Menu.Item>
                                                         <Menu.Item>
                                                             <NavLink onClick={handleLogout} to="/"
-                                                                className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-blue-200 transition text-white">Sign out</NavLink>
+                                                                className="block px-4 py-2 text-sm hover:bg-gray-300 transition text-blue-600">Sign out</NavLink>
                                                         </Menu.Item>
                                                     </div>
                                                 </Menu.Items>
@@ -137,11 +137,11 @@ const Navbar = () => {
                         </li>
                     </ul>
 
-                    <div className="sm:hidden flex items-center flex-row gap-4">
+                    <div className="sm:hidden flex items-center flex-row gap-2">
                         <li className={toggle ? 'hidden' : " hover:text-blue-600 transition flex items-center "}>
                             <NavLink to="/cart" className="flex items-center">
-                                <div className="flex h-4 items-center p-0 ">
-                                    <div className="relative top-[-5px]">
+                                <div className="m-2 flex h-4 items-center p-0 ">
+                                    <div className="relative top-[-8px] mr-1">
 
                                         <div className="bg-blue-500" id="cart-count-phone">{cart?.length}</div>
                                         <AiOutlineShoppingCart className=" hover:text-blue-600 transition" size={20} />
@@ -150,6 +150,83 @@ const Navbar = () => {
                                 </div>
                             </NavLink>
 
+                        </li>
+                        <li className={toggle ? 'hidden' : " hover:text-blue-600 transition flex items-center "}>
+                            {
+                                !auth.user ? (
+                                    <>
+                                        <li className="flex items-center">
+                                            <Menu as="div" className="relative inline-block text-left">
+                                                <div className="flex items-center">
+                                                    <Menu.Button className="inline-flex w-full p-2 border-blue-600 border my-auto items-center justify-center rounded-md hover:bg-blue-500 hover:text-white text-blue-600 transition">
+
+                                                        Login / Register
+                                                    </Menu.Button>
+                                                </div>
+
+                                                <Transition
+                                                    as={Fragment}
+                                                    enter="transition ease-out duration-100"
+                                                    enterFrom="transform opacity-0 scale-95"
+                                                    enterTo="transform opacity-100  scale-100"
+                                                    leave="transition ease-in duration-75"
+                                                    leaveFrom="transform opacity-100 scale-100"
+                                                    leaveTo="transform opacity-0 scale-95 "
+                                                >
+                                                    <Menu.Items className="absolute overflow-hidden right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-gray-100 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                        <div className=" ">
+                                                            <Menu.Item className="border-b border-gray-300">
+                                                                <NavLink to="/login"
+                                                                    className="block px-4 py-2 text-sm hover:bg-gray-300 transition text-blue-600">Login</NavLink>
+                                                            </Menu.Item>
+                                                            <Menu.Item>
+                                                                <NavLink to="/register"
+                                                                    className="block px-4 py-2 text-sm hover:bg-gray-300  transition text-blue-600">Register</NavLink>
+                                                            </Menu.Item>
+                                                        </div>
+                                                    </Menu.Items>
+                                                </Transition>
+                                            </Menu>
+                                        </li>
+
+                                    </>
+                                ) : (
+                                    <>
+                                        <li className="flex items-center">
+                                            <Menu as="div" className="relative inline-block text-left">
+                                                <div className="flex items-center justify-center">
+                                                    <Menu.Button className="m-1 inline-flex w-full my-auto items-center justify-center rounded-md  hover:text-blue-600 transition">
+                                                        <AiOutlineUser size={23} className="" />
+                                                    </Menu.Button>
+                                                </div>
+
+                                                <Transition
+                                                    as={Fragment}
+                                                    enter="transition ease-out duration-100"
+                                                    enterFrom="transform opacity-0 scale-95"
+                                                    enterTo="transform opacity-100  scale-100"
+                                                    leave="transition ease-in duration-75"
+                                                    leaveFrom="transform opacity-100 scale-100"
+                                                    leaveTo="transform opacity-0 scale-95 "
+                                                >
+                                                    <Menu.Items className="absolute overflow-hidden right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-gray-100 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                        <div className=" ">
+                                                            <Menu.Item className="border-b border-gray-300">
+                                                                <NavLink to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}
+                                                                    className="block px-4 py-2 text-sm hover:bg-gray-300 transition text-blue-600">Dashboard</NavLink>
+                                                            </Menu.Item>
+                                                            <Menu.Item>
+                                                                <NavLink onClick={handleLogout} to="/"
+                                                                    className="block px-4 py-2 text-sm hover:bg-gray-300 transition text-blue-600">Sign out</NavLink>
+                                                            </Menu.Item>
+                                                        </div>
+                                                    </Menu.Items>
+                                                </Transition>
+                                            </Menu>
+                                        </li>
+                                    </>
+                                )
+                            }
                         </li>
                         <div onClick={handleNav} className={toggle ? 'hidden' : 'transition cursor-pointer bg-slate-600 hover:bg-gray-400 hover:text-gray-800 rounded-full   m-2 p-2 '}>
                             <AiOutlineMenu className='text-gray-200' size={20} />
