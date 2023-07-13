@@ -98,8 +98,7 @@ code {
 }
 
 #bannerSlide{
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-}
+  box-shadow: rgb(0, 106, 255) 5px 5px, rgb(56, 139, 255) 10px 10px, rgba(47, 134, 255, 0.709) 15px 15px, rgba(63, 143, 255, 0.452) 20px 20px, rgba(142, 189, 255, 0.466) 25px 25px;}
 #catBox{
   
 }
