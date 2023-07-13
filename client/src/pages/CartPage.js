@@ -228,7 +228,7 @@ const CartPage = () => {
                             <div key={p._id} className="mt-2 p-2 max-w-[35rem] flex flex-row overflow-hidden justify-between h-[4rem]  border rounded-lg bg-gray-200 shadow">
 
                               <div className="w-[45rem] flex gap-1">
-                                <h5 className="my-auto text-lg font-bold ">{p.name}</h5>
+                                <h5 className="my-auto text-left text-lg font-bold ">{p.name}</h5>
                               </div>
 
 

@@ -138,7 +138,7 @@ const CreateCategory = () => {
                             </div>
 
                             <div className='my-3 w-full'>
-                                <label className='border w-full border-black text-black rounded-lg p-2 hover:bg-gray-700 hover:text-white'>
+                                <label className='border mt-2 w-full border-black text-black rounded-lg p-2 hover:bg-gray-700 hover:text-white'>
                                     {photo ? photo.name : "Upload Photo"}
                                     <input type="file"
                                         className='w-full'
@@ -183,10 +183,10 @@ const CreateCategory = () => {
                                                     setSelected(c);
                                                     setId(c._id);
                                                 }} className='border -border-black text-white bg-gray-700 px-2 py-1 rounded-lg'>Edit</button>
-                                                <button onClick={() => {
+                                                {/* <button onClick={() => {
                                                     handleDelete(c._id);
                                                 }}
-                                                    className='border -border-black text-white bg-red-700 px-2 py-1 rounded-lg'>Delete</button>
+                                                    className='border -border-black text-white bg-red-700 px-2 py-1 rounded-lg'>Delete</button> */}
 
                                             </td>
                                         </tr>

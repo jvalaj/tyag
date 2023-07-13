@@ -41,7 +41,7 @@ const Home = () => {
                             <ScrollAnimation animateOnce={true} animateIn="fadeInDown">
                                 <p className=" mb-4 text-center text-3xl text-white sm:text-[2.5rem] font-semibold" >
 
-                                    All your <span className="" id="">pharmacy</span> needs, fulfilled at your doorstep<span className="">.</span>
+                                    All your <span className="bg-gradient-to-r from-[#91f0ff] to-[#0099ff] bg-clip-text text-transparent" id="">pharmacy</span> needs, fulfilled at your <span className="bg-gradient-to-r from-[#91f0ff] to-[#0099ff] bg-clip-text text-transparent">doorstep</span>.
 
 
                                 </p>
@@ -67,23 +67,23 @@ const Home = () => {
                     <div class="max-w-screen-xl  px-4 py-4 mx-auto lg:py-10">
                         <div class="grid link text-gray-500 gap-8 sm:gap-12 grid-cols-6 dark:text-gray-400">
                             <a class="flex items-center  lg:justify-center">
-                                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/65/Dabur_Logo.svg/1200px-Dabur_Logo.svg.png" className="max-h-[7rem]" />
+                                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/65/Dabur_Logo.svg/1200px-Dabur_Logo.svg.png" className="grayscale opacity-60 max-h-[5rem]" />
                             </a>
                             <a class="flex items-center lg:justify-center">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Patanjali_Logo.svg/1200px-Patanjali_Logo.svg.png" className="max-h-[7rem]" />
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Patanjali_Logo.svg/1200px-Patanjali_Logo.svg.png" className="grayscale opacity-60 max-h-[9rem]" />
                             </a>
                             <a class="flex items-center lg:justify-center">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/ITC_Limited_Logo.svg/1200px-ITC_Limited_Logo.svg.png" className="max-h-[7rem]" />
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/ITC_Limited_Logo.svg/1200px-ITC_Limited_Logo.svg.png" className="grayscale opacity-60 max-h-[5rem]" />
                             </a>
 
                             <a class="flex items-center lg:justify-center" disabled>
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Cipla_logo.svg" className="max-h-[7rem]" />
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Cipla_logo.svg" className="grayscale opacity-60 max-h-[5rem]" />
                             </a>
                             <a class="flex items-center lg:justify-center">
-                                <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/v1453809541/vjd7wnxl5jmkbf6rzd8j.png" className="max-h-[7rem]" />
+                                <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/v1453809541/vjd7wnxl5jmkbf6rzd8j.png" className="grayscale opacity-60 max-h-[7rem]" />
                             </a>
                             <a class="flex items-center lg:justify-center">
-                                <img src="https://www.ima-india.org/ima/images/IMA%20LOGO.jpg" className="max-h-[7rem]" />
+                                <img src="https://www.ima-india.org/ima/images/IMA%20LOGO.jpg" className="grayscale opacity-60 max-h-[7rem]" />
                             </a>
                         </div>
                     </div>
@@ -102,7 +102,7 @@ const Home = () => {
                     </div>
                     <div className="">
 
-                        <div className=" bg-gray-200 rounded-lg w-screen md:max-w-screen-lg pt-2 px-2 pb-0 flex" id="catBox">
+                        <div className=" bg-blue-100 rounded-lg w-screen md:max-w-screen-lg pt-2 px-2 pb-0 flex" id="catBox">
                             <Swiper spaceBetween={30}
                                 pagination={true}
                                 modules={[Pagination]}

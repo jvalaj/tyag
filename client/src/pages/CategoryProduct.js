@@ -183,7 +183,7 @@ const CategoryProduct = () => {
                   <div key={p._id} className="mt-2 p-2 flex flex-row overflow-hidden justify-between h-[4rem]  border rounded-lg bg-gray-200 shadow">
 
                     <div className="w-[30rem] flex gap-1">
-                      <h5 className="my-auto text-md font-bold ">{p.name}</h5>
+                      <h5 className="my-auto text-left text-md font-bold ">{p.name}</h5>
                     </div>
 
 
