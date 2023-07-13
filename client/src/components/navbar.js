@@ -41,17 +41,44 @@ const Navbar = () => {
                     <ul className='hidden text-sm md:text-md m-2 sm:flex sm:gap-8 '>
 
                         <li className="hover:text-blue-600 flex items-center transition ">
-                            <NavLink to="/allproducts">Products</NavLink>
+                            <NavLink to="/allproducts">Shop</NavLink>
                         </li>
 
                         {
                             !auth.user ? (
                                 <>
-                                    <li className="hover:text-blue-600 flex items-center transition ">
-                                        <NavLink to="/register">Register</NavLink>
-                                    </li>
-                                    <li className="hover:text-blue-600 flex items-center transition ">
-                                        <NavLink to="/login">Login</NavLink>
+                                    <li className="flex items-center">
+                                        <Menu as="div" className="relative inline-block text-left">
+                                            <div className="flex items-center">
+                                                <Menu.Button className="inline-flex w-full p-2 border-blue-600 border my-auto items-center justify-center rounded-md hover:bg-blue-500 hover:text-white text-blue-600 transition">
+
+                                                    Login / Register
+                                                </Menu.Button>
+                                            </div>
+
+                                            <Transition
+                                                as={Fragment}
+                                                enter="transition ease-out duration-100"
+                                                enterFrom="transform opacity-0 scale-95"
+                                                enterTo="transform opacity-100  scale-100"
+                                                leave="transition ease-in duration-75"
+                                                leaveFrom="transform opacity-100 scale-100"
+                                                leaveTo="transform opacity-0 scale-95 "
+                                            >
+                                                <Menu.Items className="absolute overflow-hidden right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-gray-700 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                    <div className=" ">
+                                                        <Menu.Item>
+                                                            <NavLink to="/login"
+                                                                className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-blue-200 transition text-white">Login</NavLink>
+                                                        </Menu.Item>
+                                                        <Menu.Item>
+                                                            <NavLink to="/register"
+                                                                className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-blue-200 transition text-white">Register</NavLink>
+                                                        </Menu.Item>
+                                                    </div>
+                                                </Menu.Items>
+                                            </Transition>
+                                        </Menu>
                                     </li>
 
                                 </>
@@ -81,11 +108,11 @@ const Navbar = () => {
                                                     <div className=" ">
                                                         <Menu.Item>
                                                             <NavLink to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}
-                                                                className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-blue-600 transition text-white">Dashboard</NavLink>
+                                                                className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-blue-200 transition text-white">Dashboard</NavLink>
                                                         </Menu.Item>
                                                         <Menu.Item>
                                                             <NavLink onClick={handleLogout} to="/"
-                                                                className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-blue-600 transition text-white">Sign out</NavLink>
+                                                                className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-blue-200 transition text-white">Sign out</NavLink>
                                                         </Menu.Item>
                                                     </div>
                                                 </Menu.Items>
