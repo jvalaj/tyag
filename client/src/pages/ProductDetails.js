@@ -51,15 +51,15 @@ const ProductDetails = () => {
         <div className="bg-gray-200 h-full rounded-lg my-auto flex flex-col p-2">
 
           <div className="my-auto h-[60%] flex flex-col ">
-            <h6 className="font-bol text-3xl mb-3">{product.name}</h6>
-            <div className=" py-2 flex items-center justify-start">
+            <h6 className=" text-4xl mb-2">{product.name}</h6>
+            <div className="pb-2 pt-0 flex items-center justify-start">
               <div className="
             border  border-violet-600 text-violet-500 text-xs font-bold rounded-full p-1.5 ">
                 {product?.category?.name}</div>
 
 
             </div>
-            <h6 className="my-8"> {product.description}</h6>
+            <h6 className="my-4 leading-relaxed -tracking-tight"> {product.description}</h6>
             <div className="flex flex-row justify-between items-center">
               <h6 className="text-2xl font-semibold text-green-500">
 
