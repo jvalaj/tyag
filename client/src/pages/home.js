@@ -155,7 +155,7 @@ const Home = () => {
 
                     </div>
                 </section>
-                <section className=" py-14 flex items-center justify-center min-h-[40vh]">
+                <section className="py-7 sm:py-14 flex items-center justify-center min-h-[40vh]">
 
                     <div className="w-full
                      bg-transparent rounded-lg">
