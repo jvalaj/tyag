@@ -228,8 +228,8 @@ const Navbar = () => {
                                 )
                             }
                         </li>
-                        <div onClick={handleNav} className={toggle ? 'hidden' : 'transition cursor-pointer bg-slate-600 hover:bg-gray-400 hover:text-gray-800 rounded-full   m-2 p-2 '}>
-                            <AiOutlineMenu className='text-gray-200' size={20} />
+                        <div onClick={handleNav} className={toggle ? 'hidden' : 'transition cursor-pointer hover:text-blue-500 px-2 '}>
+                            <AiOutlineMenu className='' size={22} />
                         </div>
                     </div>
 
