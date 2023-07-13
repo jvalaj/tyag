@@ -308,8 +308,14 @@ const CartPage = () => {
             </>
             :
             <>
-              <div className="min-h-[80vh] flex items-center justify-center">
-                Your Cart is Empty!
+              <div className="min-h-[80vh] flex flex-col items-center justify-center">
+                <p className="block text-3xl text-center">
+                  Your Cart is Empty!
+
+                </p>
+                <button className="p-2 !text-lg text-blue-600 mt-2 rounded-lg border border-blue-500 " onClick={() => navigate("/allproducts")}>
+                  Shop Now
+                </button>
               </div>
             </>
           }
