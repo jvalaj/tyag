@@ -38,7 +38,7 @@ const ProductDetails = () => {
   };
   return (
     <div className="flex justify-center">
-      <div className="grid bg-gray-100 sm:min-h-[80vh] sm:grid-cols-2 container product-details">
+      <div className="grid bg-gray-100 min-h-[80vh] sm:grid-cols-2 container product-details">
         <div className="flex items-center justify-center">
           <img
             src={`/api/v1/product/product-photo/${product._id}`}
@@ -50,7 +50,7 @@ const ProductDetails = () => {
         </div>
         <div className="bg-gray-200 h-full rounded-lg my-auto flex flex-col p-2">
 
-          <div className="my-auto h-[60%] flex flex-col ">
+          <div className="my-auto min-h-[60%] flex flex-col ">
             <h6 className=" text-4xl mb-2">{product.name}</h6>
             <div className="pb-2 pt-0 flex items-center justify-start">
               <div className="
@@ -91,8 +91,8 @@ const ProductDetails = () => {
                   }
                 }}
               >
-                <p className="hidden sm:inline">Add to Cart</p>
-                <p className="sm:hidden m-0 px-1 py-0">+</p>
+                Add to Cart
+
 
 
 
