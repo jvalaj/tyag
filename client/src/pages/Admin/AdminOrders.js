@@ -46,21 +46,21 @@ const AdminOrders = () => {
                         {orders?.map((o, i) => {
                             return (
                                 <div className="border shadow">
-                                    <table className="table-auto text-left w-full">
+                                    <table className="table-auto sm:text-md text-xs text-left w-full">
                                         <thead>
                                             <tr className='bg-gray-700 text-white'>
-                                                <th scope="col" className="px-4 py-3">#</th>
-                                                <th scope="col" className="px-4 py-3">Status</th>
-                                                <th scope="col" className="px-4 py-3">Buyer</th>
-                                                <th scope="col" className="px-4 py-3">Date</th>
-                                                <th scope="col" className="px-4 py-3">Payment Id</th>
+                                                <th scope="col" className="pr-2 sm:px-4 py-3">#</th>
+                                                <th scope="col" className="sm:px-4 py-3">Status</th>
+                                                <th scope="col" className="px-2 sm:px-4 py-3">Buyer</th>
+                                                <th scope="col" className="sm:px-4 py-3">Date</th>
+                                                <th scope="col" className="sm:px-4 py-3">Payment Id</th>
 
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr className='bg-white'>
-                                                <td className="px-4 py-3">{i + 1}</td>
-                                                <td className="px-4 py-3">
+                                                <td className="sm:px-4 py-3">{i + 1}</td>
+                                                <td className="sm:px-4 py-3">
                                                     <Select
                                                         bordered={false}
                                                         onChange={(value) => handleChange(o._id, value)}
@@ -73,9 +73,9 @@ const AdminOrders = () => {
                                                         ))}
                                                     </Select>
                                                 </td>
-                                                <td className="px-4 py-3">{o?.buyer?.name}</td>
-                                                <td className="px-4 py-3">{o?.createdAt}</td>
-                                                <td className="px-4 py-3">{o?.paymentId}</td>
+                                                <td className="sm:px-4 py-3">{o?.buyer?.name}</td>
+                                                <td className="sm:px-4 py-3">{o?.createdAt}</td>
+                                                <td className="sm:px-4 py-3">{o?.paymentId}</td>
 
                                             </tr>
                                         </tbody>

@@ -233,21 +233,19 @@ const Navbar = () => {
                         </div>
                     </div>
 
-                    <div className={toggle ? ' z-10 mt-2 p-2 flex flex-col w-screen h-[95vh] bg-gray-800 ease-in-out delay-150 duration-300  ' : 'hidden'} >
+                    <div className={toggle ? ' z-10 mt-2 p-2 flex flex-col w-screen h-[95vh] bg-gradient-to-r from-blue-800 to-blue-500 ease-in-out delay-150 duration-300  ' : 'hidden'} >
                         <div onClick={handleNav} className='transition cursor-pointer rounded-full fixed top-[1rem] right-[0.5rem] hover:bg-gray-300 hover:text-black sm:hidden p-2 '>
                             <AiOutlineClose className=" text-red-700" size={20} />
                         </div>
 
-                        <ul className="gap-y-14 items-center my-auto bg-gray-800 text-white flex-col text-xl flex">
-
-
+                        <ul className="gap-y-14 items-center my-auto  text-white flex-col text-xl flex">
                             {
                                 !auth.user ? (
                                     <>
-                                        <li className="hover:text-blue-600 transition ">
+                                        <li className="hover:text-black transition ">
                                             <NavLink onClick={handleNav} to="/register">Register</NavLink>
                                         </li>
-                                        <li className="hover:text-blue-600 transition ">
+                                        <li className="hover:text-blacktransition ">
                                             <NavLink onClick={handleNav} to="/login">Login </NavLink>
                                         </li>
 
@@ -258,9 +256,9 @@ const Navbar = () => {
 
                                             <Menu as="div" className="relative inline-block text-left">
                                                 <div>
-                                                    <Menu.Button className="inline-flex w-full justify-center items-center rounded-md text-white hover:text-blue-600 transition">
-                                                        {auth?.user.name}
-                                                        <ChevronDownIcon className="-mr-1 h-5 w-5 text-white hover:text-blue-600 " aria-hidden="true" />
+                                                    <Menu.Button className="inline-flex w-full justify-center items-center rounded-md text-white hover:text-black transition">
+                                                        <span style={{ textTransform: 'capitalize' }}>  {auth?.user.name}</span>
+                                                        <ChevronDownIcon className="-mr-1 h-5 w-5 text-white hover:text-black " aria-hidden="true" />
                                                     </Menu.Button>
                                                 </div>
 
@@ -277,11 +275,11 @@ const Navbar = () => {
                                                         <div className=" ">
                                                             <Menu.Item>
                                                                 <NavLink href="#" onClick={handleNav} to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}
-                                                                    className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-blue-600 transition text-white">Dashboard</NavLink>
+                                                                    className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-black transition text-white">Dashboard</NavLink>
                                                             </Menu.Item>
                                                             <Menu.Item>
                                                                 <NavLink href="#" onClick={handleLogout} to="/"
-                                                                    className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-blue-600 transition text-white">Sign out</NavLink>
+                                                                    className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-black transition text-white">Sign out</NavLink>
                                                             </Menu.Item>
                                                         </div>
                                                     </Menu.Items>
@@ -292,6 +290,12 @@ const Navbar = () => {
                                     </>
                                 )
                             }
+                            <li>
+                                <NavLink onClick={handleNav} to="/allproducts">
+                                    Shop
+                                </NavLink>
+
+                            </li>
 
 
                         </ul>
