@@ -6,7 +6,7 @@ const Accordian = () => {
     return (
 
 
-        <div className="mx-auto w-3/4 my-6 p-2 ">
+        <div className="w-full mx-auto sm:w-3/4 my-6 p-2 ">
             <div className="mx-auto w-full rounded-lg bg-blue-100 p-12">
                 {
                     data.map((item) => (
