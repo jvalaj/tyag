@@ -4,6 +4,31 @@ import toast from "react-hot-toast";
 const CartContext = createContext();
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+
+  const AddToCart = (product) => {
+    let myCart = [...cart]
+    const index = myCart.findIndex(item => item._id === product._id);
+
+    if (index === -1) {
+      myCart.push({
+        ...product,
+        quantity: 1
+      });
+      const updatedCart = [...myCart];
+      console.log(updatedCart);
+      setCart(updatedCart)
+      localStorage.setItem('cart', JSON.stringify(updatedCart))
+      toast.success("Item Added to Cart")
+    } else {
+      myCart[index].quantity += 1;
+      const updatedCart = [...myCart];
+      setCart(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart))
+      console.log(updatedCart);
+      toast.success("Item Added to Cart")
+    }
+  }
+
   const handleAdd = (pid) => {
     try {
       let myCart = [...cart];
@@ -56,7 +81,7 @@ const CartProvider = ({ children }) => {
   }, []);
 
   return (
-    <CartContext.Provider value={[cart, setCart, handleAdd, handleSubtract]} >
+    <CartContext.Provider value={[cart, setCart, handleAdd, handleSubtract, AddToCart]} >
       {children}
     </CartContext.Provider >
   );
