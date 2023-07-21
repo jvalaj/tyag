@@ -7,9 +7,28 @@ const ProductDetails = () => {
   const params = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState({});
-  const [relatedProducts, setRelatedProducts] = useState([]);
   const [cart, setCart] = useCart()
+  const [, , handleAdd, handleSubtract] = useCart()
   //initalp details
+
+  const productQuantity = (pid) => {
+    let myCart = [...cart];
+    let index = myCart.findIndex((item) => item._id === pid);
+    console.log(index)
+    let quant = myCart[index].quantity
+    console.log("this is the quantitty")
+    console.log(quant)
+    if (quant === -1) {
+      return 0
+    }
+    else {
+      return quant
+    }
+
+  }
+
+
+
   useEffect(() => {
     if (params?.slug) getProduct();
   }, [params?.slug]);
@@ -20,24 +39,14 @@ const ProductDetails = () => {
         `/api/v1/product/get-product/${params.slug}`
       );
       setProduct(data?.product);
-      getSimilarProduct(data?.product._id, data?.product.category._id);
+
     } catch (error) {
       console.log(error);
     }
   };
-  //get similar product
-  const getSimilarProduct = async (pid, cid) => {
-    try {
-      const { data } = await axios.get(
-        `/api/v1/product/related-product/${pid}/${cid}`
-      );
-      setRelatedProducts(data?.products);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   return (
-    <div className="flex items-center flex-col ">
+    <div className="mb-3 flex items-center flex-col ">
       <div className="w-full">
         <div className="mx-auto max-w-screen-lg pt-8 p-2 ">
           <p className="text-left  text-gray-700 w-full">
@@ -49,7 +58,7 @@ const ProductDetails = () => {
         </div>
       </div>
       <div className="w-full">
-        <div className="mx-auto max-w-screen-lg grid min-h-[80vh] sm:grid-cols-2 container rounded-lg bg-gray-200 product-details">
+        <div className="mx-auto max-w-screen-lg grid min-h-[60vh] sm:grid-cols-2 container rounded-lg bg-gray-200 product-details">
           <div className="flex border border-gray-300 rounded-lg items-center bg-white justify-center">
             <img
               src={`/api/v1/product/product-photo/${product._id}`}
@@ -61,23 +70,36 @@ const ProductDetails = () => {
           </div>
           <div className="bg-gray-200 h-full rounded-r-lg my-auto flex flex-col p-2">
 
-            <div className="my-auto min-h-[60%] flex flex-col ">
-              <h6 className=" text-4xl mb-2">{product.name}</h6>
-              <div className="pb-2 pt-0 flex items-center justify-start">
+            <div className="my-auto flex flex-col ">
+              <h6 className=" text-4xl font-semibold mb-2">{product.name}</h6>
+              <div className="pb-2 mt-2 pt-0 flex items-center justify-start">
                 <div className="
             border  border-violet-600 text-violet-500 text-xs font-bold rounded-full p-1.5 ">
                   {product?.category?.name}</div>
 
 
               </div>
-              <h6 className="my-4 leading-relaxed -tracking-tight"> {product.description}</h6>
-              <div className="flex flex-row justify-between items-center">
-                <h6 className="text-2xl font-semibold text-green-500">
+
+              <div className="flex flex-col items-center">
+                <h6 className="text-left mb-2 font-bold w-full text-2xl text-green-500">
 
                   Rs. {product?.price}
                 </h6>
+                <h6 className="w-full mb-2 leading-relaxed -tracking-tight"> {product.description}</h6>
+                <div className="h-full flex text-sm flex-col gap-1">
+                  <div className="flex felx-row">
+                    <button className="bg-gray-400 shadow-md text-white rounded-full px-1.5"
+                      onClick={() => handleSubtract(product._id)}
+                    >-</button>
+                    <p className="border border-black rounded-lg my-auto px-1.5">
 
-                <button className="hover:opacity-60 bg-blue-600 text-md p-2 m-0 rounded-lg text-white"
+                    </p>
+                    <button className="bg-gray-400 shadow-md text-white rounded-full px-1.5"
+                      onClick={() => handleAdd(product._id)}
+                    >+</button>
+                  </div>
+                </div>
+                <button className="shadow-xl transition w-full hover:opacity-60 bg-blue-600 text-md p-2 m-0 rounded-lg text-white"
                   onClick={() => {
                     let myCart = [...cart]
                     const index = myCart.findIndex(item => item._id === product._id);

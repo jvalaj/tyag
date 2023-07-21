@@ -10,43 +10,8 @@ import toast from "react-hot-toast";
 
 const CartPage = () => {
   const [auth, setAuth] = useAuth();
-  const [cart, setCart] = useCart();
+  const [cart, setCart, handleAdd, handleSubtract] = useCart();
   const navigate = useNavigate();
-
-  const handleAdd = (pid) => {
-    try {
-      let myCart = [...cart];
-      let index = myCart.findIndex((item) => item._id === pid);
-      myCart[index].quantity += 1
-      const updatedCart = [...myCart]
-      console.log(updatedCart)
-      toast.success("Quantity Increased")
-      setCart(updatedCart);
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const handleSubtract = (pid) => {
-    try {
-      let myCart = [...cart];
-      let index = myCart.findIndex((item) => item._id === pid);
-      if (myCart[index].quantity === 1) {
-        removeCartItem(pid)
-      } else {
-        myCart[index].quantity -= 1
-        const updatedCart = [...myCart]
-        console.log(updatedCart)
-        toast.success("Quantity Decreased")
-        setCart(updatedCart);
-        localStorage.setItem("cart", JSON.stringify(updatedCart));
-      }
-
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   //payable price
   const payablePrice = () => {
@@ -70,7 +35,7 @@ const CartPage = () => {
       cart?.map((item) => {
         total = total + (item.price * item.quantity);
       });
-      return total
+      return total.toFixed(2)
     } catch (error) {
       console.log(error);
     }
