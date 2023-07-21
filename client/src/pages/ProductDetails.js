@@ -70,69 +70,72 @@ const ProductDetails = () => {
               width={"350px"}
             />
           </div>
-          <div className="h-full rounded-r-lg my-auto flex flex-col p-2">
+          <div className="h-full rounded-r-lg my-auto flex flex-col justify-between p-2">
 
-            <div className="my-auto flex flex-col ">
-              <p className="text-left  text-blue-500 w-full">
-                <Link className="font-semibold text-gray-700" to={"/"}>
-                  Home
-                </Link> / {product.name}
 
-              </p>
-              <h6 className=" mx-0 text-4xl font-semibold mt-0 mb-2">{product.name}</h6>
-              <hr className="!bg-blue-600 " />
-              <div className="pb-2 mt-2 pt-0 flex items-center justify-start">
+            <p className="text-left  text-blue-500 w-full">
+              <Link className="font-semibold text-gray-700" to={"/"}>
+                Home
+              </Link> / {product.name}
+
+            </p>
+            <div>
+              <h6 className=" mx-0 text-4xl font-semibold mt-0 mb-4">{product.name}</h6>
+              <hr className="h-[0.5px] bg-gray-400  rounded-full shadow-xl" />
+              <div className="pb-2 mt-4 pt-0 flex items-center justify-start">
                 <div className="
             border  border-violet-600 text-violet-600 text-xs  rounded-full p-1.5 ">
                   {product?.category?.name}</div>
 
 
               </div>
-
-              <div className="flex flex-col items-center">
-
-                <div className="w-full">
-                  <p className="w-full mb-2  rounded-lg p-2  "> {product.description}</p>
-                </div>
-
-                <div className="w-full pl-0 flex flex-row gap-2 justify-between p-2">
-                  <div className="w-full ml-0 border  flex ">
-                    <p className="text-left pl-2 flex my-auto font-semibold w-full text-2xl text-gray-900">
-                      <span className="my-auto">
-                        Rs. {product?.price}
-                      </span>
-
-                    </p>
-                  </div>
-
-                  <div className="flex text-xl  w-full flex-row">
-                    <button className="border border-gray-800 hover:bg-gray-700 transition hover:text-white rounded-l-lg w-full text-lg shadow-xl  px-3.5"
-                      onClick={() => handleSubtract(product._id)}
-                    >-</button>
-                    <p className="border-y border-gray-800  shadow-xl w-full text-center px-3 m-0 py-2">
-                      {getProductQuantityInCart(product._id)}
-                    </p>
-                    <button className="border border-gray-800 hover:bg-gray-700 transition  hover:text-white rounded-r-lg w-full shadow-xl   px-3.5"
-                      onClick={() => handleAdd(product._id)}
-                    >+</button>
-                  </div>
-                </div>
-                <button className="shadow-lg mb-2 text-lg rounded-lg transition w-full bg-gradient-to-l from-blue-500 to-blue-400  hover:opacity-70 hover:text-black p-2 m-0 mt-2 py-3 text-white"
-                  onClick={() => {
-                    AddToCart(product)
-                  }}
-                >
-                  Add to Cart
-
-
-
-
-                </button>
-              </div>
-
             </div>
 
+
+
+
+            <div className="w-full">
+              <p className="w-full mb-2  rounded-lg p-2  "> {product.description}</p>
+            </div>
+
+            <div className="w-full pl-0 flex flex-row gap-2 justify-between p-2">
+              <div className="w-full ml-0 border  flex ">
+                <p className="text-left pl-2 flex my-auto font-semibold w-full text-2xl text-gray-900">
+                  <span className="my-auto">
+                    Rs. {product?.price}
+                  </span>
+
+                </p>
+              </div>
+
+              <div className="flex text-xl  w-full flex-row">
+                <button className="border border-gray-800 hover:bg-gray-700 transition hover:text-white rounded-l-lg w-full text-lg shadow-xl  px-3.5"
+                  onClick={() => handleSubtract(product._id)}
+                >-</button>
+                <p className="border-y border-gray-800  shadow-xl w-full text-center px-3 m-0 py-2">
+                  {getProductQuantityInCart(product._id)}
+                </p>
+                <button className="border border-gray-800 hover:bg-gray-700 transition  hover:text-white rounded-r-lg w-full shadow-xl   px-3.5"
+                  onClick={() => handleAdd(product._id)}
+                >+</button>
+              </div>
+            </div>
+            <button className="shadow-lg mb-2 text-lg rounded-lg transition w-full bg-gradient-to-l from-blue-500 to-blue-400  hover:opacity-70 hover:text-black p-2 m-0 mt-2 py-3 text-white"
+              onClick={() => {
+                AddToCart(product)
+              }}
+            >
+              Add to Cart
+
+
+
+
+            </button>
           </div>
+
+
+
+
         </div>
 
       </div>

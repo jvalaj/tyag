@@ -234,7 +234,7 @@ const Navbar = () => {
                                 )
                             }
                         </li>
-                        <li className="bg-green-100 p-2 rounded-lg transition flex items-center ">
+                        <li className={toggle ? 'hidden' : "bg-green-100 p-2 rounded-lg transition flex items-center "}>
                             <a href="https://wa.me/919999513839" target="_blank" className="">
                                 <BsWhatsapp size={20} className="text-green-500" />
                             </a>
