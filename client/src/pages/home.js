@@ -22,18 +22,18 @@ const Home = () => {
     const categories = useCategory()
     return (
         <div>
-            <div className="cursor-pointer z-50 fixed transition   shadow-green-500 shadow-sm hover:scale-110 hover:animate-none hover:bg-gray-300 border-2 rounded-lg border-green-500 bg-white p-3 right-6 bottom-6">
+            {/* <div className="cursor-pointer z-50 fixed transition   shadow-green-500 shadow-sm hover:scale-110 hover:animate-none hover:bg-gray-300 border-2 rounded-lg border-green-500 bg-white p-3 right-6 bottom-6">
                 <a href="https://wa.me/919999513839" target="_blank">
                     <BsWhatsapp size={20} className="text-green-500" />
                 </a>
 
-            </div>
-            <div className="cursor-pointer z-40 fixed animate-ping transition   shadow-green-500 shadow-sm  hover:bg-gray-300 border-2 rounded-lg border-green-500 bg-white p-3 right-6 bottom-6">
+            </div> */}
+            {/* <div className="cursor-pointer z-40 fixed animate-ping transition   shadow-green-500 shadow-sm  hover:bg-gray-300 border-2 rounded-lg border-green-500 bg-white p-3 right-6 bottom-6">
                 <a href="https://wa.me/919999513839" target="_blank">
                     <BsWhatsapp size={20} className="text-green-500" />
                 </a>
 
-            </div>
+            </div> */}
             <div className=' w-full rounded-lg'>
                 <section className="flex z-30 justify-center bg-white sm:mt-0  min-h-[70vh] w-full  shadow-lg shadow-red-500" id="section1">
                     <div className="text-center  my-auto ">
@@ -63,31 +63,7 @@ const Home = () => {
 
                 </section>
 
-                <section class="bg-white ">
-                    <div class="max-w-screen-xl  px-4 py-4 mx-auto lg:py-10">
-                        <div class="grid link text-gray-500 gap-8 sm:gap-12 grid-cols-6 dark:text-gray-400">
-                            <a class="flex items-center  lg:justify-center">
-                                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/65/Dabur_Logo.svg/1200px-Dabur_Logo.svg.png" className="grayscale opacity-60 max-h-[5rem]" />
-                            </a>
-                            <a class="flex items-center lg:justify-center">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Patanjali_Logo.svg/1200px-Patanjali_Logo.svg.png" className="grayscale opacity-60 max-h-[9rem]" />
-                            </a>
-                            <a class="flex items-center lg:justify-center">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/ITC_Limited_Logo.svg/1200px-ITC_Limited_Logo.svg.png" className="grayscale opacity-60 max-h-[5rem]" />
-                            </a>
 
-                            <a class="flex items-center lg:justify-center" disabled>
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Cipla_logo.svg" className="grayscale opacity-60 max-h-[5rem]" />
-                            </a>
-                            <a class="flex items-center lg:justify-center">
-                                <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/v1453809541/vjd7wnxl5jmkbf6rzd8j.png" className="grayscale opacity-60 max-h-[7rem]" />
-                            </a>
-                            <a class="flex items-center lg:justify-center">
-                                <img src="https://www.ima-india.org/ima/images/IMA%20LOGO.jpg" className="grayscale opacity-60 max-h-[7rem]" />
-                            </a>
-                        </div>
-                    </div>
-                </section>
 
                 <section className="flex z-20 py-16 bg-gradient-to-r from-blue-600 to-blue-400 justify-center flex-col items-center pt-4 min-h-[30vh] w-full ">
                     <div className="w-full mt-6 sm:w-3/4 sm:pb-3">
@@ -122,17 +98,17 @@ const Home = () => {
                                     // when window width is >= 768px
                                     768: {
 
-                                        slidesPerView: 4.5,
+                                        slidesPerView: 3.5,
                                     },
                                 }}
                                 id="swiperCategory"
-                                className="h-[13rem] transition py-2">
+                                className="h-[14rem] sm:h-[16rem] transition py-2">
                                 <div>
                                     {categories?.map((c) => (
 
 
-                                        <SwiperSlide className="shadow-lg border border-blue-500 shadow-gray-300 p-1 transition rounded-lg bg-white" style={{ backgroundImage: `${c.photo}` }}>
-                                            <Link to={`/category/${c.slug}`}>
+                                        <SwiperSlide className="bg-white shadow-lg !flex !items-center justify-center py-auto border border-blue-500 shadow-gray-300 p-1 transition rounded-lg " >
+                                            <Link className=" my-auto" to={`/category/${c.slug}`}>
                                                 <img className="p-2 mx-auto h-[7rem]" src={`/api/v1/category/category-photo/${c._id}`} />
                                                 <p className="text-center text-lg py-auto my-auto block font-semibold">
                                                     {c.name}
@@ -275,7 +251,7 @@ const Home = () => {
 
 
                 </section>
-                <section className="w-full pt-4 bg-white flex  justify-center">
+                <section className="w-full py-4 bg-white flex  justify-center">
 
                     <div className=" w-full mt-6 sm:w-3/4">
                         <p className="block text-3xl font-semibold text-center sm:text-left">
@@ -289,6 +265,31 @@ const Home = () => {
 
 
 
+                </section>
+                <section class="bg-white border-y border-x-slate-500">
+                    <div class="max-w-screen-xl   px-4 py-4 mx-auto lg:py-10">
+                        <div class="grid link text-gray-500 gap-8 sm:gap-12 grid-cols-6 dark:text-gray-400">
+                            <a class="flex items-center  lg:justify-center">
+                                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/65/Dabur_Logo.svg/1200px-Dabur_Logo.svg.png" className="grayscale opacity-60 max-h-[5rem]" />
+                            </a>
+                            <a class="flex items-center lg:justify-center">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Patanjali_Logo.svg/1200px-Patanjali_Logo.svg.png" className="grayscale opacity-60 max-h-[9rem]" />
+                            </a>
+                            <a class="flex items-center lg:justify-center">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/ITC_Limited_Logo.svg/1200px-ITC_Limited_Logo.svg.png" className="grayscale opacity-60 max-h-[5rem]" />
+                            </a>
+
+                            <a class="flex items-center lg:justify-center" disabled>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Cipla_logo.svg" className="grayscale opacity-60 max-h-[5rem]" />
+                            </a>
+                            <a class="flex items-center lg:justify-center">
+                                <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/v1453809541/vjd7wnxl5jmkbf6rzd8j.png" className="grayscale opacity-60 max-h-[7rem]" />
+                            </a>
+                            <a class="flex items-center lg:justify-center">
+                                <img src="https://www.ima-india.org/ima/images/IMA%20LOGO.jpg" className="grayscale opacity-60 max-h-[7rem]" />
+                            </a>
+                        </div>
+                    </div>
                 </section>
             </div >
         </div >

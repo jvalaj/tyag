@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineClose, AiOutlineMenu, AiOutlineShoppingCart, AiOutlineUser } from 'react-icons/ai';
 import { Link, NavLink } from "react-router-dom";
+import { BsWhatsapp } from "react-icons/bs";
 import { useAuth } from "../context/auth";
 import { toast } from "react-hot-toast";
 import { Fragment } from 'react'
@@ -27,14 +28,14 @@ const Navbar = () => {
     return (
 
 
-        <nav className="h-[10vh] sticky top-0 z-50 shadow-xl flex sm:items-center justify-center bg-white ">
+        <nav className=" py-3 sticky top-0 z-50 shadow-xl flex sm:items-center justify-center bg-white ">
 
             <div className="w-full">
-                <div className=" mt-3 sm:mt-0 max-w-screen-xl flex flex-wrap align-self-center items-center justify-between mx-auto">
+                <div className=" sm:mt-0 max-w-screen-xl flex flex-wrap align-self-center items-center justify-between mx-auto">
                     <div className="flex items-center m-2 cursor-pointer" >
                         <Link className="flex items-center" to="/">
                             <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="Flowbite Logo" />
-                            <span className="text-xl md:text-3xl font-semibold ">chemshop.</span>
+                            <span className="hidden sm:inline text-xl md:text-3xl font-semibold ">chemshop.</span>
                         </Link>
                     </div>
 
@@ -122,18 +123,23 @@ const Navbar = () => {
                                 </>
                             )
                         }
-                        <li className="hover:text-blue-600 mr-3 transition flex items-center ">
+                        <li className="hover:text-blue-600  transition flex items-center ">
                             <NavLink to="/cart" className="flex items-center">
                                 <div className="flex h-4 items-center p-0 ">
-                                    <div className="relative mr-2 top-[-10px]">
+                                    <div className="relative top-[-10px]">
 
                                         <div className="bg-blue-500" id="cart-count">{cart?.length}</div>
                                         <AiOutlineShoppingCart className=" hover:text-blue-600 transition" size={20} />
 
                                     </div>
-                                    Cart
+
                                 </div>
                             </NavLink>
+                        </li>
+                        <li className="bg-green-100 p-2 rounded-lg transition flex items-center ">
+                            <a href="https://wa.me/919999513839" target="_blank" className="">
+                                <BsWhatsapp size={20} className="text-green-500" />
+                            </a>
                         </li>
                     </ul>
 
@@ -141,7 +147,7 @@ const Navbar = () => {
                         <li className={toggle ? 'hidden' : " hover:text-blue-600 transition flex items-center "}>
                             <NavLink to="/cart" className="flex items-center">
                                 <div className="m-2 flex h-4 items-center p-0 ">
-                                    <div className="relative top-[-8px] mr-1">
+                                    <div className="relative top-[-8px]">
 
                                         <div className="bg-blue-500" id="cart-count-phone">{cart?.length}</div>
                                         <AiOutlineShoppingCart className=" hover:text-blue-600 transition" size={20} />
@@ -157,8 +163,8 @@ const Navbar = () => {
                                     <>
                                         <li className="flex items-center">
                                             <Menu as="div" className="relative inline-block text-left">
-                                                <div className="flex items-center">
-                                                    <Menu.Button className="inline-flex w-full p-2 border-blue-600 border my-auto items-center justify-center rounded-md hover:bg-blue-500 hover:text-white text-blue-600 transition">
+                                                <div className="mx-2 flex items-center">
+                                                    <Menu.Button className="inline-flex w-full sm:!text-md !text-xs p-2 border-blue-600 border my-auto items-center justify-center rounded-md hover:bg-blue-500 hover:text-white text-blue-600 transition">
 
                                                         Login / Register
                                                     </Menu.Button>
@@ -227,6 +233,11 @@ const Navbar = () => {
                                     </>
                                 )
                             }
+                        </li>
+                        <li className="bg-green-100 p-2 rounded-lg transition flex items-center ">
+                            <a href="https://wa.me/919999513839" target="_blank" className="">
+                                <BsWhatsapp size={20} className="text-green-500" />
+                            </a>
                         </li>
                         <div onClick={handleNav} className={toggle ? 'hidden' : 'transition cursor-pointer hover:text-blue-500 px-2 '}>
                             <AiOutlineMenu className='' size={22} />
