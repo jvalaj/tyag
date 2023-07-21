@@ -52,14 +52,15 @@ const CartPage = () => {
   const payablePrice = () => {
     let total = totalPrice()
     let taxes = taxesPrice()
-    let final = taxes + total
-    return final
+    let final = Number(taxes) + Number(total)
+    return final.toFixed(2)
   }
 
   const taxesPrice = () => {
     let mrp = totalPrice()
     let taxes = mrp * (1 / 10)
-    return taxes
+    let roundedTax = taxes.toFixed(2)
+    return roundedTax
   }
 
   //mrp price
@@ -179,9 +180,9 @@ const CartPage = () => {
 
                   <div className="flex flex-col justify-center items-center">
                     {cart?.map((p) => (
-                      <div key={p._id} className="mb-3 w-full md:w-[28rem] lg:w-full grid grid-cols-[30%_70%] overflow-hidden justify-between h-[7rem]  border rounded-lg mx-2 bg-transparent border-gray-300 ">
-                        <div className='w-full flex justify-center bg-white rounded-lg overflow-hidden pb-2'>
-                          <img className=" object-contain  h-auto w-full " src={`/api/v1/product/product-photo/${p._id}`} alt="photo" />
+                      <div key={p._id} className="mb-3 w-full md:w-[28rem] lg:w-full grid grid-cols-[30%_70%] overflow-hidden justify-between h-[7rem]  border rounded-lg mx-2 bg-sky-100 border-blue-200 ">
+                        <div className='w-full flex shadow-xl justify-center bg-white rounded-lg overflow-hidden pb-2'>
+                          <img className="rounded-lg object-contain  h-auto w-full " src={`/api/v1/product/product-photo/${p._id}`} alt="photo" />
                         </div>
                         <div className="w-full  flex flex-col p-2 gap-1 ">
                           <div className="h-full flex  flex-col gap-1">
@@ -221,9 +222,9 @@ const CartPage = () => {
                 </div>
                 <div className="w-full min-v-[40vh] sm:p-2 mt-2 sm:mt-0 text-center ">
 
-                  <div className="min-h-[30vh] bg-gray-300 rounded-lg pt-0 pb-2 text-center ">
+                  <div className="min-h-[30vh] bg-gray-200 rounded-lg pt-0 pb-2 text-center ">
                     <div className="bg-gray-800 rounded-lg p-2 ">
-                      <h2 className="text-xl text-white">Cart Summary</h2>
+                      <h2 className="text-xl py-auto my-2 text-white">Billing Summary</h2>
 
                     </div>
                     {auth?.token ? (<>
@@ -234,20 +235,20 @@ const CartPage = () => {
 
                           </div>
                           <div className="grid text-gray-500 text-sm p-2 grid-flow-row">
-                            <div className="flex flex-row justify-between">
+                            <div className="leading-tight flex flex-row justify-between">
                               <p className="">MRP</p>
-                              <p>Rs. {totalPrice()}.00</p>
+                              <p>Rs. {totalPrice()}</p>
                             </div>
-                            <div className="flex flex-row justify-between">
+                            <div className="leading-tight flex flex-row justify-between">
                               <p className=" ">Taxes</p>
-                              <p>Rs. {taxesPrice()}.00</p>
+                              <p>Rs. {taxesPrice()}</p>
                             </div>
-                            <div className="flex flex-row justify-between">
+                            <div className=" leading-tight flex flex-row justify-between">
                               <p className=" ">Shipping Charges</p>
-                              <p className="text-green-400">FREE</p>
+                              <p className="text-green-500">FREE</p>
                             </div>
                           </div>
-                          <hr className=" border border-[#B4B4B4] rounded-full shadow-xl" />
+                          <hr className="h-[0.5px] bg-gray-400  rounded-full shadow-xl" />
 
                           <div className="p-2 mt-2 flex flex-row w-full">
                             <div className="font-bold text-left my-auto text-md w-full">
@@ -257,7 +258,7 @@ const CartPage = () => {
                               Rs. {payablePrice()}
                             </div>
                           </div>
-                          <button className="bg-green-500 flex items-center justify-center mt-2 p-2 rounded-lg shadow-md" onClick={() => checkoutHandler()}> <span className="h-full text-lg">Pay with Razorpay </span> <SiRazorpay className=" ml-1" size={20} /></button>
+                          <button className="bg-green-500 flex text-white items-center justify-center mt-2 p-2 rounded-lg shadow-xl" onClick={() => checkoutHandler()}> <span className="h-full text-lg">Pay with Razorpay </span> <SiRazorpay className=" ml-1" size={20} /></button>
                         </div>
 
                         : "cart is empty "}</>)
@@ -282,7 +283,7 @@ const CartPage = () => {
                     <>
                       <div className="mb-3 bg-gray-200 shadow mt-2 rounded-lg p-2">
                         <h4 className="text-gray-500 text-left">Delivering to: </h4>
-                        <h5 className="text-lg text-center mb-0">{auth?.user?.address}</h5>
+                        <h5 className="text-lg text-center text-sky-500 mb-0">{auth?.user?.address}</h5>
                         <button
                           className="mx-auto mt-0 text-sm  cursor-pointer hover:text-blue-600 hover:underline"
                           onClick={() => navigate("/dashboard/user/profile")}
