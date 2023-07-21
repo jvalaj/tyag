@@ -47,7 +47,22 @@ const CartPage = () => {
       console.log(error)
     }
   }
-  //total price
+
+  //payable price
+  const payablePrice = () => {
+    let total = totalPrice()
+    let taxes = taxesPrice()
+    let final = taxes + total
+    return final
+  }
+
+  const taxesPrice = () => {
+    let mrp = totalPrice()
+    let taxes = mrp * (1 / 10)
+    return taxes
+  }
+
+  //mrp price
   const totalPrice = () => {
     try {
       let total = 0;
@@ -120,7 +135,7 @@ const CartPage = () => {
 
         const rpid = response.razorpay_payment_id
         const uid = auth?.user._id
-        const amount = totalPrice()
+        const amount = payablePrice()
         orderCreate(rpid, uid, amount)
         navigate("/dashboard/user/orders")
 
@@ -143,30 +158,28 @@ const CartPage = () => {
   }
   return (
     <div>
-      <div className="mx-auto max-w-screen-xl min-h-[80vh]  p-3 rounded-lg">
+      <div className="mx-auto max-w-screen-lg min-h-[80vh]  p-3 rounded-lg">
 
         <div className="  w-full">
+
           {cart?.length ?
             <>
-              <div className="md:grid md:grid-cols-[60%_40%]  p-2">
+              <div className="rounded-lg md:grid md:grid-cols-[60%_40%] gap-4 sm:p-2">
 
-                <div className="">
+                <div className=" rounded-lg m-0">
 
-                  <div className="col-md-12">
-                    <h1 className="text-xl text-center p-2 m-0">
-                      <p className="text-center">
-                        {cart?.length
-                          ? `You Have ${cart.length} items in your cart ${auth?.token ? "" : "please login to checkout !"
-                          }`
-                          : " Your Cart Is Empty"}
-                      </p>
 
-                    </h1>
-                  </div>
+                  {cart?.length ?
+                    <div className="w-full my-2 md:w-[28rem] lg:w-[38rem] text-left">
+                      <button className=" hover:bg-gray-300 text-gray-500 flex gap-2 bg-gray-200  transition p-2 rounded-full " onClick={clearCart}>
+                        Clear Cart <AiOutlineDelete className="text-red-500" size={20} />
+                      </button>
+                    </div>
+                    : ""}
 
                   <div className="flex flex-col justify-center items-center">
                     {cart?.map((p) => (
-                      <div key={p._id} className="mb-3 w-full md:w-[28rem] lg:w-[38rem] grid grid-cols-[30%_70%] overflow-hidden justify-between h-[7rem]  border rounded-lg bg-gray-200 shadow">
+                      <div key={p._id} className="mb-3 w-full md:w-[28rem] lg:w-full grid grid-cols-[30%_70%] overflow-hidden justify-between h-[7rem]  border rounded-lg mx-2 bg-transparent border-gray-300 ">
                         <div className='w-full flex justify-center bg-white rounded-lg overflow-hidden pb-2'>
                           <img className=" object-contain  h-auto w-full " src={`/api/v1/product/product-photo/${p._id}`} alt="photo" />
                         </div>
@@ -203,53 +216,45 @@ const CartPage = () => {
                     ))}
 
 
-                    {cart?.length ?
-                      <div className="w-full md:w-[28rem] lg:w-[38rem] text-right">
-                        <button className=" hover:bg-gray-300  bg-gray-200  transition p-2 rounded-full " onClick={clearCart}>
-                          <AiOutlineDelete className="text-red-500" size={20} />
-                        </button>
-                      </div>
-                      : ""}
                   </div>
 
                 </div>
-                <div className="w-full min-v-[40vh] p-2 text-center ">
+                <div className="w-full min-v-[40vh] sm:p-2 mt-2 sm:mt-0 text-center ">
 
-                  <div className="min-h-[50vh] bg-gray-300 rounded-lg pt-0 pb-2 text-center ">
+                  <div className="min-h-[30vh] bg-gray-300 rounded-lg pt-0 pb-2 text-center ">
                     <div className="bg-gray-800 rounded-lg p-2 ">
                       <h2 className="text-xl text-white">Cart Summary</h2>
-                      <p className="text-gray-300">Total | Checkout | Payment</p>
 
                     </div>
                     {auth?.token ? (<>
                       {cart?.length ?
-                        <div className="grid p-2 justify-center grid-flow-row ">
-                          {cart?.map((p) => (
-                            <div key={p._id} className="mt-2 p-2 max-w-[35rem] flex flex-row overflow-hidden justify-between h-[4rem]  border rounded-lg bg-gray-200 shadow">
+                        <div className="grid p-2 grid-flow-row ">
 
-                              <div className="w-[45rem] flex gap-1">
-                                <h5 className="my-auto text-left text-lg font-bold ">{p.name}</h5>
-                              </div>
+                          <div className="w-full">
 
-
-                              <div className="w-full  justify-center  text-lg flex">
-                                <p className="my-auto text-gray-500">x {p.quantity}</p>
-                              </div>
-                              <div className="w-full justify-end  text-lg flex">
-                                <p className="my-auto text-right font-bold text-green-500">= Rs. {p.quantity * p.price}</p>
-                              </div>
-
-
-
+                          </div>
+                          <div className="grid text-gray-500 text-sm p-2 grid-flow-row">
+                            <div className="flex flex-row justify-between">
+                              <p className="">MRP</p>
+                              <p>Rs. {totalPrice()}.00</p>
                             </div>
-
-                          ))}
-                          <div className="p-2 mt-2 flex flex-row border border-black border-t-0 border-b-0 border-x-0">
-                            <div className="font-bold text-left my-auto text-xl w-full">
-                              Total
+                            <div className="flex flex-row justify-between">
+                              <p className=" ">Taxes</p>
+                              <p>Rs. {taxesPrice()}.00</p>
                             </div>
-                            <div className="font-bold text-xl my-auto text-right w-full">
-                              Rs. {totalPrice()}
+                            <div className="flex flex-row justify-between">
+                              <p className=" ">Shipping Charges</p>
+                              <p className="text-green-400">FREE</p>
+                            </div>
+                          </div>
+                          <hr className=" border border-[#B4B4B4] rounded-full shadow-xl" />
+
+                          <div className="p-2 mt-2 flex flex-row w-full">
+                            <div className="font-bold text-left my-auto text-md w-full">
+                              Payable
+                            </div>
+                            <div className="font-bold text-md my-auto text-right w-full">
+                              Rs. {payablePrice()}
                             </div>
                           </div>
                           <button className="bg-green-500 flex items-center justify-center mt-2 p-2 rounded-lg shadow-md" onClick={() => checkoutHandler()}> <span className="h-full text-lg">Pay with Razorpay </span> <SiRazorpay className=" ml-1" size={20} /></button>

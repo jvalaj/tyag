@@ -19,10 +19,13 @@ export const razorpayOrderController = async (req, res) => {
     const totalPrice = () => {
         try {
             const cart = req.body
-            let total = 0;
+            let mrp = 0;
+
             cart.map((item) => {
-                total = total + (item.price * item.quantity);
+                mrp = mrp + (item.price * item.quantity);
             });
+            let taxes = mrp * (0.1)
+            let total = mrp + taxes
             return total
         } catch (error) {
             console.log(error);
