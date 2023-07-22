@@ -60,13 +60,12 @@ export const razorpayPaymentVerificationController = async (req, res) => {
 
     try {
 
-        const { cart, rpid, uid, amount } = req.fields
-        const { photo } = req.files
-        if (photo && photo.size > 1000000) {
-            return res
-                .status(500)
-                .send({ error: "photo is Required and should be less then 1mb" });
-        }
+        const { cart } = req.body
+        const { rpid } = req.body
+        const { uid } = req.body
+        const { amount } = req.body
+        const photo = req.files
+
         const order = new orderModel({
 
             products: cart.map((p) => (
@@ -76,8 +75,6 @@ export const razorpayPaymentVerificationController = async (req, res) => {
             buyer: uid,
             amount: amount,
         })
-        console.log("this is the order")
-        console.log(order)
         if (photo) {
             order.photo.data = fs.readFileSync(photo.path)
             order.photo.contentType = photo.type;

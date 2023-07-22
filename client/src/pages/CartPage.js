@@ -12,9 +12,7 @@ const CartPage = () => {
   const [auth, setAuth] = useAuth();
   const [cart, setCart, handleAdd, handleSubtract] = useCart();
   const navigate = useNavigate();
-  const [rpid, setRpid] = useState("");
-  const [uid, setUid] = useState("");
-  const [amount, setAmount] = useState("");
+
   const [photo, setPhoto] = useState("");
   //payable price
   const payablePrice = () => {
@@ -67,17 +65,14 @@ const CartPage = () => {
       console.log(error);
     }
   };
-  //order creater in database
-  const orderCreate = async (e) => {
 
+  //order creater in database
+  const orderCreate = async (rpid, uid, amount) => {
+    const prescriptionData = new FormData();
+    prescriptionData.append("photo", photo)
     try {
-      const orderData = new FormData();
-      orderData.append("cart", cart)
-      orderData.append("rpid", rpid)
-      orderData.append("uid", uid)
-      orderData.append("amount", amount)
-      orderData.append("photo", photo)
-      const { data } = await axios.post("/api/v1/payment/razorpay/verify", orderData)
+      const { data } = await axios.post("/api/v1/payment/razorpay/verify", { cart, rpid, uid, amount }, prescriptionData)
+
       if
         (data?.success) {
         toast.success(`Order Successful`)
@@ -113,10 +108,9 @@ const CartPage = () => {
         const rpid = response.razorpay_payment_id
         const uid = auth?.user._id
         const amount = payablePrice()
-        setAmount(amount);
-        setRpid(rpid);
-        setUid(uid);
-        orderCreate()
+        console.log(photo)
+
+        orderCreate(rpid, uid, amount)
         navigate("/dashboard/user/orders")
 
 
@@ -164,6 +158,7 @@ const CartPage = () => {
                         <input type="file"
                           className='w-full'
                           name="photo"
+
                           accept="image/*"
                           onChange={(e) => setPhoto(e.target.files[0])} hidden />
                       </label>
