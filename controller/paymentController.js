@@ -2,6 +2,7 @@ import orderModel from ".././models/orderModel.js"
 import Razorpay from "razorpay";
 import crypto from "crypto";
 import dotenv from "dotenv"
+import fs from 'fs';
 dotenv.config()
 //payment gateway
 var instance = new Razorpay({
@@ -43,7 +44,7 @@ export const razorpayOrderController = async (req, res) => {
             if (err) {
                 res.status(500).send(err)
             } else {
-                console.log(order)
+
                 res.status(200).send(order)
             }
         });
@@ -58,11 +59,14 @@ export const razorpayPaymentVerificationController = async (req, res) => {
     ;
 
     try {
-        const { cart } = req.body
-        const { rpid } = req.body
-        const { uid } = req.body
-        const { amount } = req.body
 
+        const { cart, rpid, uid, amount } = req.fields
+        const { photo } = req.files
+        if (photo && photo.size > 1000000) {
+            return res
+                .status(500)
+                .send({ error: "photo is Required and should be less then 1mb" });
+        }
         const order = new orderModel({
 
             products: cart.map((p) => (
@@ -70,10 +74,15 @@ export const razorpayPaymentVerificationController = async (req, res) => {
             )),
             paymentId: rpid,
             buyer: uid,
-            amount: amount
+            amount: amount,
         })
+        console.log("this is the order")
         console.log(order)
-        order.save()
+        if (photo) {
+            order.photo.data = fs.readFileSync(photo.path)
+            order.photo.contentType = photo.type;
+        }
+        await order.save()
         res.status(200).send({
             success: true,
             message: "Order created Succesfully",

@@ -12,7 +12,10 @@ const CartPage = () => {
   const [auth, setAuth] = useAuth();
   const [cart, setCart, handleAdd, handleSubtract] = useCart();
   const navigate = useNavigate();
-
+  const [rpid, setRpid] = useState("");
+  const [uid, setUid] = useState("");
+  const [amount, setAmount] = useState("");
+  const [photo, setPhoto] = useState("");
   //payable price
   const payablePrice = () => {
     let total = totalPrice()
@@ -65,14 +68,22 @@ const CartPage = () => {
     }
   };
   //order creater in database
-  const orderCreate = async (rpid, uid, amount) => {
+  const orderCreate = async (e) => {
+
     try {
-      const { data } = await axios.post("/api/v1/payment/razorpay/verify", { cart, rpid, uid, amount })
+      const orderData = new FormData();
+      orderData.append("cart", cart)
+      orderData.append("rpid", rpid)
+      orderData.append("uid", uid)
+      orderData.append("amount", amount)
+      orderData.append("photo", photo)
+      const { data } = await axios.post("/api/v1/payment/razorpay/verify", orderData)
       if
         (data?.success) {
         toast.success(`Order Successful`)
         localStorage.removeItem("cart");
         setCart([]);
+        setPhoto("")
       } else {
         toast.error(data.message)
         toast.error("Error in creating order")
@@ -102,7 +113,10 @@ const CartPage = () => {
         const rpid = response.razorpay_payment_id
         const uid = auth?.user._id
         const amount = payablePrice()
-        orderCreate(rpid, uid, amount)
+        setAmount(amount);
+        setRpid(rpid);
+        setUid(uid);
+        orderCreate()
         navigate("/dashboard/user/orders")
 
 
@@ -143,6 +157,26 @@ const CartPage = () => {
                     </div>
                     : ""}
 
+                  <div className="">
+                    <div className='p-10 px-12 flex items-center w-full'>
+                      <label className='border p-8 w-full border-black text-black rounded-lg  hover:bg-gray-700 hover:text-white'>
+                        {photo ? photo.name : "Upload Prescription"}
+                        <input type="file"
+                          className='w-full'
+                          name="photo"
+                          accept="image/*"
+                          onChange={(e) => setPhoto(e.target.files[0])} hidden />
+                      </label>
+
+                    </div>
+                    <div className='mb-3 flex w-[16rem] justify-centermax-h-[14rem]'>
+                      {photo && (
+                        <div className='my-3 flex w-auto border justify-center p-2 rounded-lg  border-black'>
+                          <img src={URL.createObjectURL(photo)} alt="product-photo" className='' />
+                        </div>
+                      )}
+                    </div>
+                  </div>
                   <div className="flex flex-col justify-center items-center">
                     {cart?.map((p) => (
                       <div key={p._id} className="mb-3 w-full md:w-[28rem] lg:w-full grid grid-cols-[30%_70%] overflow-hidden justify-between h-[7rem]  border rounded-lg mx-2 bg-sky-100 border-blue-200 ">
@@ -192,41 +226,54 @@ const CartPage = () => {
                       <h2 className="text-xl py-auto my-2 text-white">Billing Summary</h2>
 
                     </div>
-                    {auth?.token ? (<>
-                      {cart?.length ?
-                        <div className="grid p-2 grid-flow-row ">
+                    {auth?.token ? (
+                      <>
+                        {cart?.length ?
+                          <div className="grid p-2 grid-flow-row ">
 
-                          <div className="w-full">
+                            <div className="w-full">
 
+                            </div>
+                            <div className="grid text-gray-500 text-sm p-2 grid-flow-row">
+                              <div className="leading-tight flex flex-row justify-between">
+                                <p className="">MRP</p>
+                                <p>Rs. {totalPrice()}</p>
+                              </div>
+                              <div className="leading-tight flex flex-row justify-between">
+                                <p className=" ">Taxes</p>
+                                <p>Rs. {taxesPrice()}</p>
+                              </div>
+                              <div className=" leading-tight flex flex-row justify-between">
+                                <p className=" ">Shipping Charges</p>
+                                <p className="text-green-500">FREE</p>
+                              </div>
+                            </div>
+                            <hr className="h-[0.5px] bg-gray-400  rounded-full shadow-xl" />
+
+                            <div className="p-2 mt-2 flex flex-row w-full">
+                              <div className="font-bold text-left my-auto text-md w-full">
+                                Payable
+                              </div>
+                              <div className="font-bold text-md my-auto text-right w-full">
+                                Rs. {payablePrice()}
+                              </div>
+                            </div>
+                            {photo ? (
+                              <button className="bg-green-500 flex text-white items-center justify-center mt-2 p-2 rounded-lg shadow-xl" onClick={() => checkoutHandler()}>
+                                <span className="h-full text-lg">Pay with Razorpay </span> <SiRazorpay className=" ml-1" size={20} />
+                              </button>
+                            ) : (
+                              <>
+                                <button disabled className=" bg-green-500 flex text-white items-center justify-center mt-2 p-2 rounded-lg shadow-xl" >
+                                  <span className="h-full text-lg">Please uplaod prescription</span>
+                                </button>
+
+                              </>)}
                           </div>
-                          <div className="grid text-gray-500 text-sm p-2 grid-flow-row">
-                            <div className="leading-tight flex flex-row justify-between">
-                              <p className="">MRP</p>
-                              <p>Rs. {totalPrice()}</p>
-                            </div>
-                            <div className="leading-tight flex flex-row justify-between">
-                              <p className=" ">Taxes</p>
-                              <p>Rs. {taxesPrice()}</p>
-                            </div>
-                            <div className=" leading-tight flex flex-row justify-between">
-                              <p className=" ">Shipping Charges</p>
-                              <p className="text-green-500">FREE</p>
-                            </div>
-                          </div>
-                          <hr className="h-[0.5px] bg-gray-400  rounded-full shadow-xl" />
 
-                          <div className="p-2 mt-2 flex flex-row w-full">
-                            <div className="font-bold text-left my-auto text-md w-full">
-                              Payable
-                            </div>
-                            <div className="font-bold text-md my-auto text-right w-full">
-                              Rs. {payablePrice()}
-                            </div>
-                          </div>
-                          <button className="bg-green-500 flex text-white items-center justify-center mt-2 p-2 rounded-lg shadow-xl" onClick={() => checkoutHandler()}> <span className="h-full text-lg">Pay with Razorpay </span> <SiRazorpay className=" ml-1" size={20} /></button>
-                        </div>
+                          : "cart is empty "}
 
-                        : "cart is empty "}</>)
+                      </>)
                       : (<div className=" min-h-[40vh] w-full justify-center flex items-center">
                         <button
                           className="border mx-auto my-auto text-blue-600 hover:bg-blue-600 hover:text-white transition border-blue-600 p-3 rounded-lg "

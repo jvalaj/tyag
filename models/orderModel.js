@@ -25,6 +25,10 @@ const orderSchema = new mongoose.Schema({
     default: "Not Processed",
     enum: ["Not Processed", "Processing", "Shipped", "Delivered", "Canceled"],
   },
+  photo: {
+    data: Buffer,
+    contentType: String
+  },
 }, { timestamps: true });
 
 export default mongoose.model("Order", orderSchema);

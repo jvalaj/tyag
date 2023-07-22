@@ -20,7 +20,7 @@ export const createCategoryController = async (req, res) => {
                 .status(500)
                 .send({ error: "photo is Required and should be less then 1mb" });
         }
-        const category = await new categoryModel({ name, slug: slugify(name) }).save()
+        const category = new categoryModel({ name, slug: slugify(name) })
         if (photo) {
             category.photo.data = fs.readFileSync(photo.path)
             category.photo.contentType = photo.type;
