@@ -66,12 +66,17 @@ const CartPage = () => {
     }
   };
 
-  //order creater in database
+  //create order
   const orderCreate = async (rpid, uid, amount) => {
-    const prescriptionData = new FormData();
-    prescriptionData.append("photo", photo)
+
     try {
-      const { data } = await axios.post("/api/v1/payment/razorpay/verify", { cart, rpid, uid, amount }, prescriptionData)
+      const formData = new FormData();
+      formData.append("photo", photo);
+      formData.append("cart", cart);
+      formData.append("rpid", rpid);
+      formData.append("uid", uid);
+      formData.append("amount", amount);
+      const { data } = await axios.post("/api/v1/payment/razorpay/verify", formData)
 
       if
         (data?.success) {
@@ -108,8 +113,6 @@ const CartPage = () => {
         const rpid = response.razorpay_payment_id
         const uid = auth?.user._id
         const amount = payablePrice()
-        console.log(photo)
-
         orderCreate(rpid, uid, amount)
         navigate("/dashboard/user/orders")
 
@@ -152,16 +155,19 @@ const CartPage = () => {
                     : ""}
 
                   <div className="">
+
                     <div className='p-10 px-12 flex items-center w-full'>
+
                       <label className='border p-8 w-full border-black text-black rounded-lg  hover:bg-gray-700 hover:text-white'>
                         {photo ? photo.name : "Upload Prescription"}
                         <input type="file"
                           className='w-full'
                           name="photo"
-
                           accept="image/*"
                           onChange={(e) => setPhoto(e.target.files[0])} hidden />
                       </label>
+
+
 
                     </div>
                     <div className='mb-3 flex w-[16rem] justify-centermax-h-[14rem]'>
@@ -254,7 +260,13 @@ const CartPage = () => {
                               </div>
                             </div>
                             {photo ? (
-                              <button className="bg-green-500 flex text-white items-center justify-center mt-2 p-2 rounded-lg shadow-xl" onClick={() => checkoutHandler()}>
+                              <button className="bg-green-500 flex text-white items-center justify-center mt-2 p-2 rounded-lg shadow-xl"
+                                onClick={() => {
+                                  checkoutHandler()
+
+                                }
+
+                                }>
                                 <span className="h-full text-lg">Pay with Razorpay </span> <SiRazorpay className=" ml-1" size={20} />
                               </button>
                             ) : (

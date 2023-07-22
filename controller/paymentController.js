@@ -59,11 +59,8 @@ export const razorpayPaymentVerificationController = async (req, res) => {
     ;
 
     try {
-
-        const { cart } = req.body
-        const { rpid } = req.body
-        const { uid } = req.body
-        const { amount } = req.body
+        console.log(req.file.photo)
+        const { cart, rpid, uid, amount } = req.body
         const photo = req.files
 
         const order = new orderModel({
@@ -85,9 +82,13 @@ export const razorpayPaymentVerificationController = async (req, res) => {
             message: "Order created Succesfully",
 
         });
+
+
+
     } catch (error) {
         //   } else {
         console.log(error)
+
         res.status(400).send({
             success: false,
             message: "Error in creating order"
