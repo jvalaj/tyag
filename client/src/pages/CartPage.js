@@ -14,6 +14,9 @@ const CartPage = () => {
   const navigate = useNavigate();
 
   const [photo, setPhoto] = useState("");
+  // const [uid, setUid] = useState("");
+  // const [rpid, setRpid] = useState("");
+  // const [amount, setAmount] = useState("");
   //payable price
   const payablePrice = () => {
     let total = totalPrice()
@@ -70,20 +73,16 @@ const CartPage = () => {
   const orderCreate = async (rpid, uid, amount) => {
 
     try {
-      const formData = new FormData();
-      formData.append("photo", photo);
-      formData.append("cart", cart);
-      formData.append("rpid", rpid);
-      formData.append("uid", uid);
-      formData.append("amount", amount);
-      const { data } = await axios.post("/api/v1/payment/razorpay/verify", formData)
+      //   const orderData = new FormData();
+
+      const { data } = await axios.post("/api/v1/payment/razorpay/verify", { cart, rpid, uid, amount })
 
       if
         (data?.success) {
         toast.success(`Order Successful`)
         localStorage.removeItem("cart");
         setCart([]);
-        setPhoto("")
+
       } else {
         toast.error(data.message)
         toast.error("Error in creating order")
@@ -94,7 +93,6 @@ const CartPage = () => {
 
     }
   };
-
   const checkoutHandler = async () => {
 
     const { data } = await axios.post("/api/v1/payment/razorpay/order", cart)
@@ -109,14 +107,11 @@ const CartPage = () => {
       order_id: data.id,
 
       handler: function (response) {
-
         const rpid = response.razorpay_payment_id
         const uid = auth?.user._id
         const amount = payablePrice()
         orderCreate(rpid, uid, amount)
         navigate("/dashboard/user/orders")
-
-
       },
       prefill: {
         name: "Gaurav Kumar",
@@ -159,9 +154,10 @@ const CartPage = () => {
                     <div className='p-10 px-12 flex items-center w-full'>
 
                       <label className='border p-8 w-full border-black text-black rounded-lg  hover:bg-gray-700 hover:text-white'>
-                        {photo ? photo.name : "Upload Prescription"}
+                        Upload Prescription
                         <input type="file"
                           className='w-full'
+
                           name="photo"
                           accept="image/*"
                           onChange={(e) => setPhoto(e.target.files[0])} hidden />
@@ -263,10 +259,7 @@ const CartPage = () => {
                               <button className="bg-green-500 flex text-white items-center justify-center mt-2 p-2 rounded-lg shadow-xl"
                                 onClick={() => {
                                   checkoutHandler()
-
-                                }
-
-                                }>
+                                }}>
                                 <span className="h-full text-lg">Pay with Razorpay </span> <SiRazorpay className=" ml-1" size={20} />
                               </button>
                             ) : (

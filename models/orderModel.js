@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { STATES } from "mongoose";
 
 const orderSchema = new mongoose.Schema({
   products: [
@@ -26,8 +26,9 @@ const orderSchema = new mongoose.Schema({
     enum: ["Not Processed", "Processing", "Shipped", "Delivered", "Canceled"],
   },
   photo: {
-    data: Buffer,
-    contentType: String
+    //   data: Buffer,
+    //   contentType: String,
+    type: String
   },
 }, { timestamps: true });
 
