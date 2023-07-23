@@ -15,9 +15,9 @@ const CartPage = () => {
   const navigate = useNavigate();
 
   const [photo, setPhoto] = useState("");
-  // const [uid, setUid] = useState("");
-  // const [rpid, setRpid] = useState("");
-  // const [amount, setAmount] = useState("");
+  const [uid, setUid] = useState("");
+  const [rpid, setRpid] = useState("");
+  const [amount, setAmount] = useState("");
   //payable price
   const payablePrice = () => {
     let total = totalPrice()
@@ -84,9 +84,8 @@ const CartPage = () => {
 
       const photoData = new FormData();
       photo && photoData.append("photo", photo)
-      photoData.append("id", id)
       const { data } = await axios.put(
-        "/api/v1/payment/razorpay/pres", photoData
+        `/api/v1/payment/razorpay/pres/${id}`, photoData
       );
       if (data?.success) {
         toast.success(`pres has been frontend updated`);
@@ -99,6 +98,8 @@ const CartPage = () => {
       console.log(error);
     }
   };
+
+
   //create order
   const orderCreate = async (rpid, uid, amount) => {
 
@@ -118,7 +119,10 @@ const CartPage = () => {
         toast.error(data.message)
         toast.error("Error in creating order")
       }
-      handleUpdate()
+      const customEvent = {
+        preventDefault: () => { }, // Add an empty preventDefault() function
+      };
+      handleUpdate(customEvent)
     }
     catch (error) {
       console.log(error)
@@ -143,6 +147,8 @@ const CartPage = () => {
         const uid = auth?.user._id
         const amount = payablePrice()
         orderCreate(rpid, uid, amount)
+
+
         //  navigate("/dashboard/user/orders")
       },
       prefill: {
@@ -171,7 +177,6 @@ const CartPage = () => {
               <div className="rounded-lg md:grid md:grid-cols-[60%_40%] gap-4 sm:p-2">
 
                 <div className=" rounded-lg m-0">
-                  <button onClick={handleUpdate}>Upodate Prescription</button>
 
                   {cart?.length ?
                     <div className="w-full my-2 md:w-[28rem] lg:w-[38rem] text-left">
@@ -363,6 +368,8 @@ const CartPage = () => {
                   Your Cart is Empty!
 
                 </p>
+                {/* <button className="bg-red-500 p-2" onClick={handleUpdate}>Update Prescription</button> */}
+
                 <button className="p-2 !text-lg text-blue-600 mt-2 rounded-lg border border-blue-500 " onClick={() => navigate("/allproducts")}>
                   Shop Now
                 </button>
