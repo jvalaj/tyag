@@ -54,15 +54,10 @@ export const razorpayOrderController = async (req, res) => {
 }
 //verify payment
 export const razorpayPaymentVerificationController = async (req, res) => {
-
-
-    ;
-
     try {
-        console.log(req.file.photo)
-        const { cart, rpid, uid, amount } = req.body
-        const photo = req.files
 
+        const { cart, rpid, uid, amount } = req.fields
+        const { photo } = req.files
         const order = new orderModel({
 
             products: cart.map((p) => (
@@ -86,7 +81,7 @@ export const razorpayPaymentVerificationController = async (req, res) => {
 
 
     } catch (error) {
-        //   } else {
+
         console.log(error)
 
         res.status(400).send({
@@ -94,7 +89,7 @@ export const razorpayPaymentVerificationController = async (req, res) => {
             message: "Error in creating order"
         });
     }
-    //  }
+
 
 
 
