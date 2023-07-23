@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 
 
 const CartPage = () => {
+  const [id, setId] = useState("")
   const [auth, setAuth] = useAuth();
   const [cart, setCart, handleAdd, handleSubtract] = useCart();
   const navigate = useNavigate();
@@ -68,7 +69,26 @@ const CartPage = () => {
       console.log(error);
     }
   };
+  const handleUpdate = async () => {
 
+    try {
+      const photoData = new FormData();
+      photoData.append("photo", photo)
+      const { data } = await axios.put(
+        `/api/v1/payment/razorpay/pres/${id}`,
+        photoData
+      );
+      if (data?.success) {
+        toast.success(`pres has been updated`);
+        setPhoto("")
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log("error in front end pres")
+      console.log(error);
+    }
+  };
   //create order
   const orderCreate = async (rpid, uid, amount) => {
 
@@ -79,6 +99,9 @@ const CartPage = () => {
 
       if
         (data?.success) {
+        setId(data?.order._id)
+        handleUpdate()
+        alert({ id })
         toast.success(`Order Successful`)
         localStorage.removeItem("cart");
         setCart([]);

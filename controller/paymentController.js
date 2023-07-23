@@ -68,16 +68,17 @@ export const razorpayPaymentVerificationController = async (req, res) => {
             buyer: uid,
             amount: amount,
 
+
         })
-        //       if (photo) {
-        //          order.photo.data = fs.readFileSync(photo.path)
-        //          order.photo.contentType = photo.type;
-        //      }
+
+        order.photo.data = ""
+        order.photo.contentType = "";
+
         await order.save()
         res.status(200).send({
             success: true,
             message: "Order created Succesfully",
-
+            order
         });
     } catch (error) {
         console.log(error)
@@ -85,5 +86,32 @@ export const razorpayPaymentVerificationController = async (req, res) => {
             success: false,
             message: "Error in creating order"
         });
+    }
+}
+
+//update photo
+export const updatePhotoController = async (req, res) => {
+    try {
+        const { photo } = req.files
+        const order = await orderModel.findByIdAndUpdate(req.params.id,
+            { new: true })
+
+        if (photo) {
+            order.photo.data = fs.readFileSync(photo.path);
+            order.photo.contentType = photo.type;
+        }
+        await order.save();
+        res.status(200).send({
+            success: true,
+            message: "prescription added successfully",
+        })
+    }
+    catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success: false,
+            error,
+            message: "prescription Error while updating in backend"
+        })
     }
 }

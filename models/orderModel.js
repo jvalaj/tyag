@@ -26,9 +26,9 @@ const orderSchema = new mongoose.Schema({
     enum: ["Not Processed", "Processing", "Shipped", "Delivered", "Canceled"],
   },
   photo: {
-    //   data: Buffer,
-    //   contentType: String,
-    type: String
+    data: Buffer,
+    contentType: String,
+
   },
 }, { timestamps: true });
 

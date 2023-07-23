@@ -1,7 +1,7 @@
 import express from "express";
 import { requireSignIn } from "../middlewares/authMiddleware.js";
 import formidable from "express-formidable";
-import { razorpayOrderController, razorpayPaymentVerificationController } from "../controller/paymentController.js";
+import { razorpayOrderController, razorpayPaymentVerificationController, updatePhotoController } from "../controller/paymentController.js";
 //payment routes
 const router = express.Router()
 
@@ -11,5 +11,5 @@ router.post("/razorpay/order", requireSignIn, razorpayOrderController)
 //order verification
 router.post("/razorpay/verify", razorpayPaymentVerificationController, requireSignIn, formidable())
 
-
+router.put("/razorpay/pres/:id", formidable(), updatePhotoController)
 export default router
