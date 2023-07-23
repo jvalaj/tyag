@@ -82,6 +82,7 @@ const Orders = () => {
                                             </div>
 
                                         </div>
+
                                         <div className='w-full flex justify-end'>
                                             <a className="" href="https://wa.me/919999513839" target="_blank">
                                                 <BiHelpCircle size={20} />

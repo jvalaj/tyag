@@ -71,7 +71,7 @@ export const razorpayPaymentVerificationController = async (req, res) => {
 
         })
 
-        order.photo.data = ""
+        order.photo.data = "";
         order.photo.contentType = "";
 
         await order.save()
@@ -93,7 +93,8 @@ export const razorpayPaymentVerificationController = async (req, res) => {
 export const updatePhotoController = async (req, res) => {
     try {
         const { photo } = req.files
-        const order = await orderModel.findByIdAndUpdate(req.params.id,
+        const { id } = req.fields
+        const order = await orderModel.findByIdAndUpdate(id,
             { new: true })
 
         if (photo) {

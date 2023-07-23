@@ -69,17 +69,27 @@ const CartPage = () => {
       console.log(error);
     }
   };
-  const handleUpdate = async () => {
 
+  //
+  const onImageUpload = async (e) => {
+    e.preventDefault()
+    setPhoto(e.target.files[0])
+
+  }
+
+  //pres
+  const handleUpdate = async (e) => {
+    e.preventDefault()
     try {
+
       const photoData = new FormData();
-      photoData.append("photo", photo)
+      photo && photoData.append("photo", photo)
+      photoData.append("id", id)
       const { data } = await axios.put(
-        `/api/v1/payment/razorpay/pres/${id}`,
-        photoData
+        "/api/v1/payment/razorpay/pres", photoData
       );
       if (data?.success) {
-        toast.success(`pres has been updated`);
+        toast.success(`pres has been frontend updated`);
         setPhoto("")
       } else {
         toast.error(data.message);
@@ -100,8 +110,6 @@ const CartPage = () => {
       if
         (data?.success) {
         setId(data?.order._id)
-        handleUpdate()
-        alert({ id })
         toast.success(`Order Successful`)
         localStorage.removeItem("cart");
         setCart([]);
@@ -110,6 +118,7 @@ const CartPage = () => {
         toast.error(data.message)
         toast.error("Error in creating order")
       }
+      handleUpdate()
     }
     catch (error) {
       console.log(error)
@@ -134,7 +143,7 @@ const CartPage = () => {
         const uid = auth?.user._id
         const amount = payablePrice()
         orderCreate(rpid, uid, amount)
-        navigate("/dashboard/user/orders")
+        //  navigate("/dashboard/user/orders")
       },
       prefill: {
         name: "Gaurav Kumar",
@@ -162,7 +171,7 @@ const CartPage = () => {
               <div className="rounded-lg md:grid md:grid-cols-[60%_40%] gap-4 sm:p-2">
 
                 <div className=" rounded-lg m-0">
-
+                  <button onClick={handleUpdate}>Upodate Prescription</button>
 
                   {cart?.length ?
                     <div className="w-full my-2 md:w-[28rem] lg:w-[38rem] text-left">
@@ -183,7 +192,7 @@ const CartPage = () => {
 
                           name="photo"
                           accept="image/*"
-                          onChange={(e) => setPhoto(e.target.files[0])} hidden />
+                          onChange={onImageUpload} hidden />
                       </label>
 
 
