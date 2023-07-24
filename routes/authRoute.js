@@ -1,6 +1,7 @@
-import express from 'express'
-import { forgotPasswordController, getAllOrdersController, getOrdersController, loginController, orderStatusController, prescriptionController, registerController, testController, updateProfileController } from '../controller/authController.js'
-import { requireSignIn, isAdmin } from '../middlewares/authMiddleware.js'
+import express from 'express';
+import { forgotPasswordController, getAllOrdersController, getOrdersController, loginController, orderStatusController, prescriptionController, registerController, testController, updateProfileController } from '../controller/authController.js';
+import { requireSignIn, isAdmin } from '../middlewares/authMiddleware.js';
+import formidable from "express-formidable";
 //router object
 
 const router = express.Router()
@@ -37,6 +38,7 @@ router.get("/all-orders", requireSignIn, isAdmin, getAllOrdersController);
 //order status update
 router.put("/order-status/:orderId", requireSignIn, isAdmin, orderStatusController)
 
-router.get("/prescription/:orderId", prescriptionController)
+//get prescription
+router.get("/prescription/:oid", prescriptionController)
 
 export default router

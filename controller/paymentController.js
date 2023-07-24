@@ -27,7 +27,7 @@ export const razorpayOrderController = async (req, res) => {
             });
             let taxes = mrp * (0.1)
             let total = mrp + taxes
-            return total
+            return total.toFixed(0)
         } catch (error) {
             console.log(error);
         }
@@ -65,8 +65,8 @@ export const razorpayPaymentVerificationController = async (req, res) => {
             buyer: uid,
             amount: amount,
         })
-        order.photo.data = "";
-        order.photo.contentType = "";
+        // order.photo.data = "";
+        //  order.photo.contentType = "";
 
         //     if (photo) {
         //        order.photo.data = fs.readFileSync(photo.path);
@@ -114,3 +114,5 @@ export const updatePhotoController = async (req, res) => {
         })
     }
 }
+
+

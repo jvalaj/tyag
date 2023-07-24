@@ -11,5 +11,8 @@ router.post("/razorpay/order", requireSignIn, razorpayOrderController)
 //order verification
 router.post("/razorpay/verify", razorpayPaymentVerificationController, requireSignIn, formidable())
 
+//add prescription
 router.put("/razorpay/pres/:id", formidable(), updatePhotoController)
+
+
 export default router

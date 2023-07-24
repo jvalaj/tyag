@@ -46,6 +46,11 @@ const AdminOrders = () => {
                         {orders?.map((o, i) => {
                             return (
                                 <div className="border shadow">
+                                    <div className='row-span-1  bg-white  rounded-t-lg overflow-hidden pb-2'>
+                                        <img className=" object-contain h-[9rem] w-full rounded-t-lg" src={`/api/v1/auth/prescription/${o._id}`} alt="photo" />
+
+                                    </div>
+
                                     <table className="table-auto sm:text-md text-xs text-left w-full">
                                         <thead>
                                             <tr className='bg-gray-700 text-white'>
@@ -99,10 +104,7 @@ const AdminOrders = () => {
                                                 </div>
                                             </div>
                                         ))}
-                                        <div className='row-span-1  bg-white  rounded-t-lg overflow-hidden pb-2'>
-                                            <img className=" object-contain h-[9rem] w-full rounded-t-lg" src={`/api/v1/auth/prescription/${o?._id}`} alt="photo" />
 
-                                        </div>
                                         <p className='py-auto p-2'><span className='font-bold'>{o?.buyer?.name} Address:</span> {o?.buyer?.address}</p>
                                     </div>
                                 </div>

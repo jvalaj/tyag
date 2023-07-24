@@ -92,8 +92,6 @@ const CartPage = () => {
     try {
       const photoData = new FormData();
       photo && photoData.append("photo", photo)
-      alert(oid)
-
       const { data } = await axios.put(
         `/api/v1/payment/razorpay/pres/${oid}`, photoData
       );

@@ -226,7 +226,7 @@ export const getOrdersController = async (req, res) => {
 export const getAllOrdersController = async (req, res) => {
     try {
         const orders = await orderModel
-            .find({})
+            .find({}).select("-photo")
             .populate("products.product", "-photo")
             .populate("buyer")
             .sort({ createdAt: "-1" })
@@ -261,7 +261,7 @@ export const orderStatusController = async (req, res) => {
         });
     }
 }
-
+//get prescription
 export const prescriptionController = async (req, res) => {
     try {
         const order = await orderModel.findById(req.params.oid).select("photo")
@@ -278,3 +278,5 @@ export const prescriptionController = async (req, res) => {
         })
     }
 }
+
+
