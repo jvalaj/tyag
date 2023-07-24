@@ -77,18 +77,25 @@ const CartPage = () => {
 
   }
 
+
+  //middle function
+  const middleFunction = (oid) => {
+    const customEvent = {
+      preventDefault: () => { }, // Add an empty preventDefault() function
+    };
+    handleUpdate(customEvent, oid)
+  }
+
   //pres
-  const handleUpdate = async (e) => {
+  const handleUpdate = async (e, oid) => {
     e.preventDefault()
     try {
-
       const photoData = new FormData();
       photo && photoData.append("photo", photo)
-      console.log(orderId)
-      alert(orderId)
+      alert(oid)
 
       const { data } = await axios.put(
-        `/api/v1/payment/razorpay/pres/${orderId}`, photoData
+        `/api/v1/payment/razorpay/pres/${oid}`, photoData
       );
       if (data?.success) {
         toast.success(`pres has been frontend updated`);
@@ -113,9 +120,7 @@ const CartPage = () => {
 
       if
         (data?.success) {
-        setOrderId(JSON.stringify(data?.order._id)) // problem in setting id
-        alert(orderId)
-        console.log(orderId)
+        middleFunction(data?.order._id)
         toast.success(`Order Successful`)
         localStorage.removeItem("cart");
         setCart([]);
@@ -124,10 +129,8 @@ const CartPage = () => {
         toast.error(data.message)
         toast.error("Error in creating order")
       }
-      const customEvent = {
-        preventDefault: () => { }, // Add an empty preventDefault() function
-      };
-      handleUpdate(customEvent)
+
+
     }
     catch (error) {
       console.log(error)
