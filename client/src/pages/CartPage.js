@@ -96,7 +96,7 @@ const CartPage = () => {
         `/api/v1/payment/razorpay/pres/${oid}`, photoData
       );
       if (data?.success) {
-        toast.success(`pres has been frontend updated`);
+        //  toast.success(`pres has been frontend updated`);
         setPhoto("")
       } else {
         toast.error(data.message);

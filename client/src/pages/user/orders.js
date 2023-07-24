@@ -60,8 +60,8 @@ const Orders = () => {
 
                                                     <div key={p.product?._id} className="mb-3 w-[9rem] sm:w-[10rem] h-[9rem] grid grid-rows-[50%_50%]   border rounded-lg shadow bg-gray-800 border-gray-700">
 
-                                                        <div onClick={() => navigate(`/product/${p.slug}`)}
-                                                            target="_blank" className='w-full cursor-pointer hover:opacity-40 px-auto flex justify-center bg-white rounded-lg overflow-hidden pb-2'>
+                                                        <div
+                                                            className='w-full   px-auto flex justify-center bg-white rounded-lg overflow-hidden pb-2'>
                                                             <img className=" object-contain  mx-auto h-auto w-full " src={`/api/v1/product/product-photo/${p.product?._id}`} alt="photo" />
                                                         </div>
 
@@ -77,6 +77,7 @@ const Orders = () => {
 
 
                                                         </div>
+
                                                     </div>
                                                 ))}
                                             </div>
